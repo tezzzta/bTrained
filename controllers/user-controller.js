@@ -1,6 +1,6 @@
 // controllers/user.controler.js
 
-const User = require('../models/user-model');  // Suponiendo que tienes un modelo User para la base de datos
+const User = require('../models/user-model');  
 
 // Controlador para registrar un usuario
 exports.registerUser = (req, res) => {
