@@ -1,14 +1,12 @@
-const express  =  require ('express');
-const app = express();
+// Declarar dos variables con números
+let numero1 = 5;
+let numero2 = 10;
 
-// app.get('/',(req,res)=> {
-//     res.send('Hola')
-// })
+// Sumar los números
+let suma = numero1 + numero2;
 
-app.set('view engine', 'ejs');
+// Mostrar el resultado en la consola
+console.log("La suma de " + numero1 + " y " + numero2 + " es: " + suma);
 
-app.use('/', require('./Routes/rout'));
-
-app.listen(3000, () => {
-    console.log("estamos bien, server corriendo en http://localhost:3000")
-});
+// Mostrar un mensaje en una ventana emergente
+alert("El resultado de la suma es: " + suma);
