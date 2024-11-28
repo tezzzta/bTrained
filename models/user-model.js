@@ -1,28 +1,85 @@
-const mysql = require('mysql2');
+const connection = require('../DataBases/db'); // Importa la conexión a la base de datos
 
-// Configuración de la conexión a la base de datos
-const connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: '',
-  database: 'ed-proj'
-});
+// Registrar un usuario
+exports.registerUser = (userData, callback) => {
+  const { username, email, password } = userData;
+  
+  // Consulta SQL para insertar un nuevo usuario
+  const query = `INSERT INTO users (username, email, password) VALUES (?, ?, ?)`;
 
-// Definición de la tabla de usuarios (si no está creada aún)
-const createUserTable = `CREATE TABLE IF NOT EXISTS users (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  username VARCHAR(255) UNIQUE NOT NULL,
-  email VARCHAR(255) UNIQUE NOT NULL,
-  password VARCHAR(255) NOT NULL
-)`;
+  // Ejecuta la consulta
+  connection.query(query, [username, email, password, role], (err, results) => {
+    if (err) {
+      return callback(err, null); // Pasa el error al callback
+    }
+    return callback(null, results); // Pasa los resultados (usuario creado) al callback
+  });
+};
 
-// Crear la tabla
-connection.query(createUserTable, (err, results) => {
-  if (err) {
-    console.error('Error al crear la tabla de usuarios:', err);
-  } else {
-    console.log('Tabla de usuarios creada o ya existe.');
-  }
-});
+// Iniciar sesión (verificar credenciales)
+exports.loginUser = (email, callback) => {
+  const query = `SELECT * FROM users WHERE email = ?`; // Busca el usuario por email
+  
+  // Ejecuta la consulta
+  connection.query(query, [email], (err, results) => {
+    if (err) {
+      return callback(err, null); // Pasa el error al callback
+    }
+    return callback(null, results); // Pasa el usuario encontrado al callback
+  });
+};
 
-module.exports = connection;  // Exportamos la conexión para usarla en otros archivos
+// Obtener todos los usuarios
+exports.getAllUsers = (callback) => {
+  const query = `SELECT * FROM users`; // Consulta para obtener todos los usuarios
+  
+  // Ejecuta la consulta
+  connection.query(query, (err, results) => {
+    if (err) {
+      return callback(err, null); // Pasa el error al callback
+    }
+    return callback(null, results); // Pasa los resultados (usuarios) al callback
+  });
+};
+
+// Obtener un usuario por su ID
+exports.getUserById = (userId, callback) => {
+  const query = `SELECT * FROM users WHERE id = ?`; // Consulta para obtener un usuario por su ID
+  
+  // Ejecuta la consulta
+  connection.query(query, [userId], (err, results) => {
+    if (err) {
+      return callback(err, null); // Pasa el error al callback
+    }
+    return callback(null, results); // Pasa el usuario encontrado al callback
+  });
+};
+
+// Actualizar un usuario
+exports.updateUser = (userId, userData, callback) => {
+  const { username, email, password } = userData;
+  
+  // Consulta para actualizar un usuario
+  const query = `UPDATE users SET username = ?, email = ?, password = ? WHERE id = ?`;
+  
+  // Ejecuta la consulta
+  connection.query(query, [username, email, password, userId], (err, results) => {
+    if (err) {
+      return callback(err, null); // Pasa el error al callback
+    }
+    return callback(null, results); // Pasa los resultados (usuario actualizado) al callback
+  });
+};
+
+// Eliminar un usuario
+exports.deleteUser = (userId, callback) => {
+  const query = `DELETE FROM users WHERE id = ?`; // Consulta para eliminar un usuario por su ID
+  
+  // Ejecuta la consulta
+  connection.query(query, [userId], (err, results) => {
+    if (err) {
+      return callback(err, null); // Pasa el error al callback
+    }
+    return callback(null, results); // Pasa los resultados (usuario eliminado) al callback
+  });
+};

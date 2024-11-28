@@ -89,3 +89,11 @@ exports.deleteTransition = (req, res) => {
     res.status(200).json({ message: 'Transición eliminada', deletedRows: results.affectedRows });
   });
 };
+// controllers/transitionController.js
+exports.getAllTransitions = (req, res) => {
+  // Supongamos que obtienes transiciones desde la base de datos
+  const transitions = [ /* datos de ejemplo o consulta a la DB */ ];
+
+  // Renderiza la vista y pasa los datos
+  res.render('transitions', { transitions });
+};

@@ -3,7 +3,7 @@ const connection = require('../DataBases/db');  // Asegúrate de que la ruta sea
 console.log('Tipo de connection:', typeof connection); // Esto debería ser un objeto
 
 // Definición de la tabla de transiciones
-const createTransitionTable = `CREATE TABLE IF NOT EXISTS transitions (
+const createTransitionTable = `CREATE TABLE IF NOT EXISTS transiciones (
     id INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
     description TEXT NOT NULL,

@@ -2,32 +2,32 @@
 
 const Comment = require('../models/comment-model');  
 
-
-// controllers/commentController.js
+//crea comentario
 exports.createComment = (req, res) => {
   const { transition_id, user_id, comment_text } = req.body;
 
-  const newComment = new Comment({
-    transition_id,
-    user_id,
-    comment_text,
-    created_at: new Date()
+  const query = `INSERT INTO comments (transition_id, user_id, text, created_at) VALUES (?, ?, ?, ?)`;
+  const values = [transition_id, user_id, comment_text, new Date()];
+
+  connection.query(query, values, (err, results) => {
+    if (err) {
+      return res.status(500).json({ message: 'Error al añadir comentario', error: err });
+    }
+    res.status(201).json({ message: 'Comentario añadido', commentId: results.insertId });
   });
-
-  newComment.save()
-    .then(comment => res.status(201).json({ message: 'Comentario añadido', comment }))
-    .catch(err => res.status(500).json({ message: 'Error al añadir comentario', error: err }));
 };
-
-// Obtener comentarios de una transición
+//consiguec comentarios de transicion
 exports.getCommentsByTransition = (req, res) => {
   const { transition_id } = req.params;
 
-  Comment.find({ transition_id })
-    .then(comments => res.status(200).json(comments))
-    .catch(err => res.status(500).json({ message: 'Error al obtener comentarios', error: err }));
+  const query = `SELECT * FROM comments WHERE transition_id = ?`;
+  connection.query(query, [transition_id], (err, results) => {
+    if (err) {
+      return res.status(500).json({ message: 'Error al obtener comentarios', error: err });
+    }
+    res.status(200).json(results);  // Devuelve todos los comentarios asociados a la transición
+  });
 };
-
 // controllers/comment-controller.js
 
 const connection = require('../DataBases/db'); // Asegúrate de tener esta importación para la conexión a la base de datos
@@ -48,3 +48,19 @@ exports.deleteComment = (req, res) => {
   });
 };
 
+exports.getCommentsByTransition = (req, res) => {
+  const { transition_id } = req.params; // Obtiene el ID de la transición de la URL
+  
+  // Consulta SQL para obtener todos los comentarios de una transición específica
+  const query = 'SELECT * FROM comments WHERE transition_id = ?';
+  
+  // Ejecutar la consulta
+  connection.query(query, [transition_id], (err, results) => {
+    if (err) {
+      return res.status(500).json({ message: 'Error al obtener los comentarios', error: err });
+    }
+    
+    // Renderizar la vista con los comentarios obtenidos
+    res.render('comments', { comments: results, transitionId: transition_id });
+  });
+};

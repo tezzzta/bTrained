@@ -2,11 +2,17 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const path = require('path'); // Importa el módulo 'path'
 
-// Importamos las node rutas
+// Importamos las rutas
 const userRoutes = require('./Routes/user-rout');
 const transitionRoutes = require('./Routes/transition-route');
 const commentRoutes = require('./Routes/comment-route');
+
+// Configuración del motor de plantillas EJS
+app.set('view engine', 'ejs'); // Configura EJS como motor de plantillas
+app.set('views', path.join( __dirname, 'views')); // Carpeta donde estarán las vistas
+app.use(express.static("public"))
 
 // Middleware
 app.use(cors());
@@ -20,4 +26,11 @@ app.use('/comments', commentRoutes);
 // Iniciar el servidor
 app.listen(3000, () => {
     console.log("Servidor corriendo en http://localhost:3000");
+});
+
+app.get('/', (req, res) => {
+    const data = {
+        message: 'Hola Mundo desde Express y EJS!'  // Pasa cualquier dato que necesites
+    };
+    res.render('index', data);  // Renderiza la vista 'index.ejs' y pasa 'data'
 });
