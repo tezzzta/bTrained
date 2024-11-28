@@ -1,16 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Archivo</title>
-  <link rel="stylesheet" href="/styles.css"> <!-- Ruta correcta al archivo CSS -->
-</head>
-<body>
-  
-  <div style="background-color: thistle; padding: 50px 0px 50px 0px; color: blanchedalmond; text-align: center;">
-    <h1> Home</h1>
+<%- include('../partial/header'); -%>
+
+  <div style="background-color:sandybrown ; padding: 50px 0px 50px 0px; color: blanchedalmond; text-align: center;">
+    <h1> Tamo activo papi </h1>
     <p><%= message %></p>  <!-- Aquí usamos EJS para insertar la variable 'message' -->
   </div>
-</body>
-</html>
+  <%- include('../partial/footer'); -%>
+

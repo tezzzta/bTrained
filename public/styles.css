@@ -1,0 +1,27 @@
+/* Cambiar el color de fondo del contenedor */
+.container {
+    background-color: #f8f9fa; /* Fondo claro */
+  }
+  
+  /* Cambiar los colores de los enlaces de la barra de navegación */
+  .nav-link {
+    color: #FF00FF; /* Color de texto rosa/fucsia para los enlaces */
+    font-weight: bold; /* Para resaltar los enlaces */
+  }
+  
+  .nav-link:hover {
+    color: #D100D1; /* Color de texto más oscuro al pasar el ratón */
+    text-decoration: underline; /* Subrayar el enlace al pasar el ratón */
+  }
+  
+  /* Estilo para el enlace activo (cuando se hace clic o se selecciona) */
+  .nav-pills .nav-link.active {
+    background-color: #FF00FF; /* Color de fondo rosa/fucsia */
+    color: white; /* Texto blanco para resaltar el enlace activo */
+  }
+  
+  /* Opcional: Cambiar el padding de los enlaces */
+  .nav-pills .nav-item {
+    padding: 5px;
+  }
+  
