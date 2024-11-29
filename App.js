@@ -34,3 +34,12 @@ app.get('/', (req, res) => {
     };
     res.render('index', data);  // Renderiza la vista 'index.ejs' y pasa 'data'
 });
+
+app.get('/crear', (req, res) => {
+    res.render('crear', { message: 'Crea una transición aquí' });
+});
+
+app.get('/repertorio', (req, res) => {
+    console.log('Ruta /crear visitada');  // Para depuración
+    res.render('repertorio', { message: 'Crea una transición aquí' });
+});
