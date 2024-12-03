@@ -1,27 +1,46 @@
-/* Cambiar el color de fondo del contenedor */
-.container {
-  background-color: #f0f4f8; /* Fondo azul claro suave */
+
+
+/* Importar la fuente desde Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap');
+
+/* Aplicar la fuente a todo el cuerpo del documento */
+body {
+  font-family: 'Fjalla One', sans-serif;
 }
 
-/* Cambiar los colores de los enlaces de la barra de navegación */
-.nav-link {
-  color: #007bff; /* Azul brillante para los enlaces */
-  font-weight: bold; /* Para resaltar los enlaces */
-  transition: color 0.3s; /* Efecto suave al cambiar el color */
+/* Aplicar la fuente solo a títulos */
+h1, h2, h3 {
+  font-family: 'Fjalla One', sans-serif;
 }
 
-.nav-link:hover {
-  color: #0056b3; /* Azul más oscuro al pasar el ratón */
-  text-decoration: underline; /* Subrayar el enlace al pasar el ratón */
+/* O puedes aplicar a clases específicas */
+.titulo-principal {
+  font-family: 'Fjalla One', sans-serif;
 }
 
-/* Estilo para el enlace activo (cuando se hace clic o se selecciona) */
-.nav-pills .nav-link.active {
-  background-color: #007bff; /* Fondo azul brillante */
-  color: white; /* Texto blanco para resaltar el enlace activo */
+.bg-terracota {
+  background-color: #8B4513; /* Color marrón o terracota */
+  color: white; /* Mantiene el texto en blanco para contraste */
 }
 
-/* Opcional: Cambiar el padding de los enlaces */
-.nav-pills .nav-item {
-  padding: 5px;
+/* Sobrescribir bg-primary con marrón terracota */
+/* Sobrescribir bg-primary con marrón terracota para toda la página */
+.bg-primary {
+  background-color: #8B4513 !important; /* Color marrón */
+  color: white !important; /* Color del texto en blanco */
 }
+
+/* Sobrescribir específicamente el color de la barra de navegación */
+.navbar {
+  background-color: #8B4513 !important;
+  color: white !important;
+}
+
+.navbar .nav-link {
+  color: white !important; /* Asegura que el texto también sea blanco */
+}
+
+.navbar .nav-link.active {
+  background-color: #6A3C2C !important; /* Un tono más oscuro para la opción activa */
+}
+
