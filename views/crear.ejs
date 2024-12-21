@@ -4,6 +4,44 @@
   <h1>Empieza a crear</h1>
 </div>
 
+
+<div class="container mt-5">
+  <h2 class="mb-4 text-center" style="color: #5F9EA0;">Crear Nueva Transición</h2>
+
+  <div class="d-md-flex flex-md-equal w-100 my-md-3 ps-md-3">
+
+    <!-- Tarjeta para la imagen y el texto -->
+    <div class="bg-body-tertiary me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
+      <div class="my-3 p-3">
+        <h2 class="display-5" style="color: #5F9EA0;">Sube tus Imágenes</h2>
+        <p class="lead">Selecciona las imágenes para la transición.</p>
+      </div>
+      <div class="bg-dark shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;">
+        <input type="file" class="form-control" id="images" name="images[]" multiple required>
+      </div>
+    </div>
+
+    <!-- Tarjeta para la descripción y respuestas -->
+    <div class="bg-light text-bg-primary me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
+      <div class="my-3 py-3">
+        <h2 class="display-5" style="color: #5F9EA0;">Escribe tu Descripción</h2>
+        <p class="lead" style="color: #5F9EA0;">Define el texto y las opciones para continuar la transición.</p>
+      </div>
+      <div class="shadow-sm mx-auto" style="width: 80%; padding: 20px; border-radius: 21px;">
+        <textarea class="form-control mb-2" id="text" name="text" rows="3" placeholder="Escribe el texto de la transición..." required></textarea>
+
+        <!-- Respuesta 1 -->
+        <input type="text" class="form-control mb-2" id="option1" name="option1" placeholder="Texto para la opción 1" required>
+
+        <!-- Respuesta 2 -->
+        <input type="text" class="form-control mb-2" id="option2" name="option2" placeholder="Texto para la opción 2" required>
+
+        <button type="submit" class="btn" style="background-color: #5F9EA0; color: white;">Crear Transición</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <style>
   body {
     background-color: #f8f9fa; /* Color de fondo principal */
