@@ -1,6 +1,6 @@
 // controllers/commentController.js
 
-const Comment = require('../models/comment-model');  
+const Comment = require('../models/comment-repository');  
 
 //crea comentario
 exports.createComment = (req, res) => {
@@ -16,6 +16,7 @@ exports.createComment = (req, res) => {
     res.status(201).json({ message: 'Comentario añadido', commentId: results.insertId });
   });
 };
+
 //consiguec comentarios de transicion
 exports.getCommentsByTransition = (req, res) => {
   const { transition_id } = req.params;

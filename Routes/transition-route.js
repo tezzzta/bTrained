@@ -15,6 +15,6 @@ router.get('/:id', TransitionController.getTransitionById);
 router.put('/:id', TransitionController.updateTransition);
 
 // Ruta para eliminar una transición
-router.delete('/:id', TransitionController.deleteTransition);
+router.delete('/:id', TransitionController.deleteTransitionById);
 
 module.exports = router;

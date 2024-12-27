@@ -1,99 +1,110 @@
-// controllers/transitionController.js
+const TransitionRepository = require('../models/transition-repository');
+const TransitionImageRepository = require('../models/transition-image-repository');
+const { uploadImageToAzure } = require('../azureBlobService');
 
-const connection = require('../DataBases/db');  // Conexión a MySQL
+// crear una transicion
+exports.createTransition = async (req, res) => {
+    try {
+        const { title, description } = req.body;
+        if (!title || !description) {
+            return res.status(400).json({ message: 'Faltan datos obligatorios (título y descripción)' });
+        }
+        const transitionData = {
+            user_id: req.user.id, // Suponiendo que tienes un middleware de autenticación que añade req.user
+            title: title,
+            description: description
+        }
 
-// Crear una nueva transición
-exports.createTransition = (req, res) => {
-  const { title, description, image, created_by_user_id } = req.body;
+        const transitionId = await TransitionRepository.create(transitionData);
 
-  const query = 'INSERT INTO trancisiones (title, description, image, created_by_user_id, created_at) VALUES (?, ?, ?, ?, ?)';
-  const values = [title, description, image, created_by_user_id, new Date()];
-
-  connection.query(query, values, (err, results) => {
-    if (err) {
-      return res.status(500).json({ message: 'Error al crear transición', error: err });
+        if (req.files && req.files.image) {
+            try {
+                const imageUrl = await uploadImageToAzure(req.files.image.tempFilePath);
+                await TransitionImageRepository.create(transitionId, imageUrl, req.body.imageDescription);
+            } catch (azureError) {
+                console.error("Error al subir la imagen a Azure:", azureError);
+                await TransitionRepository.delete(transitionId); //Rollback
+                return res.status(500).json({ message: "Error al subir la imagen. La transición no se ha guardado." });
+            }
+        }
+        res.status(201).json({ message: 'Transición creada', transitionId });
+    } catch (error) {
+        console.error("Error en createTransition:", error);
+        res.status(500).json({ message: 'Error al crear la transición' });
     }
-    res.status(201).json({ message: 'Transición creada', transitionId: results.insertId });
-  });
 };
-
-// Obtener todas las transiciones
-exports.getAllTransitions = (req, res) => {
-  const query = 'SELECT * FROM trancisiones';
-
-  connection.query(query, (err, results) => {
-    if (err) {
-      return res.status(500).json({ message: 'Error al obtener transiciones', error: err });
+// obtener todas las transiciones
+exports.getAllTransitions = async (req, res) => {
+    try {
+        const transitions = await TransitionRepository.getAll();
+        res.status(200).json(transitions);
+    } catch (error) {
+        console.error("Error en getAllTransitions:", error);
+        res.status(500).json({ message: 'Error al obtener las transiciones' });
     }
-    res.status(200).json(results);
-  });
 };
-
-// Obtener una transición específica por ID
-exports.getTransitionById = (req, res) => {
-  const { id } = req.params;
-
-  const query = 'SELECT * FROM trancisiones WHERE id = ?';
-  connection.query(query, [id], (err, results) => {
-    if (err) {
-      return res.status(500).json({ message: 'Error al obtener transición', error: err });
+// buscar una transicion
+exports.getTransitionById = async (req, res) => {
+    try {
+        const transition = await TransitionRepository.getById(req.params.id);
+        if (!transition) {
+            return res.status(404).json({ message: 'Transición no encontrada' });
+        }
+        res.status(200).json(transition);
+    } catch (error) {
+        console.error("Error en getTransitionById:", error);
+        res.status(500).json({ message: 'Error al obtener la transición' });
     }
+};
+// eliminar una transicion 
+exports.deleteTransitionById = async (req, res) => {
+try {
+  const transitionId = req.params.id;
+  
+        // Llama al método del repositorio para eliminar
+  await TransitionRepository.delete(transitionId);
 
-    if (results.length === 0) {
+  // Eliminación exitosa: 204 No Content (sin contenido en la respuesta)
+  res.status(204).send(); // send() envía una respuesta sin cuerpo;
+
+} catch (error) {
+  console.error("Error al eliminar la transición: ", error);
+    // Manejo específico para "no encontrado" (adapta esto a tus mensajes de error de la base de datos)
+    if (error.message.includes('not found') || error.message.includes('No existe')) { // Ejemplo con otro mensaje en español
       return res.status(404).json({ message: 'Transición no encontrada' });
-    }
+  }
 
-    res.status(200).json(results[0]);
-  });
+  // Manejo genérico de otros errores
+  res.status(500).json({ message: 'Error al eliminar la transición' });
+}
 };
 
+// actualizar transicion
+exports.updateTransition = async (req, res) => {
+  try {
+    const transitionId = req.params.id;
 
-// Actualizar una transición
-exports.updateTransition = (req, res) => {
-  const { id } = req.params;
-  const { title, description, image, created_by_user_id } = req.body;
+    // Extraer datos actualizados del cuerpo de la solicitud
+    const { title, description } = req.body;
 
-  const query = `
-    UPDATE trancisiones  
-    SET title = ?, description = ?, image = ?, created_by_user_id = ?, updated_at = ? 
-    WHERE id = ?
-  `;
-  const values = [title, description, image, created_by_user_id, new Date(), id];
+    // Crear objeto con los datos actualizados
+    const updatedTransitionData = {
+      title,
+      description,
+    };
 
-  connection.query(query, values, (err, results) => {
-    if (err) {
-      return res.status(500).json({ message: 'Error al actualizar la transición', error: err });
-    }
-    if (results.affectedRows === 0) {
-      return res.status(404).json({ message: 'Transición no encontrada' });
-    }
-    res.status(200).json({ message: 'Transición actualizada', updatedRows: results.affectedRows });
-  });
+    // Llamar al método del repositorio para actualizar la transición
+    await TransitionRepository.update(transitionId, updatedTransitionData);
+
+    // Opcional: recuperar la transición actualizada de la base de datos
+    // const updatedTransition = await TransitionRepository.getById(transitionId);
+
+    // Enviar respuesta con código 200 OK (o 204 No Content si no se devuelven datos)
+    res.status(200).json({ message: 'Transición actualizada' }); // O utilizar updatedTransition si se recuperó
+
+  } catch (error) {
+    console.error("Error al actualizar la transición:", error);
+    res.status(500).json({ message: 'Error al actualizar la transición' });
+  }
 };
-
-// Eliminar una transición
-exports.deleteTransition = (req, res) => {
-  const { id } = req.params;
-
-  const query = `
-    DELETE FROM trancisiones
-    WHERE id = ?
-  `;
-  connection.query(query, [id], (err, results) => {
-    if (err) {
-      return res.status(500).json({ message: 'Error al eliminar la transición', error: err });
-    }
-    if (results.affectedRows === 0) {
-      return res.status(404).json({ message: 'Transición no encontrada' });
-    }
-    res.status(200).json({ message: 'Transición eliminada', deletedRows: results.affectedRows });
-  });
-};
-// controllers/transitionController.js
-exports.getAllTransitions = (req, res) => {
-  // Supongamos que obtienes transiciones desde la base de datos
-  const transitions = [ /* datos de ejemplo o consulta a la DB */ ];
-
-  // Renderiza la vista y pasa los datos
-  res.render('transitions', { transitions });
-};
+// ... otras funciones (update, delete, etc.) siguiendo el mismo patrón
