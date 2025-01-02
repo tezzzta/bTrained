@@ -3,8 +3,7 @@ const path = require('path');
 const fs = require('fs');
 require('dotenv').config();
 
-const connectionString =  process.env.AZURE_STORAGE_CONNECTION_STRING;
-
+const connectionString = 
 // ... el resto de tu código
 // Conexión a Azure Blob Storage
 
