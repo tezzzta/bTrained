@@ -6,7 +6,7 @@ const CommentController = require('../controllers/comment-controller');
 router.post('/crear', CommentController.createComment);
 
 // Ruta para obtener los comentarios de una transición
-router.get('/crear/:transitionId', CommentController.getCommentsByTransition);
+router.get('/comentarios/:transitionId', CommentController.getCommentsByTransition);
 
 // Ruta para eliminar un comentario
 router.delete('/:commentId', CommentController.deleteComment);
