@@ -1,61 +1,74 @@
-// controllers/user-controller.js
-const User = require('../models/user-model'); 
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt'); // Para encriptar contraseñas
+const UserModel = require('../models/user-model'); 
 
-// Controlador para registrar un usuario
-exports.registerUser = (req, res) => {
-  const { username, email, password } = req.body;
-  
-  // Llamada al modelo para registrar un usuario
-  User.registerUser({ username, email, password }, (err, result) => {
-    if (err) {
-      return res.status(500).json({ message: 'Error al registrar usuario', error: err });
-    }
-    res.status(201).json({ message: 'Usuario registrado', user: result });
-  });
-};
-
-// Controlador para iniciar sesión
-exports.loginUser = (req, res) => {
+// const secret = process.env.JWT_SECRET || 'your_jwt_secret'; // Usa variables de entorno
+// 🔹 Controlador para iniciar sesión con JWT
+exports.loginUser = async (req, res) => {
   const { email, password } = req.body;
 
-  // Llamada al modelo para verificar las credenciales
-  User.loginUser(email, (err, result) => {
-    if (err) {
-      return res.status(500).json({ message: 'Error al iniciar sesión', error: err });
+  try {
+    const result = await UserModel.loginUser(email);
+    if (result.length === 0) {
+      return res.status(400).json({ message: 'Usuario no encontrado' });
     }
-    if (result.length === 0 || result[0].password !== password) {
+
+    // Comparar la contraseña almacenada con bcrypt
+    const isMatch = await bcrypt.compare(password, result[0].password);
+    if (!isMatch) {
       return res.status(400).json({ message: 'Credenciales inválidas' });
     }
-    res.status(200).json({ message: 'Usuario logueado', user: result[0] });
-  });
+
+    // Generar un token JWT
+    const token = jwt.sign(
+      { id: result[0].id, email: result[0].email, username: result[0].username },
+      process.env.JWT_SECRET,
+      { expiresIn: '1h' }
+    );
+
+    // Almacenar el token en una cookie
+    res.cookie('token', token, { httpOnly: true, secure: process.env.NODE_ENV === 'production' });
+
+    res.status(200).json({ message: 'Usuario logueado', token });
+  } catch (err) {
+    res.status(500).json({ message: 'Error al iniciar sesión', error: err.message });
+  }
 };
 
-// Controlador para obtener todos los usuarios
-// funcion solo de admin
-exports.getAllUsers = (req, res) => {
-  User.getAllUsers((err, users) => {
-    if (err) {
-      return res.status(500).json({ message: 'Error al obtener usuarios', error: err });
-    }
-    res.render('users', { users }); // renderiza la vista 'users.ejs'
-  });
-};
-// Controlador para obtener el perfil del usuario
-exports.getProfile = (req, res) => {
-  // Aquí puedes obtener el perfil del usuario de la base de datos si es necesario
-  // Suponiendo que el usuario ya está autenticado y su información está en req.user
-  const userId = req.user.id;  // Esto asume que tienes el id del usuario en req.user
+// Controlador para registrar un usuario
+exports.registerUser = async (req, res) => {
+  const { username, email, password } = req.body;
   
-  // Llama al modelo para obtener los detalles del usuario por su ID
-  User.getUserById(userId, (err, user) => {
-    if (err) {
-      return res.status(500).json({ message: 'Error al obtener perfil', error: err });
-    }
+  try {
+    const hashedPassword = await bcrypt.hash(password, 10); // Encriptar la contraseña
+    const result = await UserModel.registerUser({ username, email, password: hashedPassword });
+    res.status(201).json({ message: 'Usuario registrado', user: result });
+  } catch (err) {
+    res.status(500).json({ message: 'Error al registrar usuario', error: err.message });
+  }
+};
+
+// Controlador para obtener todos los usuarios (solo admin)
+exports.getAllUsers = async (req, res) => {
+  try {
+    const users = await UserModel.getAllUsers();
+    res.render('users', { users }); // Renderiza la vista 'users.ejs'
+  } catch (err) {
+    res.status(500).json({ message: 'Error al obtener usuarios', error: err.message });
+  }
+};
+
+// Controlador para obtener el perfil del usuario
+exports.getProfile = async (req, res) => {
+  const userId = req.user.id; // Suponiendo que tienes el id del usuario en req.user
+
+  try {
+    const user = await UserModel.getUserById(userId);
     if (!user || user.length === 0) {
       return res.status(404).json({ message: 'Usuario no encontrado' });
     }
-    
-    // Si todo va bien, renderiza la vista con los datos del usuario
     res.status(200).json({ message: 'Perfil del usuario', user: user[0] });
-  });
+  } catch (err) {
+    res.status(500).json({ message: 'Error al obtener perfil', error: err.message });
+  }
 };

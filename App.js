@@ -1,14 +1,24 @@
+require('dotenv').config();
 const express = require('express');
 const app = express();
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const path = require('path'); // Importa el módulo 'path'
+const cookieParser = require('cookie-parser'); // Importa cookie-parser
+
 
 // Importamos las rutas
 const userRoutes = require('./Routes/user-rout');
 const transitionRoutes = require('./Routes/transition-route');
 const commentRoutes = require('./Routes/comment-route');
 
+
+// Configuración inicio de sesión
+app.post('/login', (req, res)); 
+app.post('/login', (req, res)); 
+app.post('/login', (req, res)); 
+
+//fin de inicio de sesión
 // Configuración del motor de plantillas EJS
 app.set('view engine', 'ejs'); // Configura EJS como motor de plantillas
 app.set('views', path.join( __dirname, 'views')); // Carpeta donde estarán las vistas
