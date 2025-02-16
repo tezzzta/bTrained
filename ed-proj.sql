@@ -46,6 +46,8 @@ CREATE TABLE `transition_responses` (
   CONSTRAINT `fk_transition_id` FOREIGN KEY (`transition_id`) REFERENCES `transiciones` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+
+--Necesito hacer saneamiento de la base de datos, poner un minimo para el nombre de user 
 CREATE TABLE `users` (
   `id` int NOT NULL AUTO_INCREMENT,
   `username` varchar(60) NOT NULL,
