@@ -72,3 +72,8 @@ exports.getProfile = async (req, res) => {
     res.status(500).json({ message: 'Error al obtener perfil', error: err.message });
   }
 };
+// Controlador para cerrar sesión
+exports.logoutUser = (req, res) => {
+  res.clearCookie('token'); // Eliminar la cookie que contiene el token
+  res.status(200).json({ message: 'Sesión cerrada exitosamente' });
+};

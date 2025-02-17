@@ -12,4 +12,7 @@ router.post('/login', userController.loginUser);
 // Ruta para obtener el perfil de un usuario
 router.get('/profile', userController.getProfile);
 
+// Ruta para cerrar sesión
+router.post('/logout', userController.logoutUser);
+
 module.exports = router;
