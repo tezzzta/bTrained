@@ -11,8 +11,9 @@ exports.createComment = (req, res) => {
       return res.status(500).json({ message: 'Error al añadir comentario', error: err });
     }
     res.status(201).json({ message: 'Comentario añadido', commentId: result.insertId });
-  });
-};
+    });
+  };
+
 
 // Controlador para obtener los comentarios de una transición
 exports.getCommentsByTransition = (req, res) => {
@@ -38,3 +39,4 @@ exports.deleteComment = (req, res) => {
       return res.status(404).json({ message: 'Comentario no encontrado' });
     }
    
+}) };

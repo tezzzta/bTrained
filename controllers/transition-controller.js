@@ -1,6 +1,6 @@
 const TransitionRepository = require('../models/transition-repository');
 const TransitionImageRepository = require('../models/transition-image-repository');
-const { uploadImageToAzure } = require('../azureBlobService');
+const { uploadImage } = require('../imgur'); // Importa la función uploadImage
 
 // crear una transicion
 exports.createTransition = async (req, res) => {
@@ -13,17 +13,18 @@ exports.createTransition = async (req, res) => {
             user_id: req.user.id, // Suponiendo que tienes un middleware de autenticación que añade req.user
             title: title,
             description: description
-        }
+        };
 
         const transitionId = await TransitionRepository.create(transitionData);
 
         if (req.files && req.files.image) {
             try {
-                const imageUrl = await uploadImageToAzure(req.files.image.tempFilePath);
+                // Usamos la función de Imgur para subir la imagen
+                const imageUrl = await uploadImage(req.files.image.tempFilePath); // Cambia la ruta de la imagen por la de tu archivo temporal
                 await TransitionImageRepository.create(transitionId, imageUrl, req.body.imageDescription);
-            } catch (azureError) {
-                console.error("Error al subir la imagen a Azure:", azureError);
-                await TransitionRepository.delete(transitionId); //Rollback
+            } catch (imgurError) {
+                console.error("Error al subir la imagen a Imgur:", imgurError);
+                await TransitionRepository.delete(transitionId); // Rollback
                 return res.status(500).json({ message: "Error al subir la imagen. La transición no se ha guardado." });
             }
         }
