@@ -1,0 +1,24 @@
+{
+  "files": [],
+  "references": [
+    { "path": "./tsconfig.app.json" },
+    { "path": "./tsconfig.node.json" }
+  ],
+  "compilerOptions": {
+    "jsx": "react-jsx", // Asegura que JSX esté configurado correctamente
+    "esModuleInterop": true, // Habilita la interoperabilidad de módulos ES
+    "allowSyntheticDefaultImports": true, // Permite importaciones sintéticas por defecto
+    "moduleResolution": "node", // Asegura que la resolución de módulos sea correcta
+    "composite": true,
+    "skipLibCheck": true,
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["src/*"]
+      
+  },
+ 
+ 
+  "include": ["src"]
+},
+  "exclude": ["node_modules"]
+}
