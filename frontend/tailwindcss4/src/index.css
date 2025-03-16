@@ -1,7 +1,7 @@
-:root {
+/* :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
-  font-weight: 400;
+  font-weight: 50;
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
@@ -14,7 +14,7 @@
 }
 
 a {
-  font-weight: 500;
+  font-weight: 5000;
   color: #646cff;
   text-decoration: inherit;
 }
@@ -23,11 +23,11 @@ a:hover {
 }
 
 body {
+  width: 100vw;
+  min-width: 100%;
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  padding: 0;
+  overflow-x: hidden; 
 }
 
 h1 {
@@ -65,4 +65,4 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
-}
+} */
