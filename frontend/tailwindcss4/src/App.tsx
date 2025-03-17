@@ -2,7 +2,7 @@
 import './App.css';
 // import Botone from './Firstn';
 import Header from './Headerr';
-import { WelcomeSection, Gallery, CarouselComponent} from './components/Aplication';
+import { WelcomeSection, Gallery, CarouselComponent, Footer} from './components/Aplication';
 
 
 function App() {
@@ -12,7 +12,11 @@ function App() {
         <Header />
         <WelcomeSection />
         <Gallery />
+    
+
         <CarouselComponent />
+        <Footer />
+
     </div>
   );
 }
