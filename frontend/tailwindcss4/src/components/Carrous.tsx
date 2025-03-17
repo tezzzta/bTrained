@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Carousel } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './styles.css';
+import './harry.css';
 
 const CarouselComponent: React.FC = () => {
   const slides = [
