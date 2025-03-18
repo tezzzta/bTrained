@@ -14,11 +14,11 @@ const Gallery: React.FC = () => {
   const randomCards = getRandomCards(cardsData, 6); // Selecciona 6 cartas aleatorias
 
   return (
-    <Container className="album py-5 bg-light">
-      <Row className="g-3 justify-content-center">
+    <Container className="album py-5 gallery-section">
+      <Row className="g-3 justify-content-center" style={{color: '#37474F'}}>
         {randomCards.map((card: CardData) => (
           <Col key={card.id} sm={6} md={4}>
-            <Card className="shadow-sm" style={{ borderRadius: "15px" }}>
+            <Card className="shadow-sm" style={{  borderRadius: "15px" }}>
               <Card.Img
                 variant="top"
                 src={card.img}

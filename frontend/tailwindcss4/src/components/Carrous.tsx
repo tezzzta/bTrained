@@ -11,7 +11,7 @@ const CarouselComponent: React.FC = () => {
   ];
 
   return (
-    <section className="py-5 bg-light">
+    <section className="py-5 carousel-section">
       <Container className="text-center">
         <h2 className="mb-4">Explora Nuestro Carrusel</h2>
                <Carousel className="w-75 mx-auto"> 

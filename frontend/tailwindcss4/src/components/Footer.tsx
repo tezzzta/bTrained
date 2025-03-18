@@ -12,7 +12,7 @@ const Footer: React.FC = () => {
     ];
 
     return (
-        <footer className="text-gray-500 bg-white px-4 py-5 max-w-screen-xl mx-auto md:px-8">
+        <footer className="text-gray-500 px-4 py-5 max-w-screen-xl mx-auto md:px-8" background-color="#f8f9fa">
             <div className="max-w-lg sm:mx-auto sm:text-center">
                 <img src="https://www.floatui.com/logo.svg" className="w-32 sm:mx-auto" alt="Logo" />
                 <p className="leading-relaxed mt-2 text-[15px]">
