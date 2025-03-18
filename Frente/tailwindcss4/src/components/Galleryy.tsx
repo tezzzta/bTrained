@@ -1,7 +1,7 @@
 import React from 'react';
-import { Container, Row, Col, Card, Button } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './harry.css';
+import styles from './Gallery.module.css';
 import { cardsData, CardData } from '../Data/Dataexam';
 
 const getRandomCards = (data: CardData[], count: number): CardData[] => {
@@ -11,35 +11,24 @@ const getRandomCards = (data: CardData[], count: number): CardData[] => {
 };
 
 const Gallery: React.FC = () => {
-  const randomCards = getRandomCards(cardsData, 6); // Selecciona 6 cartas aleatorias
+  const randomCards = getRandomCards(cardsData, 6);
 
   return (
     <Container className="album py-5 gallery-section">
-      <Row className="g-3 justify-content-center" style={{color: '#37474F'}}>
+      <Row className="g-3 justify-content-center">
         {randomCards.map((card: CardData) => (
-          <Col key={card.id} sm={6} md={4}>
-            <Card className="shadow-sm" style={{  borderRadius: "15px" }}>
-              <Card.Img
-                variant="top"
-                src={card.img}
-                style={{ borderTopLeftRadius: "15px", borderTopRightRadius: "15px" }}
-              />
-              <Card.Body>
-                <Card.Title>{card.title}</Card.Title>
-                <Card.Text>{card.text}</Card.Text>
-                <div className="d-flex justify-content-between align-items-center">
-                  <div className="btn-group">
-                    <Button variant="outline-primary" size="sm">
-                      Ver
-                    </Button>
-                    <Button variant="outline-primary" size="sm">
-                      Editar
-                    </Button>
-                  </div>
-                  <small className="text-muted">9 mins</small>
+          <Col key={card.id} sm={6} md={4}> 
+            <div className={styles.cardBox}>
+              <div className={styles.card}>
+              <img src={card.img} alt={card.title} className={styles.cardImg} />
+
+                <h4>{card.title}</h4>
+                <div className={styles.content}>
+                  <h3>{card.title}</h3>
+                  <p>{card.text}</p>
                 </div>
-              </Card.Body>
-            </Card>
+              </div>
+            </div>
           </Col>
         ))}
       </Row>
