@@ -1,7 +1,7 @@
 /* :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
-  font-weight: 50;
+  font-weight: 400;
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
@@ -14,7 +14,7 @@
 }
 
 a {
-  font-weight: 5000;
+  font-weight: 500;
   color: #646cff;
   text-decoration: inherit;
 }
@@ -23,11 +23,11 @@ a:hover {
 }
 
 body {
-  width: 100vw;
-  min-width: 100%;
   margin: 0;
-  padding: 0;
-  overflow-x: hidden; 
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
 }
 
 h1 {
