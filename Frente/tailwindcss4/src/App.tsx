@@ -2,10 +2,11 @@ import { useEffect } from 'react';
 import './App.css';
 // import Botone from './Firstn';
 import Header from './Headerr';
-import { WelcomeSection, Gallery, CarouselComponent, Footer} from './components/Aplication';
+import { Gallery, CarouselComponent, Footer} from './components/Aplication';
 import Fondo from './components/Fondo';
 // import MyComponent from './Fra-mer-motion/MotionOne';
 // import Sidebar from './components/Slidebar';
+import Create from './vistas/Create';
 
 function App() {
   useEffect(() => {
@@ -24,12 +25,13 @@ function App() {
 
   return (
     <div className="App w-100">
-      <Header />
-      {/* <WelcomeSection /> */}
+        <Create />
+
+      {/* <Header />
       <Fondo />
       <Gallery />
       <CarouselComponent />
-      <Footer />
+      <Footer /> */}
     </div>
   );
 }
