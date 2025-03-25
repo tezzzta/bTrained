@@ -1,6 +1,6 @@
 .cardOne {
-    width: 600px;
-    height: 100px;
+    width: 550px;
+    height: 80px;
     margin: 0 auto;
     background-color: #555;
     border-radius: 8px;
@@ -59,17 +59,53 @@
 
 .inputwrapper input {
   margin-bottom: 20px;
-  background-color: #eee;
+  background-color: #a09c9c;
   border: none;
   padding: 0.5rem;
   font-size: 1.5rem;
   width: 20em;
   border-radius: 1rem;
   color: #5972e2;
-  box-shadow: 0 0.2rem #dfd9d9;
+  box-shadow: 0 0.2rem #575656;
   cursor: pointer;
 }
 
 .inputwrapper input:focus {
   outline-color: #5972e2;
 }
+
+
+
+
+/* para el bottom */
+
+
+
+.bottomarrowcontainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem -25px;
+    
+  }
+  
+  .bottomarrowbutton {
+    padding: 0.2rem;
+    border-radius: 50%;
+    background-color: #d1d5db; /* gray-300 */
+    color: #4b5563; /* gray-600 */
+    transform: rotate(-90deg);
+    transition: transform 0.2s ease, background-color 0.3s ease;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .bottomarrowbutton:hover {
+    transform: scale(1.2);
+    background-color: #9ca3af; /* gray-400 */
+    color: #333;
+  }
+  
+  .bottomarrowbutton:active {
+    transform: scale(0.9);
+  }
