@@ -52,106 +52,24 @@
 }
 
 
+.micolorsection {
+  background-color: #1A2332;
+}
 
-/* está tarde, necesito cambiar esto para que diga Formulario sin título y me permita agregarlo como una input */
-.formita {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    gap: 10px;
-    background-image: linear-gradient(45deg, #330808, 
-    #3a2c09);
-    border-radius: 2.5em;
-    padding: 30px;
-    width: 300px;
-    height: 350px;
-  }
-  
-  .form::before {
-    content: '';
-    background-image: linear-gradient(45deg, #ff0000, 
-    #ffb700);
-    height: 358px;
-    width: 309px;
-    position: absolute;
-    margin-top: -34px;
-    margin-left: px;
-    z-index: -1;
-    border-radius: 2.7em;
-  }
-  
-  .button {
-    margin-top: 10px;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 17px;
-    background: #ff5900;
-    color: black;
-    padding: 0.7em 5.5em;
-    display: flex;
-    align-items: center;
-    border: 2px solid #66da4300;
-    border-radius: 5em;
-    overflow: hidden;
-    transition: all 0.2s;
-    cursor: pointer;
-  }
-  
-  .button:hover {
-    border: 2px solid #ff5900;
-    background: #00000000;
-    color: #ff5900;
-  }
-  
-  .button:active {
-    border: 2px solid #66da4300;
-    background: #ff5900;
-    color: black;
-  }
-  
-  .input {
-    width: calc(100% - 10px);
-    padding: 8px;
-    margin-bottom: 20px;
-    border: 1px solid #66da4300;
-    border-bottom: 1px solid #ff5900;
-    outline: none;
-    background-color: transparent;
-    color: #ff5900;
-    font-family: Arial, Helvetica, sans-serif;
-    transition: 0.2s;
-  }
-  
-  .input:focus {
-    border: 1px solid #66da4300;
-    border-bottom: 1px solid #ff5900;
-    background-color: transparent;
-    color: white;
-  }
-  
-  .input::placeholder {
-    color: #9b725b;
-  }
-  
-  .textarea {
-    font-family: Arial, Helvetica, sans-serif;
-    width: calc(100% - 10px);
-    padding: 8px;
-    height: 100px;
-    margin-bottom: 20px;
-    border: 1px solid #66da4300;
-    border-bottom: 1px solid #ff5900;
-    outline: none;
-    background-color: transparent;
-    color: #ff5900;
-  }
-  
-  .textarea::placeholder {
-    color: #9b725b;
-  }
-  
-  .textarea:focus {
-    border: 1px solid #66da4300;
-    border-bottom: 1px solid #ff5900;
-    background-color: transparent;
-    color: white;
-  }
+
+.inputwrapper input {
+  margin-bottom: 20px;
+  background-color: #eee;
+  border: none;
+  padding: 0.5rem;
+  font-size: 1.5rem;
+  width: 20em;
+  border-radius: 1rem;
+  color: #5972e2;
+  box-shadow: 0 0.2rem #dfd9d9;
+  cursor: pointer;
+}
+
+.inputwrapper input:focus {
+  outline-color: #5972e2;
+}
