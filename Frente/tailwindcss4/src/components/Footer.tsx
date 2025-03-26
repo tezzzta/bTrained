@@ -13,7 +13,8 @@ const Footer: React.FC = () => {
 
     return (
         <footer className="text-gray-500 px-4 py-5 max-w-screen-xl mx-auto md:px-8" background-color="#f8f9fa">
-            <div className="max-w-lg sm:mx-auto sm:text-center">
+
+            <div className="max-w-lg sm:mx-auto sm:text-center flex justify-center items-cente">
                 <img src="https://www.floatui.com/logo.svg" className="w-32 sm:mx-auto" alt="Logo" />
                 <p className="leading-relaxed mt-2 text-[15px]">
                     Lorem Ipsum has been the industry's standard dummy text ever since the 1500s...
@@ -30,6 +31,7 @@ const Footer: React.FC = () => {
 
             <div className="mt-8 items-center justify-between sm:flex">
                 <div className="mt-4 sm:mt-0">&copy; 2022 Float UI All rights reserved.</div>
+ 
             </div>
         </footer>
     );
