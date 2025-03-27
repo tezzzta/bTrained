@@ -6,7 +6,7 @@ import { Gallery, CarouselComponent, Footer} from './components/Aplication';
 import Fondo from './components/Fondo';
 // import MyComponent from './Fra-mer-motion/MotionOne';
 // import Sidebar from './components/Slidebar';
-import Create from './vistas/Create';
+import Create from './vistas1/Create';
 
 function App() {
   useEffect(() => {

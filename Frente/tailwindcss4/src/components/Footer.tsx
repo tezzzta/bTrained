@@ -12,9 +12,9 @@ const Footer: React.FC = () => {
     ];
 
     return (
-        <footer className="text-gray-500 px-4 py-5 max-w-screen-xl mx-auto md:px-8" background-color="#f8f9fa">
+        <footer className="text-gray-500 px-4 py-5 w-full  mx-auto md:px-8" background-color="#f8f9fa">
 
-            <div className="max-w-lg sm:mx-auto sm:text-center flex justify-center items-cente">
+            <div className="max-w-lg sm:mx-auto sm:text-center items-center justify-center">
                 <img src="https://www.floatui.com/logo.svg" className="w-32 sm:mx-auto" alt="Logo" />
                 <p className="leading-relaxed mt-2 text-[15px]">
                     Lorem Ipsum has been the industry's standard dummy text ever since the 1500s...

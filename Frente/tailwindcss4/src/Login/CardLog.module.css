@@ -1,0 +1,18 @@
+.card {
+    width: 600px;
+    height: 600px;
+    margin: 0 auto;
+    background-color: #11111b;
+    border-radius: 8px;
+    position: relative;
+    padding-top: 30px; /* Añade espacio superior */
+
+  
+  }
+
+.container{
+  
+    z-index: 1;
+    padding-left: 8vw; 
+    padding-right: 8vw;
+}

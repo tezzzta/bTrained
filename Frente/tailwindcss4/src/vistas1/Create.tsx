@@ -3,22 +3,30 @@ import Footer from '../components/Footer';
 import CardTwo from './CardTwo';
 // import { useState } from 'react';
 import GradientButton from './GradientButton';
-import React from 'react';
 import Card from './CardOne';
 import styles from "./principal.module.css";
+import {TemplatePicker} from './Forms';
+// import {CardLogin} from '../Login/LoginRoutes';
 
 
 const Create = () => {
   return (
     <section className={styles.micolorsection}>
-      <div>
+      <div className="w-full ">
         <Header />
         <div className={styles.cardContainer}>
           <Card />
-          
+       
         </div>
-        <CardTwo />
-             <Footer  />
+    
+        <TemplatePicker />
+
+
+      <div className="w-full">
+      <Footer  />
+      
+      </div>
+     
       </div>
     </section>
   );

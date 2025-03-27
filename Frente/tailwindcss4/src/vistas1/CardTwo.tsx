@@ -1,4 +1,5 @@
 import styles from "./Create.module.css";
+import Login from '../Login/Login';
 const CardTwo = () => {
     return (
       <div className={styles.cardtwo}>
@@ -12,6 +13,8 @@ const CardTwo = () => {
           <div className={styles.circle}>
             <span className={`${styles.box} ${styles.green}`}></span>
           </div>
+                    <Login />
+          
         </div>
         <div className={styles.card_content}>
         </div>

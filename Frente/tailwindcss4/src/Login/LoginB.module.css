@@ -6,7 +6,7 @@
     --burger-line-height: 0.125em;
     --burger-offset: 0.625em;
     --burger-bg: #0003bf;
-    --burger-color: #333;
+    --burger-color: #fff;
     --burger-line-border-radius: 0.1875em;
     --burger-diameter: 3.125em;
     --burger-btn-border-radius: calc(var(--burger-diameter) / 2);
@@ -25,7 +25,7 @@
     --nav-border-width: 0.0625em;
     --nav-shadow-color: rgba(0, 0, 0, 0.2);
     --nav-shadow-width: 0 1px 5px;
-    --nav-bg: #eee;
+    --nav-bg: #000;
     --nav-font-family: "Poppins", sans-serif;
     --nav-default-scale: 0.8;
     --nav-active-scale: 1;
@@ -44,11 +44,11 @@
     --nav-button-border-radius: 0.375em;
     --nav-button-font-size: 17px;
     --nav-button-hover-bg: #003cbf;
-    --nav-button-hover-text-color: #fff;
+    --nav-button-hover-text-color: #555;
     --nav-button-distance: 0.875em;
     /* underline */
     --underline-border-width: 0.0625em;
-    --underline-border-color: #ccc;
+    --underline-border-color: #555;
     --underline-margin-y: 0.3125em;
   }
   

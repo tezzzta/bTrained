@@ -1,0 +1,58 @@
+/*Neo Brutalism pricing card*/
+.card {
+    font-family: 'Poppins', sans-serif;
+    font-weight: lighter; /* Para todo el contenido */
+    font-size: 0.8em; /* Ajusta el tamaño del texto */
+
+      width: 120px;
+      height: 120px;
+      /* background: #4169E1; */
+      padding: 0.009rem;
+      border-radius: 2rem;
+      /* border: 0.5vmin solid #e6121c; */
+      /* box-shadow: 0.4rem 0.4rem #071eeb; */
+      overflow: hidden;
+      
+      color: black;
+    }
+    .miImagenEstilo {
+        width: 120px; /* Ancho deseado */
+        height: 120px; /* Alto deseado */
+        object-fit: cover; /* Ajusta la imagen al contenedor */
+      }
+
+
+/* 
+      para el hover */
+
+
+      .container {
+        display: flex;
+        gap: 20px;
+        overflow-x: auto;
+        padding: 10px;
+        justify-content: center;
+      }
+      
+      .template {
+        width: 150px;
+        padding: 10px;
+        border-radius: 10px;
+        text-align: center;
+        transition: border 0.1s ease-in-out;
+        cursor: pointer;
+      }
+      
+      .template img {
+        width: 100%;
+        border-radius: 5px;
+      }
+      
+      .title {
+        margin-top: 5px;
+        font-size: 14px;
+      }
+      
+      .template:hover {
+        border: 1px solid #1291e6;
+      }
