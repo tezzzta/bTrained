@@ -1,12 +1,8 @@
 import { useEffect } from 'react';
-import './App.css';
-// import Botone from './Firstn';
-import Header from './Headerr';
-import { Gallery, CarouselComponent, Footer} from './components/Aplication';
-import Fondo from './components/Fondo';
-// import MyComponent from './Fra-mer-motion/MotionOne';
-// import Sidebar from './components/Slidebar';
-import Create from './vistas1/Create';
+import First from './Global/RouteFirst';
+import { Create } from './Global/RouteCreate';
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import {Inicio} from './Global/RouteLogin';
 
 function App() {
   useEffect(() => {
@@ -24,15 +20,17 @@ function App() {
   }, []);
 
   return (
-    <div className="App w-100">
-        <Create />
+    <BrowserRouter>
+      
 
-      {/* <Header />
-      <Fondo />
-      <Gallery />
-      <CarouselComponent />
-      <Footer /> */}
-    </div>
+      <div className="App w-100">
+        <Routes>
+          <Route path="/" element={<First />} />
+          <Route path="/login" element={<Inicio />} />
+          <Route path="/signup" element={<Create />} />
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
 }
 

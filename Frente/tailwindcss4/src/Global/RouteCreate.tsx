@@ -1,0 +1,1 @@
+export { default as Create} from '../vistas1/Create';
