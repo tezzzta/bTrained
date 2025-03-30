@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { useState } from 'react';
 
 // para el sing up bro
 
@@ -10,7 +9,6 @@ interface LoginModalProps {
 
 const SingUp=({ isOpen, onClose }: LoginModalProps) => {
   if (!isOpen) return null;
-    const [isLoginOpen, setIsLoginOpen] = useState(false);
   
   return (
         <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
@@ -40,12 +38,10 @@ const SingUp=({ isOpen, onClose }: LoginModalProps) => {
           <input placeholder="Password" className="input-field" type="password" />
         </div>
         <div className="btn">
-          <button className="button1" onClick={() => setIsLoginOpen(true)}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Login&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
+          <button className="button1"> Start </button>
         </div>
-        <button className="button3">Forgot Password</button>
       </form>
     </StyledWrapper>
-    <SingUp isOpen={isLoginOpen} onClose={() => setIsLoginOpen(false)} />
     </div>
   );
 }

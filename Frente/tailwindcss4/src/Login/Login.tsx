@@ -28,8 +28,7 @@ const Login=({ isOpen, onClose }: LoginModalProps) => {
           <input placeholder="Password" className="input-field" type="password" />
         </div>
         <div className="btn">
-          <button className="button1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Login&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
-          <button className="button2">Sign Up</button>
+          <button className="button2"> Start</button>
         </div>
         <button className="button3">Forgot Password</button>
       </form>
