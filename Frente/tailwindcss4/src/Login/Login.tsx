@@ -1,7 +1,17 @@
 import styled from 'styled-components';
 
-const Login = () => {
+
+interface LoginModalProps {
+  isOpen: boolean;
+  onClose: () => void; // Función que no recibe argumentos y no devuelve nada
+
+}
+
+
+const Login=({ isOpen, onClose }: LoginModalProps) => {
+  if (!isOpen) return null;
   return (
+    <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
     <StyledWrapper>
       <form className="form">
         <p id="heading">Login</p>
@@ -24,6 +34,7 @@ const Login = () => {
         <button className="button3">Forgot Password</button>
       </form>
     </StyledWrapper>
+    </div>
   );
 }
 

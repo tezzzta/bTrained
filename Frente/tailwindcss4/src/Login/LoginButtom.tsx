@@ -2,11 +2,13 @@ import { useState } from "react";
 import styles from "./LoginB.module.css";
 // import {Link } from "react-router-dom";
 import SignUP from "./SignUp";
+import Login from "./Login";
 
 
 const LoginButtom = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
+  const [isLoginOpen, setIsLoginOpen] = useState(false);
+  const [isSignUpOpen, setIsSignUpOpen] = useState(false);
+  
     return (
       <div>
 <label className={styles.popup}>
@@ -28,7 +30,7 @@ const LoginButtom = () => {
     <legend>Quick Start</legend>
     <ul>
       <li>
-        <button  onClick={() => setIsModalOpen(true)}>
+        <button  onClick={() => setIsLoginOpen(true)}>
           <svg
             width="14"
             height="14"
@@ -47,7 +49,7 @@ const LoginButtom = () => {
         </button>
       </li>
       <li>
-        <button>
+        <button onClick={() => setIsSignUpOpen(true)}>
           <svg
             width="14"
             height="14"
@@ -68,7 +70,8 @@ const LoginButtom = () => {
     </ul>
   </nav>
 </label>
-<SignUP isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+<SignUP isOpen={isSignUpOpen} onClose={() => setIsSignUpOpen(false)} />
+<Login isOpen={isLoginOpen} onClose={() => setIsLoginOpen(false)} />
 
 </div>
     )

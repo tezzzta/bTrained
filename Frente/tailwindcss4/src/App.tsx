@@ -4,6 +4,7 @@ import { Create } from './Global/RouteCreate';
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import {Inicio} from './Global/RouteLogin';
 
+
 function App() {
   useEffect(() => {
     const preventZoom = (event: WheelEvent) => {
