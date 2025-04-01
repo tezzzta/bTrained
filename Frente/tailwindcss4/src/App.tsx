@@ -3,6 +3,8 @@ import First from './Global/RouteFirst';
 import { Create } from './Global/RouteCreate';
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import {Inicio} from './Global/RouteLogin';
+import  Componente from './reactspr/Parallax'
+
 
 
 function App() {
@@ -22,9 +24,8 @@ function App() {
 
   return (
     <BrowserRouter>
-      
-
-      <div className="App w-100">
+    
+      <div className="App w-full">
         <Routes>
           <Route path="/" element={<First />} />
           <Route path="/login" element={<Inicio />} />

@@ -1,20 +1,24 @@
 import '../App.css';
-import Header from '../Headerr';
+import HeaderSp from '../reactspr/HeaderSpring';
 import { Gallery, CarouselComponent, Footer} from '../components/Aplication';
-import Fondo from '../components/Fondo';
+import  Componente from '../reactspr/Parallax'
+import { motion } from "framer-motion";
+import { useState, useEffect } from 'react';
+
+
 
 function First() {
 
+
     return (
-        <div className="App w-100">
-    
-    
-    
-          <Header />
-          <Fondo />
+        <div>
+        <Componente/>
+          <div className="App  mt-[60%]">
+          <HeaderSp/>
           <Gallery />
           <CarouselComponent />
           <Footer />
+        </div>
         </div>
     );
 }

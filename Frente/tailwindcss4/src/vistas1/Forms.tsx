@@ -15,31 +15,28 @@ type Template = {
   image: string;
 };
 
-export const TemplatePicker = () => {
+export const TemplatePicker: React.FC<{ setSelectedTemplate: (template: string) => void }> = ({ setSelectedTemplate }) => {
   return (
-
-
-
-
-
-
-
     <Container className={styles.container}>
-    <Row className="g-6 justify-content-center"> 
-      {templates.map((card: Template) => (
-        <Col sm={3} md={3} key={card.title} className="justify-center"> 
-          <div className={styles.template}>  
-            <div className={styles.card}>
-              <img src={card.image} alt={card.title} className={styles.miImagenEstilo} />
+      <Row className="g-6 justify-content-center">
+        {templates.map((card: Template) => (
+          <Col sm={3} md={3} key={card.title} className="justify-center">
+            <div 
+              className={styles.template} 
+              onClick={() => setSelectedTemplate(card.title)}
+              style={{ cursor: "pointer", border: "2px solid transparent", padding: "5px" }}
+            >
+              <div className={styles.card}>
+                <img src={card.image} alt={card.title} className={styles.miImagenEstilo} />
+              </div>
             </div>
-          </div>
-          <div className="text-white">
-            <p>{card.title}</p>
-          </div>
-        </Col>
-      ))}
-    </Row>
-  </Container>
+            <div className="text-white">
+              <p>{card.title}</p>
+            </div>
+          </Col>
+        ))}
+      </Row>
+    </Container>
   );
 };
 
