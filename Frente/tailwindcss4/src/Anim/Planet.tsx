@@ -18,8 +18,8 @@ export const PlanetA = () =>
         alt="Planet A" 
         className={styles.planet} 
         style={{ 
-            top: `50px`, 
-            left: `845px`,
+            top: `10px`, 
+            left: `830px`,
             transform: 'scale(0.7)'  // Ajustamos el tamaño de la imagen
         }} 
     />
@@ -51,9 +51,9 @@ export const PlanetD = () =>
         alt="Planet D" 
         className={styles.planet} 
         style={{ 
-            top: `150px`, 
-            left: `560px`,
-            transform: 'scale(0.7)'  // Ajustamos el tamaño de la imagen
+            top: `80px`, 
+            left: `530px`,
+            transform: 'scale(0.7)'  // Ajustamos el tamaño de la imagen el Darth Vader
         }} 
     />
 export const PlanetE = () => 

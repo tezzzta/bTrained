@@ -63,7 +63,7 @@
 .card .content {
   transform: translateY(100%);
   opacity: 0;
-  transition: 0.5s ease-in-out;
+  transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
 }
 
 .card:hover .content {
@@ -71,27 +71,27 @@
   opacity: 1;
 }
 
+/* Oculta el título cuando se hace hover */
 .card:hover h4 {
   opacity: 0;
 }
 
 /* Efecto de borde animado con otros colores */
+/* Efecto de borde animado con hover */
+/* Efecto de borde animado con hover */
 .cardBox::before {
   content: "";
   position: absolute;
-  width: 40%;
+  width: 100%;
   height: 150%;
-  background: linear-gradient(to right, #6a11cb, #2575fc, #00c9a7);
+  background: linear-gradient(to right, #6a11cb, #2575fc, #0e289b);
   transform-origin: center;
-  animation: glowing_401 8s linear infinite;
+  transition: opacity 1s ease-in-out, filter 0.3s ease-in-out;
+  opacity: 0; /* Inicialmente oculto */
 }
 
-/* Animación más lenta */
-@keyframes glowing_401 {
-  0% {
-    transform: rotate(0);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
+/* Cuando el usuario pasa el mouse sobre la cardBox */
+.cardBox:hover::before {
+  opacity: 1;
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.8)); /* Agrega un brillo */
 }

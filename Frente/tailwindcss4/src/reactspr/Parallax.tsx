@@ -83,6 +83,24 @@ const TextOne = () => {
 
 
 
+const Planetas =()  =>{
+  return (
+    <motion.div 
+    initial={{ opacity: 0, y: -5 }} // Subir un poco el texto al inicio
+    animate={{ opacity: 1, y: ["10px", "-10px", "0px"] }}
+    transition={{ repeat: Infinity, repeatType: "reverse", duration: 3 }}
+    >
+        <PlanetA/>
+        {/* <PlanetB/> */}
+        <PlanetC/>
+        <PlanetD/>
+        <PlanetE/>
+        <PlanetF/>
+        <PlanetG/>
+    </motion.div>
+  )
+}
+
 
 // Fondo para agregar los motion
 const Componente= () => {
@@ -90,18 +108,8 @@ const Componente= () => {
     <div className={styles.background}>
 
       <TextOne/>
-      <motion.div 
-          animate={{ y: ["10px", "-10px", "0px"] }}
-          transition={{ repeat: Infinity, repeatType: "reverse", duration: 2 }}
-          >
-      <PlanetA/>
-      {/* <PlanetB/> */}
-      <PlanetC/>
-      <PlanetD/>
-      <PlanetE/>
-      <PlanetF/>
-      <PlanetG/>
-      </motion.div>
+      <Planetas/>
+     
     
 
     </div>
