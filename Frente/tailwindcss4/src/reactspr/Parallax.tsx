@@ -1,60 +1,73 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,useRef } from 'react';
 import styles from './ParallaxIntro.module.css';
 import { motion } from "framer-motion";
-import MyComponent from "../Anim/FirstSrping"; // Suponiendo que este es otro componente que quieres mostrar
 import {PlanetA  , PlanetC, PlanetD, PlanetE, PlanetF, PlanetG} from '../Anim/Planet';
 
-// para el efecto de flotación
 
 
 
 
 
-
-const RevealEffectOnScroll = () => {
-  const [scrollY, setScrollY] = useState(0); // Estado para almacenar el desplazamiento
-  const [isVisible, setIsVisible] = useState(false); // Estado para controlar la visibilidad
-
-  // Función para manejar el scroll
-  const handleScroll = () => {
-    setScrollY(window.scrollY); // Actualiza el desplazamiento en el estado
-
-    // Calcula si el componente está dentro del área visible
-    const elementTop = 5; // El punto en el que aparece el componente (ajústalo según tu diseño)
-    const elementBottom = elementTop + 550; // El final del componente
-
-    // Verifica si el componente está dentro del área visible del viewport
-    if (scrollY > elementTop && scrollY < elementBottom) {
-      setIsVisible(true); // Si está en la vista, hazlo visible
-    } else {
-      setIsVisible(false); // Si está fuera de la vista, ocultarlo
-    }
-  };
+//esto es para la constante useIsVisible 
+const useIsVisible = (options?: IntersectionObserverInit) => {
+  const ref = useRef<HTMLDivElement | null>(null);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll); // Agrega el evento al hacer scroll
+    const observer = new IntersectionObserver(([entry]) => {
+      setIsVisible(entry.isIntersecting);
+    }, options);
 
-    // Limpia el evento cuando el componente se desmonta
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      if (ref.current) {
+        observer.unobserve(ref.current);
+      }
     };
-  }, [scrollY]); // Solo se activa cuando `scrollY` cambia
+  }, [options]);
 
-  return (
-    <motion.div
-      initial={{ opacity: 0 }} // Inicialmente invisible
-      animate={{ opacity: isVisible ? 1 : 0 }} // Cambia la opacidad según si es visible
-      transition={{ duration: 0.5 }} // Duración de la animación
-    >
-    
-     
-
-
-    <div className={styles.cardAbajoDerecha}> 
-        <MyComponent /></div>
-    </motion.div>
-  );
+  return { ref, isVisible };
 };
+
+
+
+const Info = () => {
+  const { ref, isVisible } = useIsVisible();
+  
+  return (
+    <div
+      ref={ref}
+      style={{
+        marginTop: "25vh",
+        color: "white",
+        textAlign: "center",
+        padding: "20px",
+      }}
+    >
+      {isVisible ? (
+        <motion.div
+          initial={{ opacity: 0, y: 0}} // Inicialmente invisible
+          animate={{ opacity: 1, y: ["7px", "-15px", "-1px"] }} // Cambia la opacidad cuando es visible
+          transition={{ duration: 1, delay: 5 }} // Duración de la animación
+        >
+          <div className={styles.ttt}>
+            <p> Sigue bajando para ver más </p>
+            <div className="text-4xl">▼</div>
+
+          </div>
+        </motion.div>
+      ) : null}
+    </div>
+  )
+}
+
+
+
+
+
 
 const TextOne = () => {
   return (
@@ -82,6 +95,7 @@ const TextOne = () => {
 };
 
 
+// para el efecto de flotación
 
 const Planetas =()  =>{
   return (
@@ -102,15 +116,19 @@ const Planetas =()  =>{
 }
 
 
+
+
+
 // Fondo para agregar los motion
 const Componente= () => {
   return (
     <div className={styles.background}>
-
-      <TextOne/>
-      <Planetas/>
-     
+   
     
+     <TextOne/>
+      <Planetas/>
+      <Info/>
+
 
     </div>
   )
