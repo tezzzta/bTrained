@@ -10,12 +10,7 @@ const WelcomeSection: React.FC = () => {
       <p className="mt-4 text-lg">
         Para estudiar, para distraerte o para crear...
       </p>
-      {/* <div 
-    className="absolute inset-0 w-full h-full" 
-    style={{ 
-        background: "linear-gradient(137.92deg, rgba(173, 216, 230, 0) 20.43%, rgba(173, 216, 230, 0) 49.66%, rgba(173, 216, 230, 0) 982.38%)" 
-    }} 
-></div> */}
+  
 
       
     </Container>

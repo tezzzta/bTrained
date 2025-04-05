@@ -6,7 +6,7 @@ const Fondo = () => {
         <div className={`m-15 ${styles.container}`}>
 
             <div className={styles.cardArribaIzquierda}> <CardFour/> </div>
-            <div className={styles.cardAbajoDerecha}> <PricingCard/> </div> {/* Corregido */}
+            <div className={styles.cardAbajoDerecha}> <PricingCard/> </div> 
         </div>
     );
 };
