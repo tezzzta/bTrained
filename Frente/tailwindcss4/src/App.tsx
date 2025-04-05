@@ -3,7 +3,6 @@ import First from './Global/RouteFirst';
 import { Create } from './Global/RouteCreate';
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import {Inicio} from './Global/RouteLogin';
-import  Componente from './reactspr/Parallax'
 
 
 
