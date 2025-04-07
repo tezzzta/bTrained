@@ -1,4 +1,4 @@
-import styles from "./mj.module.css"; // Importa el módulo CSS
+import styles from "./mj.module.css"; 
 
 const MjCard = () => {
   return (

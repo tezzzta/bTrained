@@ -7,7 +7,6 @@ const Sidebar = () => {
 
   return (
     <div className="flex">
-      {/* Botón de menú en móviles */}
       <button 
         className="p-2 m-2 lg:hidden" 
         onClick={() => setIsOpen(!isOpen)}

@@ -1,13 +1,13 @@
 .container {
-    width: 60vw; /* Ancho del fondo */
-    min-height: 50vh; /* Altura del fondo */
-    padding: 40px; /* Más padding para que las cartas tengan espacio */
-    margin: auto; /* Centra horizontalmente */
-    position: relative; /* Para posicionar elementos internos */
+    width: 60vw; 
+    min-height: 50vh; 
+    padding: 40px;
+    margin: auto; 
+    position: relative; 
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: visible; /* Para que las cartas sobresalgan */
+    overflow: visible; 
   
     --s: 200px;
     --c1: #1d1d1d;
@@ -30,16 +30,14 @@
     border-radius: 20px;
 }
 
-/* Posición ajustada para que las cartas queden más cerca del centro */
 .cardArribaIzquierda {
     position: absolute;
-    top: 5%;  /* Subimos la carta para que no quede tan afuera */
-    left: 5%;  /* Movemos un poco hacia adentro */
+    top: 5%;  
+    left: 5%; 
 }
 
-/* Posición ajustada para que las cartas queden más cerca del centro */
 .cardAbajoDerecha {
     position: absolute;
-    bottom: 5%;  /* Subimos la carta para que no quede tan afuera */
-    right: 5%;  /* Movemos un poco hacia adentro */
+    bottom: 5%;  
+    right: 5%;  
 }

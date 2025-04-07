@@ -1,7 +1,7 @@
 const axios = require("axios");
 const fs = require("fs");
 
-const CLIENT_ID = "67c7cb587dab280"; // Reemplaza con tu Client ID de Imgur
+const CLIENT_ID = "67c7cb587dab280"; //cambiar client id y poner en el readmeeeeeeeeeeeeeee
 
 async function uploadImage(imagePath) {
   try {

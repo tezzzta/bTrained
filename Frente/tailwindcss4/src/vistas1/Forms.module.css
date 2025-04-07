@@ -16,14 +16,13 @@
       color: black;
     }
     .miImagenEstilo {
-        width: 120px; /* Ancho deseado */
-        height: 120px; /* Alto deseado */
-        object-fit: cover; /* Ajusta la imagen al contenedor */
+        width: 120px; /* Anchoa  */
+        height: 120px; /* Altura mi bro */
+        object-fit: cover; 
       }
 
 
-/* 
-      para el hover */
+/* para el hover, el transition y el transform sisabe */
 
 
       .container {

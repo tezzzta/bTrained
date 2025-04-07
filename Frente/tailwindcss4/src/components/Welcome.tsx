@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './harry.css'; // Aquí podrían estar tus estilos personalizados
+import './harry.css';  
 
 const WelcomeSection: React.FC = () => {
   return (

@@ -1,6 +1,6 @@
 .cardBox {
   width: 350px;
-  height: 350px; /* Ajustado para incluir imagen */
+  height: 350px; 
   position: relative;
   display: grid;
   place-items: center;
@@ -14,7 +14,7 @@
   position: absolute;
   width: 95%;
   height: 95%;
-  background: #1b1b2f; /* Color más oscuro */
+  background: #1b1b2f; 
   border-radius: 20px;
   z-index: 5;
   display: flex;
@@ -28,7 +28,6 @@
     rgba(0, 0, 0, 0.5) 0px 18px 36px -18px inset;
 }
 
-/* Imagen de la tarjeta */
 .cardImg {
   width: 150%;
   height: 200px;
@@ -59,7 +58,6 @@
   line-height: 1.4em;
 }
 
-/* Efecto de aparición del contenido */
 .card .content {
   transform: translateY(100%);
   opacity: 0;
@@ -71,14 +69,11 @@
   opacity: 1;
 }
 
-/* Oculta el título cuando se hace hover */
 .card:hover h4 {
   opacity: 0;
 }
 
-/* Efecto de borde animado con otros colores */
-/* Efecto de borde animado con hover */
-/* Efecto de borde animado con hover */
+
 .cardBox::before {
   content: "";
   position: absolute;

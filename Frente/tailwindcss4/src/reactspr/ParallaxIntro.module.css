@@ -13,17 +13,15 @@
   .cardAbajoDerecha {
     padding-top: 65px;
     position: absolute;
-    bottom: 15%;  /* Subimos la carta para que no quede tan afuera */
-    right: 50%;  /* Movemos un poco hacia adentro */
-}
+    bottom: 15%;  
+    right: 50%;  
 
 .snt{
     font-family: 'Lobster', sans-serif;
     font-size: 55px ;
-    /* font-weight: bold ; */
     color: white;
     text-align: center;
-    margin-top: 300px;  /* Ajuste mínimo */
+    margin-top: 300px;  
 
     
   }
@@ -33,14 +31,14 @@
     font-size: 25px;
     color: grey;
     text-align: center;
-    margin-top: 5px;  /* Ajuste mínimo */
+    margin-top: 5px; 
 }
 
 .center {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Asegura que todo esté alineado */
-    gap: 5px;  /* Pequeño espacio entre h1 y p */
+    align-items: center; 
+    gap: 5px; 
 }
 
 

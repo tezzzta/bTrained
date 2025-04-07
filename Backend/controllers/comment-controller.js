@@ -1,8 +1,8 @@
 // controllers/comment-controller.js
 
-const Comment = require('../models/comment-repository');  // Importa el repositorio de comentarios
+const Comment = require('../models/comment-repository');  
 
-// Controlador para crear un comentario
+// Crear comentario
 exports.createComment = (req, res) => {
   const { transition_id, user_id, comment_text } = req.body;
 
@@ -15,7 +15,7 @@ exports.createComment = (req, res) => {
   };
 
 
-// Controlador para obtener los comentarios de una transición
+//  obtener los comentarios de una transición
 exports.getCommentsByTransition = (req, res) => {
   const { transition_id } = req.params;
 
@@ -23,11 +23,11 @@ exports.getCommentsByTransition = (req, res) => {
     if (err) {
       return res.status(500).json({ message: 'Error al obtener comentarios', error: err });
     }
-    res.status(200).json(results);  // Devuelve los comentarios encontrados
+    res.status(200).json(results);  
   });
 };
 
-// Controlador para eliminar un comentario
+// eliminar un comentario
 exports.deleteComment = (req, res) => {
   const { commentId } = req.params;
 

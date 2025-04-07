@@ -1,4 +1,4 @@
-import styles from "./peter.module.css"; // Importa el archivo CSS
+import styles from "./peter.module.css"; 
 
 
 const PricingCard = () => {

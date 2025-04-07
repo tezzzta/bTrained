@@ -2,8 +2,7 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt'); // Para encriptar contraseñas
 const UserModel = require('../models/user-model'); 
 
-// const secret = process.env.JWT_SECRET || 'your_jwt_secret'; // Usa variables de entorno
-// 🔹 Controlador para iniciar sesión con JWT
+
 exports.loginUser = async (req, res) => {
   const { email, password } = req.body;
 
@@ -13,7 +12,6 @@ exports.loginUser = async (req, res) => {
       return res.status(400).json({ message: 'Usuario no encontrado' });
     }
 
-    // Comparar la contraseña almacenada con bcrypt
     const isMatch = await bcrypt.compare(password, result[0].password);
     if (!isMatch) {
       return res.status(400).json({ message: 'Credenciales inválidas' });
@@ -35,7 +33,6 @@ exports.loginUser = async (req, res) => {
   }
 };
 
-// Controlador para registrar un usuario
 exports.registerUser = async (req, res) => {
   const { username, email, password } = req.body;
   
@@ -48,17 +45,16 @@ exports.registerUser = async (req, res) => {
   }
 };
 
-// Controlador para obtener todos los usuarios (solo admin)
 exports.getAllUsers = async (req, res) => {
   try {
     const users = await UserModel.getAllUsers();
-    res.render('users', { users }); // Renderiza la vista 'users.ejs'
+    res.render('users', { users }); 
   } catch (err) {
     res.status(500).json({ message: 'Error al obtener usuarios', error: err.message });
   }
 };
 
-// Controlador para obtener el perfil del usuario
+// obtener el perfil del usuario
 exports.getProfile = async (req, res) => {
   const userId = req.user.id; // Suponiendo que tienes el id del usuario en req.user
 
@@ -72,7 +68,7 @@ exports.getProfile = async (req, res) => {
     res.status(500).json({ message: 'Error al obtener perfil', error: err.message });
   }
 };
-// Controlador para cerrar sesión
+//  cerrar sesión
 exports.logoutUser = (req, res) => {
   res.clearCookie('token'); // Eliminar la cookie que contiene el token
   res.status(200).json({ message: 'Sesión cerrada exitosamente' });

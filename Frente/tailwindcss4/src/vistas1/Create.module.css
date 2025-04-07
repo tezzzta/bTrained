@@ -7,7 +7,6 @@
   position: relative; 
   overflow: hidden;
   box-shadow: 0px 10px 15px rgba(89, 114, 226, 0.5);
- /* Simula un borde sin ocupar espacio */
 }
 
 
@@ -40,7 +39,7 @@
     border-radius: 50%;
 }
 .cardContainer {
-    margin-bottom: 20px; /* Ajusta el espacio entre elementos */
+    margin-bottom: 20px; 
   }
 
 .red {
@@ -77,7 +76,6 @@
 }
 
 
-/* para el Dropdown */
 
 
 

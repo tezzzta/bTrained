@@ -3,18 +3,18 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const path = require('path'); // Importa el módulo 'path'
-const cookieParser = require('cookie-parser'); // Importa cookie-parser
+const path = require('path'); 
+const cookieParser = require('cookie-parser'); 
 
 
-// Importamos las rutas principales
+//  rutas principales
 const userRoutes = require('./Routes/user-rout');
 const transitionRoutes = require('./Routes/transition-route');
 const commentRoutes = require('./Routes/comment-route');
 
-// Configuración del motor de plantillas EJS
-app.set('view engine', 'ejs'); // Configura EJS como motor de plantillas
-app.set('views', path.join( __dirname, 'views')); // Carpeta donde estarán las vistas
+// Configuración del motor de plantillas EJS SE ACTUALIZÓ A REACT, HAY QUE CAMBIARLOOOOOO
+app.set('view engine', 'ejs'); 
+app.set('views', path.join( __dirname, 'views')); 
 app.use(express.static("public"))
 
 // Middleware
@@ -22,7 +22,7 @@ app.use(cors());
 app.use(bodyParser.json()); // Para parsear el cuerpo de las solicitudes en formato JSON
 app.use(cookieParser()); // Usa cookie-parser
 
-// Usamos las rutas
+//  rutas
 app.use('/users', userRoutes);
 app.use('/transitions', transitionRoutes);
 app.use('/comments', commentRoutes);
@@ -34,9 +34,9 @@ app.listen(3000, () => {
 
 app.get('/', (req, res) => {
     const data = {
-        message: 'Hola Mundo desde Express y EJS!'  // Pasa cualquier dato que necesites
+        message: 'Hola Mundo desde Express y EJS!' 
     };
-    res.render('index', data);  // Renderiza la vista 'index.ejs' y pasa 'data'
+    res.render('index', data);  
 });
 
 app.get('/crear', (req, res) => {
@@ -44,12 +44,10 @@ app.get('/crear', (req, res) => {
 });
 
 app.get('/repertorio', (req, res) => {
-    console.log('Ruta /crear visitada');  // Para depuración
+    console.log('Ruta /crear visitada');  
     res.render('repertorio', { message: 'Crea una transición aquí' });
 });
 app.post('/login', (req, res) => {
-    // Lógica para procesar el login
     const { username, password } = req.body;
-    // Autenticación, validación, etc.
 });
 

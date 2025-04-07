@@ -49,8 +49,8 @@ const Info = () => {
     >
       {isVisible ? (
         <motion.div
-          initial={{ opacity: 0, y: 0}} // Inicialmente invisible
-          animate={{ opacity: 1, y: ["7px", "-15px", "-1px"] }} // Cambia la opacidad cuando es visible
+          initial={{ opacity: 0, y: 0}} // primero no se ve
+          animate={{ opacity: 1, y: ["7px", "-15px", "-1px"] }} //  despues si se ve
           transition={{ duration: 1, delay: 5 }} // Duración de la animación
         >
           <div className={styles.ttt}>
@@ -75,17 +75,16 @@ const TextOne = () => {
       initial={{ opacity: 0 }} 
       animate={{ opacity: 1 }} 
       transition={{ duration: 1.5 }} 
-      className={styles.container} // Asegurar que todo esté alineado correctamente
+      className={styles.container} 
     >
       <div className={styles.center}>
         <h1 className={styles.snt}>Impacta, Influye e Inspira ...</h1>
 
-        {/* Párrafo justo debajo del H1 con delay en la animación */}
         <motion.p 
           className={styles.rnt}
-          initial={{ opacity: 0, y: -5 }} // Subir un poco el texto al inicio
+          initial={{ opacity: 0, y: -5 }} 
           animate={{ opacity: 1, y: 0 }} 
-          transition={{ duration: 1, delay: 1.5 }} // Retraso de 1.5s
+          transition={{ duration: 1, delay: 1.5 }} 
         >
         <p>  Empieza a crear y sorprende  </p>  
         </motion.p>
@@ -95,12 +94,11 @@ const TextOne = () => {
 };
 
 
-// para el efecto de flotación
 
 const Planetas =()  =>{
   return (
     <motion.div 
-    initial={{ opacity: 0, y: -5 }} // Subir un poco el texto al inicio
+    initial={{ opacity: 0, y: -5 }} 
     animate={{ opacity: 1, y: ["10px", "-10px", "0px"] }}
     transition={{ repeat: Infinity, repeatType: "reverse", duration: 3 }}
     >
@@ -119,7 +117,6 @@ const Planetas =()  =>{
 
 
 
-// Fondo para agregar los motion
 const Componente= () => {
   return (
     <div className={styles.background}>

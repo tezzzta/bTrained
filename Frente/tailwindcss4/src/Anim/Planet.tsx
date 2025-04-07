@@ -20,7 +20,7 @@ export const PlanetA = () =>
         style={{ 
             top: `10px`, 
             left: `830px`,
-            transform: 'scale(0.7)'  // Ajustamos el tamaño de la imagen
+            transform: 'scale(0.7)'  
         }} 
     />
 export const PlanetB = () => 
@@ -31,7 +31,7 @@ export const PlanetB = () =>
         style={{ 
             top: `${randomPosition(230, 150)}px`, 
             left: `450px`,
-            transform: 'scale(0.7)'  // Ajustamos el tamaño de la imagen
+            transform: 'scale(0.7)'  
         }} 
     />
 export const PlanetC = () => 
@@ -42,7 +42,7 @@ export const PlanetC = () =>
         style={{ 
             top: `50px`, 
             left: `1200px`,
-            transform: 'scale(0.7)'  // Ajustamos el tamaño de la imagen
+            transform: 'scale(0.7)'  
         }} 
     />
 export const PlanetD = () => 
@@ -64,7 +64,7 @@ export const PlanetE = () =>
         style={{ 
             top: `1px`, 
             left: `350px`,
-            transform: 'scale(0.7)'  // Ajustamos el tamaño de la imagen
+            transform: 'scale(0.7)'  
         }} 
     />
 export const PlanetF = () => 
@@ -75,7 +75,7 @@ export const PlanetF = () =>
         style={{ 
             top: `60px`, 
             left: `120px`,
-            transform: 'scale(0.7)'  // Ajustamos el tamaño de la imagen
+            transform: 'scale(0.7)'  
         }} 
     />
 export const PlanetG = () => 
@@ -86,7 +86,7 @@ export const PlanetG = () =>
         style={{ 
             top: `120px`, 
             left: `1450px`,
-            transform: 'scale(0.7)'  // Ajustamos el tamaño de la imagen
+            transform: 'scale(0.7)'  
         }} 
     />
 export const PlanetH = () => 

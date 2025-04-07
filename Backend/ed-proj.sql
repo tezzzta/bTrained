@@ -5,7 +5,7 @@ CREATE TABLE `comments` (
   `comment` text NOT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
-  KEY `fk_user_id` (`user_id`),  -- Índice para la clave foránea de user_id
+  KEY `fk_user_id` (`user_id`),  
   KEY `fk_transition_id_2` (`transition_id`),
   CONSTRAINT `fk_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_transition_id_2` FOREIGN KEY (`transition_id`) REFERENCES `transiciones` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
@@ -27,7 +27,7 @@ CREATE TABLE `transition_images` (
   `id` int NOT NULL AUTO_INCREMENT,
   `transition_id` int NOT NULL,
   `image_url` varchar(255) NOT NULL,
-  `description` text DEFAULT NULL,   -- Almacena información adicional de la imagen
+  `description` text DEFAULT NULL,   
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `fk_transition_id_3` (`transition_id`),

@@ -1,7 +1,7 @@
 /*Neo Brutalism pricing card*/
 .card {
   font-family: 'Poppins', sans-serif;
-  font-weight: bold; /* Para todo el contenido */
+  font-weight: bold; 
     width: 310px;
     background: #4169E1;
     padding: 1rem;
