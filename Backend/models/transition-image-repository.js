@@ -13,7 +13,6 @@ const TransitionImageRepository = {
             throw error;
         }
     },
-    //... otros métodos según necesidad
 };
 
 module.exports = TransitionImageRepository;

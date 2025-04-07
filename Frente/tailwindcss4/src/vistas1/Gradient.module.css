@@ -1,7 +1,7 @@
 .container {
     display: flex;
     align-items: center;
-    justify-content: flex-end; /* Ahora se alinea a la izquierda */
+    justify-content: flex-end; 
     padding-right: 20px;
   }
   

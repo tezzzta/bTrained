@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 interface LoginModalProps {
   isOpen: boolean;
-  onClose: () => void; // Función que no recibe argumentos y no devuelve nada
+  onClose: () => void; 
 }
 
 const SingUp=({ isOpen, onClose }: LoginModalProps) => {
@@ -22,7 +22,7 @@ const SingUp=({ isOpen, onClose }: LoginModalProps) => {
           <input autoComplete="off" placeholder="Email" className="input-field" type="email" />
         </div>
 
-{/* poner el correo */}
+{/* pal email*/}
 
 
         <div className="field">

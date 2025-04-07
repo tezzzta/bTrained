@@ -1,7 +1,7 @@
 import styles from "./Bottom.module.css";
 import Nav from 'react-bootstrap/Nav';
 
-// para las rutas
+// para las rutassss
 
 import {Link } from "react-router-dom";
 

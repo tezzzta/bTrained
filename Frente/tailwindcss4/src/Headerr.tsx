@@ -2,7 +2,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Container from 'react-bootstrap/Container';
 import {LoginButtom} from './Login/LoginRoutes';
-import 'bootstrap/dist/css/bootstrap.min.css'; // Importar Bootstrap
+import 'bootstrap/dist/css/bootstrap.min.css'; // Importando ando 
 import BottomAnim from './Anim/BottomAnim';
 
 function Header() {

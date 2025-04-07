@@ -1,4 +1,4 @@
-const connection = require('../DataBases/db'); // Conexión a la base de datos
+const connection = require('../DataBases/db'); 
 
 class UserModel {
   static registerUser(userData) {

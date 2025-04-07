@@ -1,8 +1,7 @@
 // models/comment-model.js
 
-const connection = require('../DataBases/db');  // Importa la conexión desde db.js
+const connection = require('../DataBases/db');  
 
-// Definir las consultas SQL o funciones que necesiten acceso a la base de datos
 const createCommentTable = `CREATE TABLE IF NOT EXISTS comments (
   id INT AUTO_INCREMENT PRIMARY KEY,
   text TEXT NOT NULL,

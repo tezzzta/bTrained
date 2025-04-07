@@ -55,7 +55,6 @@ const TransitionRepository = {
             throw error;
         }
     },
-    // ... otros métodos según necesidad (ej. buscar por usuario, etc.)
 };
 
 module.exports = TransitionRepository;
