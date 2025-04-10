@@ -1,0 +1,1 @@
+B-Train es una solución a la hora de realizar encuestas y evaluaciones de manera interactiva, usando tecnologías como React, Typescript y asistencia de modelos de LLM para una mejor experiencia de usuario. Se encuentra en desarrollo, mantente atento a su despliegue:D
