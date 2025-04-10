@@ -1,6 +1,12 @@
 import styles from "./Gradient.module.css";
 
-const GradientButton: React.FC = () => {
+type GradientButtonProps = {
+  onClick: () => void;
+};
+
+
+
+const GradientButton: React.FC<GradientButtonProps> = ({onClick}) => {
   return (
     <div className={styles.container}>
       <div className={styles.wrapper}>

@@ -2,6 +2,7 @@
 import { Container, Row, Col } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import styles from './Forms.module.css'
+import { useState } from "react";
 
 export const templates = [
   { title: "Formulario en blanco", image: "https://picsum.photos/400/200?random=1" },
@@ -15,7 +16,13 @@ type Template = {
   image: string;
 };
 
-export const TemplatePicker: React.FC<{ setSelectedTemplate: (template: string) => void }> = ({ setSelectedTemplate }) => {
+
+interface TemplatePickerProps {
+  setFormData: (key: "nombre" | "template", value: string) => void;
+}
+export const TemplatePicker: React.FC<TemplatePickerProps> = ({ setFormData }) => {
+  
+
   return (
     <Container className={styles.container}>
       <Row className="g-6 justify-content-center">
@@ -23,7 +30,7 @@ export const TemplatePicker: React.FC<{ setSelectedTemplate: (template: string) 
           <Col sm={3} md={3} key={card.title} className="justify-center">
             <div 
               className={styles.template} 
-              onClick={() => setSelectedTemplate(card.title)}
+              onClick={() => setFormData( 'template', card.title)}
               style={{ cursor: "pointer", border: "2px solid transparent", padding: "5px" }}
             >
               <div className={styles.card}>

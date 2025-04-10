@@ -32,7 +32,7 @@ const HeaderSp= () => {
     <motion.div
     initial={{ opacity: 0 }} 
     animate={{ opacity: isVisible? 1:0  }} 
-    transition={{ duration: 3.5 }} 
+    transition={{ duration: 1.8, delay:1.5 }} 
     >
     <Header />
 
