@@ -34,11 +34,13 @@ const Card: React.FC<TemplatePickerProps> = ({ nombre, setFormData}) => {
           name="nombre"
           className="input"
           value={nombre} // Debe estar ligado a formData.nombre
-          onChange={(e) => setFormData("nombre", e.target.value)}
+          onChange={handleChange}
         />
         </div>
 
         <div className={styles.card_content}>
+           
+           
            <GradientButton onClick={() => setFormData("nombre", nombre)} />
         </div>
       </div>

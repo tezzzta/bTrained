@@ -23,6 +23,8 @@ export const FormularioStore = create<FormularioStore>((set) => ({
             [key]: value
           }
         };
+
+        //BORRAR LOG DE NUEVO ESTADO AL FINALIZAR APP 
         console.log("Nuevo estado:", newState);  
         return newState;
       });

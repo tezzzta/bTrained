@@ -53,7 +53,7 @@ const handleInputChange = useCallback(
 );
 
 
-
+  
 
 
   return (
@@ -67,7 +67,11 @@ const handleInputChange = useCallback(
 
         <TemplatePicker setFormData={handleInputChange} />
 
-
+          <div className={"flex justify-center items-center h-20 "}>
+          {formData.nombre.length > 3 &&    formData.template.length > 0  &&   (<button className={"bg-blue-500 text-white font-semibold rounded-2xl py-2 px-6  hover:bg-blue-600 transition duration-300"}> Click </button>
+        )}
+          
+          </div>
       
                   <MyComponent  formData={formData} />
 

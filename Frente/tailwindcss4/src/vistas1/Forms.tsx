@@ -46,10 +46,7 @@ export const TemplatePicker: React.FC<TemplatePickerProps> = ({ setFormData }) =
         ))}
       </Row>
     </Container>
-    <div className={"flex justify-center items-center h-20 "}>
-    <button className={"bg-blue-500 text-white font-semibold rounded-2xl py-2 px-6  hover:bg-blue-600 transition duration-300"}> Click </button>
-
-    </div>
+   
 
     </div>
   
