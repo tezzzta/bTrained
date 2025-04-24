@@ -1,4 +1,3 @@
-// models/comment-model.js
 
 const connection = require('../DataBases/db');  
 
@@ -12,7 +11,6 @@ const createCommentTable = `CREATE TABLE IF NOT EXISTS comments (
   FOREIGN KEY (transition_id) REFERENCES trancisiones(id)
 )`;
 
-// Ejecutar la consulta de creación de la tabla
 connection.query(createCommentTable, (err, results) => {
   if (err) {
     console.error('Error al crear la tabla de comentarios:', err);

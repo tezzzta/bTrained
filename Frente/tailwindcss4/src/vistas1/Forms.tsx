@@ -24,7 +24,9 @@ export const TemplatePicker: React.FC<TemplatePickerProps> = ({ setFormData }) =
   
 
   return (
-    <Container className={styles.container}>
+    <div>
+
+     <Container className={styles.container}>
       <Row className="g-6 justify-content-center">
         {templates.map((card: Template) => (
           <Col sm={3} md={3} key={card.title} className="justify-center">
@@ -44,6 +46,13 @@ export const TemplatePicker: React.FC<TemplatePickerProps> = ({ setFormData }) =
         ))}
       </Row>
     </Container>
+    <div className={"flex justify-center items-center h-20 "}>
+    <button className={"bg-blue-500 text-white font-semibold rounded-2xl py-2 px-6  hover:bg-blue-600 transition duration-300"}> Click </button>
+
+    </div>
+
+    </div>
+  
   );
 };
 
