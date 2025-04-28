@@ -3,7 +3,7 @@ import First from './Global/RouteFirst';
 import { Create } from './Global/RouteCreate';
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import {Inicio} from './Global/RouteLogin';
-
+import ViewCreate from './Vistas2/Viewcreate'
 
 
 function App() {
@@ -29,6 +29,8 @@ function App() {
           <Route path="/" element={<First />} />
           <Route path="/login" element={<Inicio />} />
           <Route path="/create" element={<Create />} />
+          <Route path="/c-forms" element={< ViewCreate/>} />
+
         </Routes>
       </div>
     </BrowserRouter>

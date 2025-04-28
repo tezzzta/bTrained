@@ -11,6 +11,9 @@ import MyComponent from "../Anim/FirstSrping";
 import { FormularioStore } from "../Store/TryZustand";
 import type { Formulario} from "../Store/IntZus.d.ts";
 
+import { Link } from "react-router-dom";
+
+
 
 
 
@@ -18,9 +21,6 @@ import type { Formulario} from "../Store/IntZus.d.ts";
 
 const Create = () => {
  
-
-
-
 // HAREMOS EL ESTADO ANTES DE ENVIAR AL BACKEND, SE USA ZUSTAND, ANTES DE ENVIAR AL BACKEND SE ALMACENA 
 
 
@@ -67,11 +67,13 @@ const handleInputChange = useCallback(
 
         <TemplatePicker setFormData={handleInputChange} />
 
+        {/* pondremos una redireccion a otra vista con el ESTADO  */}
+        <Link to="/c-forms">
           <div className={"flex justify-center items-center h-20 "}>
           {formData.nombre.length > 3 &&    formData.template.length > 0  &&   (<button className={"bg-blue-500 text-white font-semibold rounded-2xl py-2 px-6  hover:bg-blue-600 transition duration-300"}> Click </button>
         )}
-          
           </div>
+          </Link> 
       
                   <MyComponent  formData={formData} />
 
