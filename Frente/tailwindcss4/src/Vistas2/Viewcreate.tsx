@@ -1,6 +1,59 @@
 import React, { useState } from "react";
 import { useDropzone } from "react-dropzone";
 import Header from "../Headerr";  // Asegúrate de que el nombre del archivo Header sea correcto (Headerr -> Header)
+import { FormularioStore } from "../Store/TryZustand"; 
+import type {Template,UpdateTemplate } from '../Store/IntZus.d.ts'; // Asegúrate de que la ruta sea correcta
+
+
+
+
+const addHandleClick = () => {
+  const { incrementTemplateId } = FormularioStore.getState();
+  incrementTemplateId(); // Incrementa el idCounter al hacer clic en el botón
+}
+
+// haré un ejemplo de barra de pestañas
+//debo hacerlo responsivo, pero no tengo idea de como hacerlo, así que lo haré después
+const Tabs = () => {
+  const {
+    templates,
+    template,
+    addTemplate,
+    removeTemplate,
+    selectTemplate
+  } = FormularioStore();
+
+  return (
+    <div className="flex space-x-2 bg-[#1A2332] ">
+      {templates.map((tab) => (
+        <div
+          key={tab.id}
+          className={`relative px-4 py-1 rounded-t-md border border-gray-300 text-white text-sm font-semibold cursor-pointer
+            ${template.id === tab.id ? 'bg-lime-400 text-black' : 'bg-gray-700'}`}
+          onClick={() => selectTemplate(tab.id)}
+        >
+          {tab.id}
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              removeTemplate(tab.id);
+            }}
+            className="absolute -top-1 -right-1 text-white rounded-full w-5 h-4 text-xs flex items-center justify-center"
+          >
+            ×
+          </button>
+        </div>
+      ))}
+
+      <button
+        onClick={addTemplate}
+        className="bg-blue-500 text-white px-3 rounded-md hover:bg-blue-600 text-sm"
+      >
+        +
+      </button>
+    </div>
+  );
+};
 
 // Componente para subir fotos
 const PhotoUpload: React.FC = () => {
@@ -50,7 +103,7 @@ const PhotoUpload: React.FC = () => {
 
 
 //un boton bonito q vi en un repositorio, se agrega un condicional para agregar mas respuestas 
-const Button = () => {
+const Button = ( template: Template, updateTemplate: UpdateTemplate ) => {
   const [conta,setConta] = useState(0) 
   return (
     <div className="w-full">
@@ -63,6 +116,11 @@ const Button = () => {
         type="text"
         className="border-2 border-gray-300 text-[#000000] text-center font-semibold rounded-md p-2 w-2/3 mt-2"
         placeholder={`Respuesta ${index + 3}`}
+        onChange={(e) => {
+          const updated = [...template.answer];
+          updated[1] = e.target.value;
+          updateTemplate(template.id, 'answer', updated);
+        }}
       />
     ))
   )}
@@ -103,6 +161,8 @@ const Button = () => {
 
 // Componente ViewCreate
 const ViewCreate = () => {
+  const { template, updateTemplate } = FormularioStore();
+
   return (
     <div className="bg-[#1A2332] h-screen w-full overflow-visible mb-5">
       <Header />
@@ -112,39 +172,68 @@ const ViewCreate = () => {
       </div>
 
       {/* será que hago este componente en uno y lo importo acá? ya tengo sueño, mañana veo */}
+              {/*engloba todod el componente */}
+
       <div className="flex justify-center items-center h-full mb-9">
-        {/*vemos donde va el mb-9 */}
-        <div className="bg-amber-100 w-1/2 max-h-full justify-center items-center text-center mt-2 mb-9  pt-4 pb-5 rounded-md overflow-visible">
-          <PhotoUpload />
-          <input
-            type="text"
-            className="text-[22px] text-[#000000] text-center font-semibold rounded-md p-2 w-2/3 mt-1 mb-3"
-            placeholder="Agrega la pregunta "
-          />
+      {/*<div className="absolute -top-6 left-6 px-6 py-1 bg-lime-400 rounded-t-xl rounded-b-none shadow-md z-10 text-black text-sm font-semibold border border-gray-300">
+ */}
+        {/*pondremos un condicional (tiene otro nombre pero ahorita no recuerdo) para cada template*/}
 
-          <div className="mb-5">
-            <p className="text-black font-bold text-lg"> Respuestas</p>
-            <input
-              type="text"
-              className="border-2 border-gray-300 text-[#000000] text-center font-semibold rounded-md p-2 w-2/3 mt-2"
-              placeholder="Respuesta "
-            />
-            <input
-              type="text"
-              className="border-2 border-gray-300 text-[#000000] text-center font-semibold rounded-md p-2 w-2/3 mt-2"
-              placeholder="Respuesta 2"
-            />
-            
-            <div className="flex justify-center items-center mt-1 pb-16 h-full">
-              <Button />
-            </div>
+        {/*revisar, solo guarda las primeras dos preguntas, las dempas tambien se comparten*/}
 
-            <p className="text-black font-bold mt-5">
-              Acá las respuestas, serían mínimo 2 máximo 5, AGREGA DIVISORES
-            </p>
-          </div>
-        </div>
+                          {template != null ? (
+                    <div className="bg-amber-100 rounded-2xl w-1/2 max-h-full justify-center items-center text-center mt-2 mb-9 pt-0 pb-5 overflow-visible">
+                      <Tabs />
+                      <div className="mt-6">
+                        <PhotoUpload />
+                        <input
+                          type="text"
+                          value={template.question}
+                          onChange={(e) => updateTemplate(template.id, 'question', e.target.value)}
+                          className="text-[22px] text-[#000000] text-center font-semibold rounded-md p-2 w-2/3 mt-1 mb-3"
+                          placeholder="Agrega la pregunta"
+                        />
+                      </div>
+                      <div className="mb-5">
+                        <p className="text-black font-bold text-lg">Respuestas</p>
+                        <input
+                          type="text"
+                          value={template.answer[0] || ''}
+                          onChange={(e) => {
+                            const updated = [...template.answer];
+                            updated[0] = e.target.value;
+                            updateTemplate(template.id, 'answer', updated);
+                          }}
+                          className="border-2 border-gray-300 text-[#000000] text-center font-semibold rounded-md p-2 w-2/3 mt-2"
+                          placeholder="Respuesta 1"
+                        />
+                        <input
+                          type="text"
+                          value={template.answer[1] || ''}
+                          onChange={(e) => {
+                            const updated = [...template.answer];
+                            updated[1] = e.target.value;
+                            updateTemplate(template.id, 'answer', updated);
+                          }}
+                          className="border-2 border-gray-300 text-[#000000] text-center font-semibold rounded-md p-2 w-2/3 mt-2"
+                          placeholder="Respuesta 2"
+                        />
+                        <div className="flex justify-center items-center mt-1 pb-16 h-full">
+                          <Button />
+                        </div>
+                        <p className="text-black font-bold mt-5">Acá las respuestas, serían mínimo 2 máximo 5, AGREGA DIVISORES</p>
+                      </div>
+                    </div>
+                  ) : null}
+
+                        
+                      
+
       </div>
+
+
+
+      {/* de acá pa abajo si ya no*/}
       <h1 className="text-white justify-center text-center"> vamos a ver</h1>
     </div>
   );

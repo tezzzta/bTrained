@@ -2,6 +2,7 @@
 /* The design is inspired from Galahhad*/
 
 .popup {
+  z-index: 15;
     --burger-line-width: 1.125em;
     --burger-line-height: 0.125em;
     --burger-offset: 0.625em;

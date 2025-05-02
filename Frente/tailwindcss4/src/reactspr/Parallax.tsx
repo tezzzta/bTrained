@@ -3,9 +3,11 @@ import styles from './ParallaxIntro.module.css';
 import { motion } from "framer-motion";
 import {PlanetA  , PlanetC, PlanetD, PlanetE, PlanetF, PlanetG} from '../Anim/Planet';
 
+import BlurText from './TryFirts';
 
-
-
+const handleAnimationComplete = () => {
+  console.log('Animation completed!');
+};
 
 
 //esto es para la constante useIsVisible 
@@ -117,13 +119,44 @@ const Planetas =()  =>{
 
 
 
+
+//haré un breve ensayo de un nuevo componente 
+import { AnimatePresence } from "framer-motion";
+
+
+
+
+
 const Componente= () => {
   return (
-    <div className={styles.background}>
+    <div transition-style="in:circle:top-right" className={styles.background}>
    
-    
-     <TextOne/>
-      <Planetas/>
+
+      
+     <div className='justify-center items-center flex flex-col  mt-[35vh]'>
+        
+
+     <div className="absolute inset-0 bg-gradient-to-r from-yellow-200 to-pink-500 bg-clip-text text-transparent animate-gradient">
+          
+        </div>
+            <BlurText
+          text="B-Train"
+          
+          delay={160}
+          animateBy="words"
+          direction="top"
+          className={styles.ryan}
+        />
+        <BlurText
+          text="empieza a crear y sorprente "
+          
+          delay={160}
+          animateBy="letters"
+          direction="bottom"
+          className="text-2xl mb-2 text-[40px]"
+        />
+          </div>
+      {/* <Planetas/> */}
       <Info/>
 
 

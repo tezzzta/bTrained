@@ -1,3 +1,4 @@
+
 .background {
     background: linear-gradient(#403e8d, #1A2332);
     position: absolute;
@@ -8,6 +9,27 @@
     width: 100vw;
     height: 110vh;
     z-index: 10;
+    --transition__duration: 1s;
+    --transition__easing: ease-in-out;
+    animation: incircleswoop var(--transition__duration) var(--transition__easing) forwards;
+
+  }
+
+  /* --transition__duration: 1s;
+  --transition__easing: ease-in-out;
+  animation-name: incircleswoop; */
+  @keyframes incircleswoop {
+    from {
+      clip-path: var(--circle-top-right-out);
+    }
+    to {
+      clip-path: var(--circle-bottom-right-in);
+    }
+  }
+  
+  [transition-style="in:custom:circle-swoop"] {
+    --transition__duration: 5s;
+    animation-name: in-circle-swoop;
   }
  
   .cardAbajoDerecha {
@@ -51,4 +73,34 @@
   text-align: center;
 
   
+}
+
+
+
+.ryan{
+  font-family: 'Lobster', sans-serif;
+  font-size: 68px;
+  background: linear-gradient(90deg, #ffffff, #000000, #ff4300);
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: calc(var(--spacing) * 8);
+  -webkit-text-fill-color:tra;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: animate 8s linear infinite;
+}
+    
+  
+
+
+
+
+
+@keyframes animate{
+   0%{ background-position: 0%;
+  }
+  100% {
+    background-position: 100%;
+  }
+
 }

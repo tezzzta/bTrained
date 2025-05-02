@@ -12,7 +12,7 @@ const getRandomCards = (data: CardData[], count: number): CardData[] => {
 
 const Gallery: React.FC = () => {
   const randomCards = getRandomCards(cardsData, 6);
-
+  
   return (
     <Container className="album py-5 gallery-section m-20">
       <Row className="g-3 justify-content-center">
