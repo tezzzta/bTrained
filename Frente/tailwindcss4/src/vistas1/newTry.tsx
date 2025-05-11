@@ -5,7 +5,7 @@ interface GridMotionProps {
   items?: string[];
   gradientColor?: string;
 }
-
+import { Link } from "react-router-dom";
 
 const GridMotion: FC<GridMotionProps> = ({
   items = [],
@@ -74,6 +74,13 @@ const GridMotion: FC<GridMotionProps> = ({
       >
         {/* Noise overlay */}
         <div className="absolute inset-0 pointer-events-none z-[-99] bg-[url('../../../assets/noise.png')] bg-[length:250px]"></div>
+
+
+        <Link to ="gallery">
+
+        {/* arriba está para gallery, nos falta definir esa seccion, igual ya se hace el redireccionamiento */}
+
+        
         <div className="gap-4 flex-none relative w-[150vw] h-[150vh] grid grid-rows-4 grid-cols-1 rotate-[-15deg] origin-center z-[0]">
           {Array.from({ length: 4 }, (_, rowIndex) => (
             <div
@@ -104,6 +111,8 @@ const GridMotion: FC<GridMotionProps> = ({
             </div>
           ))}
         </div>
+        </Link>
+
         <div className="relative w-full h-full top-0 left-0 pointer-events-none"></div>
       </section>
     </div>

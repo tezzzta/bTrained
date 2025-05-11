@@ -1,15 +1,85 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDropzone } from "react-dropzone";
 import Header from "../Headerr";  // Asegúrate de que el nombre del archivo Header sea correcto (Headerr -> Header)
 import { FormularioStore } from "../Store/TryZustand"; 
 import type {Template,UpdateTemplate } from '../Store/IntZus.d.ts'; // Asegúrate de que la ruta sea correcta
+import { ArrowBigDown, ArrowDownLeft, ArrowLeft, ArrowRight, CircleArrowLeft, Minus, Plus } from "lucide-react";
+import { useStore } from "zustand";
 
 
 
+ // Obtiene el id del template actual
 
-const addHandleClick = () => {
-  const { incrementTemplateId } = FormularioStore.getState();
-  incrementTemplateId(); // Incrementa el idCounter al hacer clic en el botón
+
+// haremos un componente para que el user pueda agregar templates
+
+const TemplateComponent = () => {
+  const templates = useStore(FormularioStore, (state) => state.templates); 
+  const addTemplate = useStore(FormularioStore, (state) => state.addTemplate);
+  const incrementTemplateId = useStore(FormularioStore, (state) => state.incrementTemplateId);
+  const goNext = useStore(FormularioStore, (state) => state.goNext);
+  const plantilla = useStore(FormularioStore, (state) => state.template);
+  const idCounter = useStore(FormularioStore, (state) => state.idCounter);
+  const goPrev = useStore(FormularioStore, (state) => state.goPrev);
+  
+  useEffect(() => {
+    if (templates.length === 0) {
+      addTemplate();
+    } 
+  }, []); 
+
+  const addHandleClick = () => {
+    addTemplate();
+    console.log('RENDER COMPONENTE')
+  };
+  const handleTemp = () => {
+    goNext();
+    console.log('RENDER COMPONENTE')
+
+  }
+  const handlePrev = () => {
+    goPrev();
+    console.log('RENDER COMPONENTE')
+  }
+
+  return(
+    
+        <div>
+
+      <div className="flex justify-center  gap-x-4  items-center  h- mb-9">
+
+       
+       
+        
+           
+          <button 
+          onClick={handlePrev}
+
+        className="bg-[#171f2c] text-white p-2 rounded margin-[20px] hover:bg-[#2b2f35]">
+           <ArrowLeft/>
+
+          </button> 
+          <p >
+            {plantilla.id}
+
+          </p>
+          
+           
+          <button className="bg-[#171f2c] text-white p-2 rounded   hover:bg-[#2b2f35]">
+                <ArrowRight onClick={handleTemp}/>
+
+          </button>     
+            <button 
+            onClick={addHandleClick}
+            className="bg-[#171f2c] text-white p-2 rounded hover:bg-[#2b2f35]">
+                  <Plus/>
+            </button>
+      </div>
+       
+        </div>
+
+
+    )
 }
 
 // haré un ejemplo de barra de pestañas
@@ -31,6 +101,10 @@ const Tabs = () => {
           className={`relative px-4 py-1 rounded-t-md border border-gray-300 text-white text-sm font-semibold cursor-pointer
             ${template.id === tab.id ? 'bg-lime-400 text-black' : 'bg-gray-700'}`}
           onClick={() => selectTemplate(tab.id)}
+
+
+
+          
         >
           {tab.id}
           <button
@@ -44,13 +118,13 @@ const Tabs = () => {
           </button>
         </div>
       ))}
-
+{/* 
       <button
         onClick={addTemplate}
         className="bg-blue-500 text-white px-3 rounded-md hover:bg-blue-600 text-sm"
       >
         +
-      </button>
+      </button> */}
     </div>
   );
 };
@@ -161,29 +235,32 @@ const Button = ( template: Template, updateTemplate: UpdateTemplate ) => {
 
 // Componente ViewCreate
 const ViewCreate = () => {
-  const { template, updateTemplate } = FormularioStore();
-
+  const { template, templates, updateTemplate } = FormularioStore();
+  const nombre = useStore(FormularioStore, (state) => state.formData.nombre);
   return (
     <div className="bg-[#1A2332] h-screen w-full overflow-visible mb-5">
       <Header />
       <div className="flex justify-center items-center h-20 ">
 
-          <h1 className="text-white pb-1"> Titulo </h1>
+          <h1 className="text-white pb-1"> {nombre} </h1>
       </div>
 
       {/* será que hago este componente en uno y lo importo acá? ya tengo sueño, mañana veo */}
               {/*engloba todod el componente */}
+              <TemplateComponent/>
 
       <div className="flex justify-center items-center h-full mb-9">
       {/*<div className="absolute -top-6 left-6 px-6 py-1 bg-lime-400 rounded-t-xl rounded-b-none shadow-md z-10 text-black text-sm font-semibold border border-gray-300">
  */}
-        {/*pondremos un condicional (tiene otro nombre pero ahorita no recuerdo) para cada template*/}
 
-        {/*revisar, solo guarda las primeras dos preguntas, las dempas tambien se comparten*/}
+        {/*revisar, solo guarda las primeras dos preguntas, las demas tambien se comparten*/}
+
 
                           {template != null ? (
                     <div className="bg-amber-100 rounded-2xl w-1/2 max-h-full justify-center items-center text-center mt-2 mb-9 pt-0 pb-5 overflow-visible">
-                      <Tabs />
+                      {/* <Tabs /> */}
+
+
                       <div className="mt-6">
                         <PhotoUpload />
                         <input
