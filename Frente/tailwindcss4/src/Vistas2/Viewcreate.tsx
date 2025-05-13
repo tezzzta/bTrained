@@ -3,7 +3,7 @@ import { useDropzone } from "react-dropzone";
 import Header from "../Headerr";  // Asegúrate de que el nombre del archivo Header sea correcto (Headerr -> Header)
 import { FormularioStore } from "../Store/TryZustand"; 
 import type {Template,UpdateTemplate } from '../Store/IntZus.d.ts'; // Asegúrate de que la ruta sea correcta
-import { ArrowBigDown, ArrowDownLeft, ArrowLeft, ArrowRight, CircleArrowLeft, Minus, Plus } from "lucide-react";
+import { ArrowBigDown, ArrowDownLeft, ArrowLeft, ArrowRight,  X , Minus, Plus } from "lucide-react";
 import { useStore } from "zustand";
 
 
@@ -84,50 +84,50 @@ const TemplateComponent = () => {
 
 // haré un ejemplo de barra de pestañas
 //debo hacerlo responsivo, pero no tengo idea de como hacerlo, así que lo haré después
-const Tabs = () => {
-  const {
-    templates,
-    template,
-    addTemplate,
-    removeTemplate,
-    selectTemplate
-  } = FormularioStore();
+// const Tabs = () => {
+//   const {
+//     templates,
+//     template,
+//     addTemplate,
+//     removeTemplate,
+//     selectTemplate
+//   } = FormularioStore();
 
-  return (
-    <div className="flex space-x-2 bg-[#1A2332] ">
-      {templates.map((tab) => (
-        <div
-          key={tab.id}
-          className={`relative px-4 py-1 rounded-t-md border border-gray-300 text-white text-sm font-semibold cursor-pointer
-            ${template.id === tab.id ? 'bg-lime-400 text-black' : 'bg-gray-700'}`}
-          onClick={() => selectTemplate(tab.id)}
+//   return (
+//     <div className="flex space-x-2 bg-[#1A2332] ">
+//       {templates.map((tab) => (
+//         <div
+//           key={tab.id}
+//           className={`relative px-4 py-1 rounded-t-md border border-gray-300 text-white text-sm font-semibold cursor-pointer
+//             ${template.id === tab.id ? 'bg-lime-400 text-black' : 'bg-gray-700'}`}
+//           onClick={() => selectTemplate(tab.id)}
 
 
 
           
-        >
-          {tab.id}
-          <button
-            onClick={(e) => {
-              e.stopPropagation();
-              removeTemplate(tab.id);
-            }}
-            className="absolute -top-1 -right-1 text-white rounded-full w-5 h-4 text-xs flex items-center justify-center"
-          >
-            ×
-          </button>
-        </div>
-      ))}
-{/* 
-      <button
-        onClick={addTemplate}
-        className="bg-blue-500 text-white px-3 rounded-md hover:bg-blue-600 text-sm"
-      >
-        +
-      </button> */}
-    </div>
-  );
-};
+//         >
+//           {tab.id}
+//           <button
+//             onClick={(e) => {
+//               e.stopPropagation();
+//               removeTemplate(tab.id);
+//             }}
+//             className="absolute -top-1 -right-1 text-white rounded-full w-5 h-4 text-xs flex items-center justify-center"
+//           >
+//             ×
+//           </button>
+//         </div>
+//       ))}
+// {/* 
+//       <button
+//         onClick={addTemplate}
+//         className="bg-blue-500 text-white px-3 rounded-md hover:bg-blue-600 text-sm"
+//       >
+//         +
+//       </button> */}
+//     </div>
+//   );
+// };
 
 // Componente para subir fotos
 const PhotoUpload: React.FC = () => {
@@ -177,7 +177,8 @@ const PhotoUpload: React.FC = () => {
 
 
 //un boton bonito q vi en un repositorio, se agrega un condicional para agregar mas respuestas 
-const Button = ( template: Template, updateTemplate: UpdateTemplate ) => {
+const Button = () => {
+  const { template, updateTemplate } = FormularioStore();
   const [conta,setConta] = useState(0) 
   return (
     <div className="w-full">
@@ -188,11 +189,12 @@ const Button = ( template: Template, updateTemplate: UpdateTemplate ) => {
       <input
         key={index}
         type="text"
-        className="border-2 border-gray-300 text-[#000000] text-center font-semibold rounded-md p-2 w-2/3 mt-2"
+        value={template.answer[index +2] || ''}
+        className="border-2 border-gray-300 text-[#ffffff] text-center font-semibold rounded-md p-2 w-2/3 mt-2"
         placeholder={`Respuesta ${index + 3}`}
         onChange={(e) => {
           const updated = [...template.answer];
-          updated[1] = e.target.value;
+          updated[index + 2] = e.target.value;
           updateTemplate(template.id, 'answer', updated);
         }}
       />
@@ -257,22 +259,28 @@ const ViewCreate = () => {
 
 
                           {template != null ? (
-                    <div className="bg-amber-100 rounded-2xl w-1/2 max-h-full justify-center items-center text-center mt-2 mb-9 pt-0 pb-5 overflow-visible">
+                    <div className="bg-[#393E46] rounded-2xl w-1/2 max-h-full justify-center items-center text-center mt-2 mb-9 pt-0 pb-5 overflow-visible">
                       {/* <Tabs /> */}
+                            <div>
+                             <X size={20} className="m-2 hover:bg-gray-500 rounded" />
 
-
+                              </div>
+          
                       <div className="mt-6">
-                        <PhotoUpload />
+
+                        <PhotoUpload /> 
+                       <p className="text-white font-bold text-lg"> Tu Pregunta </p>
+
                         <input
                           type="text"
                           value={template.question}
                           onChange={(e) => updateTemplate(template.id, 'question', e.target.value)}
-                          className="text-[22px] text-[#000000] text-center font-semibold rounded-md p-2 w-2/3 mt-1 mb-3"
+                          className="text-[22px] text-[#ffffff] text-center font-semibold rounded-md p-2 w-2/3 mt-1 mb-3"
                           placeholder="Agrega la pregunta"
                         />
                       </div>
                       <div className="mb-5">
-                        <p className="text-black font-bold text-lg">Respuestas</p>
+                        <p className="text-white font-bold text-lg">Respuestas</p>
                         <input
                           type="text"
                           value={template.answer[0] || ''}
@@ -281,7 +289,7 @@ const ViewCreate = () => {
                             updated[0] = e.target.value;
                             updateTemplate(template.id, 'answer', updated);
                           }}
-                          className="border-2 border-gray-300 text-[#000000] text-center font-semibold rounded-md p-2 w-2/3 mt-2"
+                          className="border-2 border-gray-300 text-[#ffffff] text-center font-semibold rounded-md p-2 w-2/3 mt-2"
                           placeholder="Respuesta 1"
                         />
                         <input
@@ -292,13 +300,13 @@ const ViewCreate = () => {
                             updated[1] = e.target.value;
                             updateTemplate(template.id, 'answer', updated);
                           }}
-                          className="border-2 border-gray-300 text-[#000000] text-center font-semibold rounded-md p-2 w-2/3 mt-2"
+                          className="border-2 border-gray-300 text-[#ffffff] text-center font-semibold rounded-md p-2 w-2/3 mt-2"
                           placeholder="Respuesta 2"
                         />
                         <div className="flex justify-center items-center mt-1 pb-16 h-full">
                           <Button />
                         </div>
-                        <p className="text-black font-bold mt-5">Acá las respuestas, serían mínimo 2 máximo 5, AGREGA DIVISORES</p>
+                        <p className="text-white font-bold mt-5">Acá las respuestas, serían mínimo 2 máximo 5, AGREGA DIVISORES</p>
                       </div>
                     </div>
                   ) : null}
@@ -311,7 +319,7 @@ const ViewCreate = () => {
 
 
       {/* de acá pa abajo si ya no*/}
-      <h1 className="text-white justify-center text-center"> vamos a ver</h1>
+      <h1 className="text-white justify-center text-center"> vamos a ver </h1>
     </div>
   );
 };

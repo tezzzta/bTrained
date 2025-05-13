@@ -31,7 +31,7 @@
     },
     templates: [],
 
-    idCounter: 1,
+    idCounter: 0,
 
     setFormData: (key, value) => {
       set((state) => ({

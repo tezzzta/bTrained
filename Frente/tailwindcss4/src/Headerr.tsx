@@ -7,8 +7,8 @@ import BottomAnim from './Anim/BottomAnim';
 
 function Header() {
   return (
-    <header className="py-3 mb-4 border-bottom">
-      <Container className="d-flex flex-wrap justify-content-center">
+    <header className="py-3 mb-4 border-bottom ">
+      <Container className="d-flex flex-wrap justify-content-center ">
         <Navbar.Brand href="/" className="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-decoration-none">
           <span className="fs-4 text-white">Galería</span>
         </Navbar.Brand>

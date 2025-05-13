@@ -1,12 +1,12 @@
 import React, { useState, useEffect,useRef } from 'react';
 import styles from './ParallaxIntro.module.css';
 import { motion } from "framer-motion";
-import {PlanetA  , PlanetC, PlanetD, PlanetE, PlanetF, PlanetG} from '../Anim/Planet';
+// import {PlanetA  , PlanetC, PlanetD, PlanetE, PlanetF, PlanetG} from '../Anim/Planet';
 
 import BlurText from './TryFirts';
 
 const handleAnimationComplete = () => {
-  console.log('Animation completed!');
+  console.log('Animation completed!');  
 };
 
 
@@ -71,57 +71,11 @@ const Info = () => {
 
 
 
-const TextOne = () => {
-  return (
-    <motion.div
-      initial={{ opacity: 0 }} 
-      animate={{ opacity: 1 }} 
-      transition={{ duration: 1.5 }} 
-      className={styles.container} 
-    >
-      <div className={styles.center}>
-        <h1 className={styles.snt}>Impacta, Influye e Inspira ...</h1>
-
-        <motion.p 
-          className={styles.rnt}
-          initial={{ opacity: 0, y: -5 }} 
-          animate={{ opacity: 1, y: 0 }} 
-          transition={{ duration: 1, delay: 1.5 }} 
-        >
-        <p>  Empieza a crear y sorprende  </p>  
-        </motion.p>
-      </div>
-    </motion.div>
-  );
-};
-
-
-
-const Planetas =()  =>{
-  return (
-    <motion.div 
-    initial={{ opacity: 0, y: -5 }} 
-    animate={{ opacity: 1, y: ["10px", "-10px", "0px"] }}
-    transition={{ repeat: Infinity, repeatType: "reverse", duration: 3 }}
-    >
-        <PlanetA/>
-        {/* <PlanetB/> */}
-        <PlanetC/>
-        <PlanetD/>
-        <PlanetE/>
-        <PlanetF/>
-        <PlanetG/>
-    </motion.div>
-  )
-}
-
-
 
 
 
 
 //haré un breve ensayo de un nuevo componente 
-import { AnimatePresence } from "framer-motion";
 
 
 
@@ -148,9 +102,9 @@ const Componente= () => {
           className={styles.ryan}
         />
         <BlurText
-          text="empieza a crear y sorprente "
+          text="Empieza a crear y sorprende "
           
-          delay={160}
+          delay={100}
           animateBy="letters"
           direction="bottom"
           className="text-2xl mb-2 text-[40px]"
