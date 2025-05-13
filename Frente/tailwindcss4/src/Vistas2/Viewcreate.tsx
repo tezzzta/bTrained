@@ -30,16 +30,13 @@ const TemplateComponent = () => {
 
   const addHandleClick = () => {
     addTemplate();
-    console.log('RENDER COMPONENTE')
   };
   const handleTemp = () => {
     goNext();
-    console.log('RENDER COMPONENTE')
 
   }
   const handlePrev = () => {
     goPrev();
-    console.log('RENDER COMPONENTE')
   }
 
   return(
@@ -60,7 +57,7 @@ const TemplateComponent = () => {
 
           </button> 
           <p >
-            {plantilla.id}
+            {plantilla.id} / {idCounter}
 
           </p>
           
@@ -237,6 +234,11 @@ const Button = () => {
 
 // Componente ViewCreate
 const ViewCreate = () => {
+  const deleteTemplate = useStore(FormularioStore, (state) => state.deleteTemplate);
+
+  const handleDelete = () => {
+    deleteTemplate();
+  }
   const { template, templates, updateTemplate } = FormularioStore();
   const nombre = useStore(FormularioStore, (state) => state.formData.nombre);
   return (
@@ -255,14 +257,15 @@ const ViewCreate = () => {
       {/*<div className="absolute -top-6 left-6 px-6 py-1 bg-lime-400 rounded-t-xl rounded-b-none shadow-md z-10 text-black text-sm font-semibold border border-gray-300">
  */}
 
-        {/*revisar, solo guarda las primeras dos preguntas, las demas tambien se comparten*/}
 
 
                           {template != null ? (
                     <div className="bg-[#393E46] rounded-2xl w-1/2 max-h-full justify-center items-center text-center mt-2 mb-9 pt-0 pb-5 overflow-visible">
                       {/* <Tabs /> */}
                             <div>
-                             <X size={20} className="m-2 hover:bg-gray-500 rounded" />
+
+                              {/* falta agregar el onclick para eliminar la plantilla actual */}
+                             <X size={20} className="m-2 hover:bg-gray-500 rounded" onClick={handleDelete} />
 
                               </div>
           

@@ -8,10 +8,10 @@
     setFormData: (key: keyof Formulario, value: string) => void;
     selectTemplate: (id: number) => void;
     addTemplate: () => void; // nuevo
-    removeTemplate: (id: number) => void; // nuevo
     idCounter: number;
     incrementTemplateId: () => void;
     goNext: () => void;
+    deleteTemplate:() => void;
 
     
   }
@@ -50,7 +50,7 @@
     },
 
     addTemplate: () => {
-      const id = get().idCounter;
+      const id = get().idCounter +1;
       const newTemplate: Template = {
         id,
         question: '',
@@ -62,30 +62,33 @@
       set((state) => ({ 
         templates: [...state.templates, newTemplate],
         template: newTemplate, // también lo seleccionamos
-        idCounter: id + 1
+        idCounter: id
       }));
     },
+    deleteTemplate: () => {
+  const currentId = get().template.id;
+  const templates = get().templates;
 
-    removeTemplate: (id) => {
-      const filtered = get().templates.filter((t) => t.id !== id);
-      set((state) => ({
-        templates: filtered,
-        template:
-          state.template.id === id && filtered.length > 0
-            ? filtered[0]
-            : state.template.id !== id
-            ? state.template
-            : {
-                id: 0,
-                question: '',
-                answer: [],
-                correctAnswer: '',
-                imageUrl: '',
-                href: ''
-              }
-      }));
-    },
+  // Elimina el template actual por ID
+  const updatedTemplates = templates.filter(t => t.id !== currentId);
 
+  // Selecciona el primero si queda alguno, si no, pone null
+  const newTemplate = updatedTemplates.length > 0 ? updatedTemplates[0] : {
+    id: 0,
+    question: '',
+    answer: [],
+    correctAnswer: '',
+    imageUrl: '',
+    href: ''
+  };
+
+  set({
+    templates: updatedTemplates,
+    template: newTemplate
+  });
+},
+
+    
     incrementTemplateId: () => {
       set((state) => ({
         idCounter: state.idCounter + 1
@@ -106,7 +109,7 @@
       goNext: () => {
         const state = get();
         const actualIndex = state.template.id
-        const next = actualIndex +1;
+        const next = actualIndex + 1;
 
 
         if (next <= state.idCounter) {
