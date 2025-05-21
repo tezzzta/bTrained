@@ -22,6 +22,6 @@ Asegúrate de tener [Node.js](https://nodejs.org/) instalado.
 
 ```bash
 git clone https://github.com/tu-usuario/btrain.git
-cd btrain
+cd Foro-Educativo
 npm install
 npm run dev
