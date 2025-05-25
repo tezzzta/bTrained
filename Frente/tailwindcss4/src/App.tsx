@@ -4,6 +4,7 @@ import { Create } from './Global/RouteCreate';
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import {Inicio} from './Global/RouteLogin';
 import ViewCreate from './Vistas2/Viewcreate'
+import SectGall from './Gallery/GaleriaInit';
 
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
           <Route path="/login" element={<Inicio />} />
           <Route path="/create" element={<Create />} />
           <Route path="/c-forms" element={< ViewCreate/>} />
+          <Route path="/gallery" element={< SectGall/>} />
 
         </Routes>
       </div>

@@ -65,29 +65,51 @@
         idCounter: id
       }));
     },
-    deleteTemplate: () => {
-  const currentId = get().template.id;
-  const templates = get().templates;
 
-  // Elimina el template actual por ID
-  const updatedTemplates = templates.filter(t => t.id !== currentId);
 
-  // Selecciona el primero si queda alguno, si no, pone null
-  const newTemplate = updatedTemplates.length > 0 ? updatedTemplates[0] : {
-    id: 0,
-    question: '',
-    answer: [],
-    correctAnswer: '',
-    imageUrl: '',
-    href: ''
-  };
+   deleteTemplate: () => {
+            const state = get();
+            const currentId = state.template.id;
+            const templates = state.templates;
 
-  set({
-    templates: updatedTemplates,
-    template: newTemplate
-  });
-},
+            // Encontrar el índice de la plantilla actual
+            const currentIndex = templates.findIndex(t => t.id === currentId);
 
+            // Filtrar la plantilla eliminada
+            const updatedTemplates = templates.filter(t => t.id !== currentId);
+
+            // Reindexar los IDs
+            const reindexedTemplates = updatedTemplates.map((t, idx) => ({
+              ...t,
+              id: idx
+            }));
+
+            // Seleccionar la plantilla siguiente (o vacía si no hay)
+            let nextTemplate: Template;
+            if (reindexedTemplates.length === 0) {
+              // Caso: no hay plantillas restantes
+              nextTemplate = {
+                id: 0,
+                question: '',
+                answer: [],
+                correctAnswer: '',
+                imageUrl: '',
+                href: ''
+              };
+            } else {
+              // Seleccionar la plantilla en el índice siguiente (o la última si no hay siguiente)
+              const nextIndex = Math.min(currentIndex, reindexedTemplates.length - 1);
+              nextTemplate = reindexedTemplates[nextIndex] || reindexedTemplates[0];
+            }
+
+            set({
+              templates: reindexedTemplates,
+              template: nextTemplate,
+              idCounter: reindexedTemplates.length -1
+            });
+}
+
+,
     
     incrementTemplateId: () => {
       set((state) => ({

@@ -78,7 +78,7 @@ const Info = () => {
 //haré un breve ensayo de un nuevo componente 
 
 
-
+const texto = "B-Trained";
 
 
 const Componente= () => {
@@ -87,20 +87,23 @@ const Componente= () => {
    
 
       
-     <div className='justify-center items-center flex flex-col  mt-[35vh]'>
+     <div className='justify-center items-center flex flex-col  mt-[30vh]'>
         
 
      <div className="absolute inset-0 bg-gradient-to-r from-yellow-200 to-pink-500 bg-clip-text text-transparent animate-gradient">
           
         </div>
-            <BlurText
-          text="B-Train"
+            
+            <div className={styles.ryan}>
+              <BlurText
+          text={texto}
           
           delay={160}
           animateBy="words"
           direction="top"
           className={styles.ryan}
         />
+            </div>
         <BlurText
           text="Empieza a crear y sorprende "
           

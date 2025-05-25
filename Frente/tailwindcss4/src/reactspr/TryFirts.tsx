@@ -1,4 +1,6 @@
 import { useRef, useEffect, useState } from 'react';
+import { ReactNode } from "react";
+
 import { AnimatePresence, motion } from "framer-motion";
 
 import { useSprings, animated, SpringValue } from '@react-spring/web';

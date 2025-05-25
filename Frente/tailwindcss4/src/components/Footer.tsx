@@ -23,7 +23,7 @@ const Footer: React.FC = () => {
 
             <ul className="items-center justify-center mt-8 space-y-5 sm:flex sm:space-x-4 sm:space-y-0">
                 {footerNavs.map((item, idx) => (
-                    <li key={idx} className="hover:text-gray-800">
+                    <li key={idx} className="bg-[#4e4e4e] p-2 rounded font-semibold no-underline hover:bg-gray-800">
                         <a href={item.href}>{item.name}</a>
                     </li>
                 ))}

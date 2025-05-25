@@ -80,11 +80,24 @@
 .ryan{
   font-family: 'Lobster', sans-serif;
   font-size: 68px;
-  background: linear-gradient(90deg, #ffffff, #000000, #ff4300);
+  background: linear-gradient(90deg, #ff4300, #000000, #ff4300);
   text-align: center;
   font-weight: bold;
   margin-bottom: calc(var(--spacing) * 8);
   -webkit-text-fill-color:tra;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: animate 8s linear infinite;
+}
+
+.agogo{
+  font-family: 'Lobster', sans-serif;
+  font-size: 68px;
+  background: linear-gradient(90deg, #ff4300, #000000, #ff4300);
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: calc(var(--spacing) * 8);
+  -webkit-text-fill-color:transparent;
   -webkit-background-clip: text;
   background-clip: text;
   animation: animate 8s linear infinite;

@@ -5,6 +5,7 @@ import { FormularioStore } from "../Store/TryZustand";
 import type {Template,UpdateTemplate } from '../Store/IntZus.d.ts'; // Asegúrate de que la ruta sea correcta
 import { ArrowBigDown, ArrowDownLeft, ArrowLeft, ArrowRight,  X , Minus, Plus } from "lucide-react";
 import { useStore } from "zustand";
+import axios from "axios"
 
 
 
@@ -79,55 +80,27 @@ const TemplateComponent = () => {
     )
 }
 
-// haré un ejemplo de barra de pestañas
-//debo hacerlo responsivo, pero no tengo idea de como hacerlo, así que lo haré después
-// const Tabs = () => {
-//   const {
-//     templates,
-//     template,
-//     addTemplate,
-//     removeTemplate,
-//     selectTemplate
-//   } = FormularioStore();
+// const CLIENT_ID = "67c7cb587dab280"; //cambiar client id y poner en el readmeeeeeeeeeeeeeee
 
-//   return (
-//     <div className="flex space-x-2 bg-[#1A2332] ">
-//       {templates.map((tab) => (
-//         <div
-//           key={tab.id}
-//           className={`relative px-4 py-1 rounded-t-md border border-gray-300 text-white text-sm font-semibold cursor-pointer
-//             ${template.id === tab.id ? 'bg-lime-400 text-black' : 'bg-gray-700'}`}
-//           onClick={() => selectTemplate(tab.id)}
+// async function uploadImage(imagePath) {
+//   try {
+//     const image = fs.readFileSync(imagePath, { encoding: "base64" });
+
+//     const response = await axios.post(
+//       "https://api.imgur.com/3/upload",
+//       { image },
+//       { headers: { Authorization: `Client-ID ${CLIENT_ID}` } }
+//     );
+//    return response.data.data.link; // Retorna la URL de la imagen
 
 
-
-          
-//         >
-//           {tab.id}
-//           <button
-//             onClick={(e) => {
-//               e.stopPropagation();
-//               removeTemplate(tab.id);
-//             }}
-//             className="absolute -top-1 -right-1 text-white rounded-full w-5 h-4 text-xs flex items-center justify-center"
-//           >
-//             ×
-//           </button>
-//         </div>
-//       ))}
-// {/* 
-//       <button
-//         onClick={addTemplate}
-//         className="bg-blue-500 text-white px-3 rounded-md hover:bg-blue-600 text-sm"
-//       >
-//         +
-//       </button> */}
-//     </div>
-//   );
-// };
+  
 
 // Componente para subir fotos
 const PhotoUpload: React.FC = () => {
+ 
+  const clientID = '67c7cb587dab280';
+
   const [files, setFiles] = useState<File[]>([]);
   const [imagePreviews, setImagePreviews] = useState<string[]>([]);
 
@@ -141,6 +114,8 @@ const PhotoUpload: React.FC = () => {
       setImagePreviews(previews);
     },
   });
+
+  
 
   return (
     <div className="w-full max-w-lg mx-auto mb-2">
