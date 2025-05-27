@@ -97,49 +97,76 @@ const TemplateComponent = () => {
   
 
 // Componente para subir fotos
-const PhotoUpload: React.FC = () => {
- 
-  const clientID = '67c7cb587dab280';
 
-  const [files, setFiles] = useState<File[]>([]);
-  const [imagePreviews, setImagePreviews] = useState<string[]>([]);
+const PhotoUpload: React.FC<{ id: number }> = ({ id }) => {
+  const templates = useStore(FormularioStore, (state) => state.templates);
+  const updateTemplate = useStore(FormularioStore, (state) => state.updateTemplate);
 
-  const acceptTypes = ['image/jpeg', 'image/png', 'image/gif'];  // Definimos los tipos de archivos permitidos
+  const template = templates.find(t => t.id === id);
+
+  // Declaro todos los hooks SIN CONDICIONES
+  const convertirABase64 = (archivo: File) =>
+    new Promise<string>((resolve, reject) => {
+      const lector = new FileReader();
+      lector.readAsDataURL(archivo);
+      lector.onload = () => {
+        if (lector.result) {
+          const base64 = lector.result.toString().split(',')[1];
+          resolve(base64);
+        } else {
+          reject('No se pudo leer el archivo');
+        }
+      };
+      lector.onerror = (error) => reject(error);
+    });
 
   const { getRootProps, getInputProps } = useDropzone({
-    accept: acceptTypes,  //  no entiendo pq sale error, pero no importa
-    onDrop: (acceptedFiles) => {
-      setFiles(acceptedFiles);
-      const previews = acceptedFiles.map((file) => URL.createObjectURL(file));
-      setImagePreviews(previews);
+    accept: { 'image/*': ['.jpg', '.jpeg', '.png', '.gif'] },
+    onDrop: async ([imagen]) => {
+      const urlTemporal = URL.createObjectURL(imagen);
+      const base64 = await convertirABase64(imagen);
+      if (!template) {
+          console.error("template no definido al intentar subir imagen");
+          return;
+      }
+      updateTemplate(template.id, 'imagePreview', urlTemporal);
     },
   });
 
-  
+  // Ahora sí condicionalmente renderizo:
+  if (!template || template.id === undefined){
+    console.log("Renderizando ViewCreate", template);
+
+    return (
+      <div style={{backgroundColor: 'red', height: '100vh', color: 'white', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+        <h1>Cargando plantilla... 🚀</h1>
+      </div>
+    );
+  }
 
   return (
-    <div className="w-full max-w-lg mx-auto mb-2">
+    <div className="w-full max-w-lg mx-auto mb-4">
       <div
         {...getRootProps()}
-        className="border-4 border-dashed border-gray-400 p-8 text-center rounded-lg relative"
+        className="border-4 border-dashed border-gray-400 p-6 text-center rounded-lg"
       >
         <input {...getInputProps()} />
+        {template.imagePreview ? 
         
-        {/* si ya la subio, se muestra, sino, pues no se muestra */}
-        {imagePreviews.length > 0 ? (
+        (
           <img
-            src={imagePreviews[0]} // vista 
-            alt="Preview"
-            className="object-cover w-screen h-full rounded-md" // la idea es que ocupe la mitad del área... 
+            src={template.imagePreview}
+            alt="Imagen subida"
+            className="w-full h-64 object-cover rounded-md"
           />
         ) : (
           <p className="text-gray-600">
-            Arrastra y suelta tus imágenes aquí, o haz clic para elegir
+            Haz clic aquí o arrastra una imagen para subirla
           </p>
         )}
-        
-        {/* Texto secundario */}
-        <p className="text-gray-400 mt-2">(Solo imágenes JPG, PNG y GIF)</p>
+        <p className="text-gray-400 mt-2 text-sm">
+          (Puedes subir imágenes JPG, PNG o GIF)
+        </p>
       </div>
     </div>
   );
@@ -147,10 +174,10 @@ const PhotoUpload: React.FC = () => {
 
 
 
-
 //un boton bonito q vi en un repositorio, se agrega un condicional para agregar mas respuestas 
 const Button = () => {
-  const { template, updateTemplate } = FormularioStore();
+const template = useStore(FormularioStore, (state) => state.template);
+const updateTemplate = useStore(FormularioStore, (state) => state.updateTemplate);
   const [conta,setConta] = useState(0) 
   return (
     <div className="w-full">
@@ -246,7 +273,7 @@ const ViewCreate = () => {
           
                       <div className="mt-6">
 
-                        <PhotoUpload /> 
+                        <PhotoUpload id={template.id} /> 
                        <p className="text-white font-bold text-lg"> Tu Pregunta </p>
 
                         <input

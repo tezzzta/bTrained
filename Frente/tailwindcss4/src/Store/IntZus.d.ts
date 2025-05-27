@@ -9,6 +9,7 @@ export interface Template {
     answer: string[];
     correctAnswer: string;
     imageUrl: string;
+    imagePreview?: string; 
     href: string;    
 }
 

@@ -4,12 +4,13 @@
   interface FormularioStore {
     formData: Formulario;
     template: Template;
-    templates: Template[]; // nuevo
+    templates: Template[]; 
     setFormData: (key: keyof Formulario, value: string) => void;
     selectTemplate: (id: number) => void;
-    addTemplate: () => void; // nuevo
+    addTemplate: () => void; 
     idCounter: number;
     incrementTemplateId: () => void;
+     
     goNext: () => void;
     deleteTemplate:() => void;
 
@@ -27,7 +28,8 @@
       answer: [],
       correctAnswer: '',
       imageUrl: '',
-      href: ''
+      href: '',
+      imagePreview: ''
     },
     templates: [],
 
@@ -162,3 +164,5 @@
       }
     
   }));
+
+  
