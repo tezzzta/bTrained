@@ -68,7 +68,7 @@ const Card = () =>{
                             <div className="grid grid-cols-4 gap-4 m-auto ">
             {recursos.map((recurso, index) => (
                                 <div key={index} className="grid h-[15rem] w-[18rem]  rounded-2xl grid-rows-5 p-0 m-1  bg-[#111111] border-4 border-[#111111] hover:bg-[#1f1c1c] hover:border-[#1f1c1c] ">
-                                                 <img src={recurso.url}  className="row-start-1 row-end-1 w-full h-[8.5rem] rounded hover:animate-" />
+                                                 <img src={recurso.url} loading="lazy" className="row-start-1 row-end-1 w-full h-[8.5rem] rounded hover:animate-" />
                                             <div className="grid row-start-4 row-end-4 h-[7rem] rounded grid-rows-2 p-2 ">
                                                  <p className=" text-[0.9rem] font-semibold">  {recurso.titulo}   </p>
                                                   <p className="text-xs font-semibold line-clamp-2">{recurso.resumen} ver mas</p>

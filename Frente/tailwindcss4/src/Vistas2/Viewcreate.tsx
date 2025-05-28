@@ -44,7 +44,7 @@ const TemplateComponent = () => {
     
         <div>
 
-      <div className="flex justify-center  gap-x-4  items-center  h- mb-9">
+      <div className="flex justify-center  gap-x-4  items-center  h- m-9 pb-auto">
 
        
        
@@ -244,16 +244,18 @@ const ViewCreate = () => {
   const { template, templates, updateTemplate } = FormularioStore();
   const nombre = useStore(FormularioStore, (state) => state.formData.nombre);
   return (
-    <div className="bg-[#1A2332] h-screen w-full overflow-visible mb-5">
+    <div className="bg-[#1A2332] min-h-screen w-full overflow-visible mb-5">
       <Header />
-      <div className="flex justify-center items-center h-20 ">
+      <div className="grid grid-cols-1 m-2 gap-4 ">
 
           <h1 className="text-white pb-1"> {nombre} </h1>
       </div>
 
       {/* será que hago este componente en uno y lo importo acá? ya tengo sueño, mañana veo */}
               {/*engloba todod el componente */}
-              <TemplateComponent/>
+              <div className="m-auto">
+                <TemplateComponent/>
+              </div>
 
       <div className="flex justify-center items-center h-full mb-9">
       {/*<div className="absolute -top-6 left-6 px-6 py-1 bg-lime-400 rounded-t-xl rounded-b-none shadow-md z-10 text-black text-sm font-semibold border border-gray-300">
@@ -262,7 +264,7 @@ const ViewCreate = () => {
 
 
                           {template != null ? (
-                    <div className="bg-[#393E46] rounded-2xl w-1/2 max-h-full justify-center items-center text-center mt-2 mb-9 pt-0 pb-5 overflow-visible">
+                    <div className="bg-[#393E46] rounded-2xl w-1/2 min-h-screen justify-center items-center text-center mt-2 mb-9 pt-0 pb-5 overflow-visible">
                       {/* <Tabs /> */}
                             <div>
 
@@ -308,7 +310,7 @@ const ViewCreate = () => {
                           className="border-2 border-gray-300 text-[#ffffff] text-center font-semibold rounded-md p-2 w-2/3 mt-2"
                           placeholder="Respuesta 2"
                         />
-                        <div className="flex justify-center items-center mt-1 pb-16 h-full">
+                        <div className="flex justify-center items-center mt-1 p-auto   h-full">
                           <Button />
                         </div>
                         <p className="text-white font-bold mt-5">Acá las respuestas, serían mínimo 2 máximo 5, AGREGA DIVISORES</p>
