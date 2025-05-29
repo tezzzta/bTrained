@@ -246,9 +246,9 @@ const ViewCreate = () => {
   return (
     <div className="bg-[#1A2332] min-h-screen w-full overflow-visible mb-5">
       <Header />
-      <div className="grid grid-cols-1 m-2 gap-4 ">
+      <div className="grid grid-cols-1  gap-4 ">
 
-          <h1 className="text-white pb-1"> {nombre} </h1>
+          <h1 className="grid text-white m-auto pb-1 "> {nombre} </h1>
       </div>
 
       {/* será que hago este componente en uno y lo importo acá? ya tengo sueño, mañana veo */}

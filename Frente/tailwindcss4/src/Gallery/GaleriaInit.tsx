@@ -1,5 +1,6 @@
 import Header from "../Headerr";
 import Footer from "../components/Footer";
+import { useState } from "react";
 
 
 
@@ -65,9 +66,9 @@ const recursos: RecursoEducativo[] = [
 
 const Card = () =>{
     return(
-                            <div className="grid grid-cols-4 gap-4 m-auto ">
+                            <div className="grid grid-cols-2 lg:grid-cols-3  m-auto ">
             {recursos.map((recurso, index) => (
-                                <div key={index} className="grid h-[15rem] w-[18rem]  rounded-2xl grid-rows-5 p-0 m-1  bg-[#111111] border-4 border-[#111111] hover:bg-[#1f1c1c] hover:border-[#1f1c1c] ">
+                                <div key={index} className="grid max-w-[18rem] max-h-[18rem] rounded-2xl grid-rows-5 p-0 m-1  bg-[#111111] border-4 border-[#111111] hover:bg-[#1f1c1c] hover:border-[#1f1c1c] ">
                                                  <img src={recurso.url} loading="lazy" className="row-start-1 row-end-1 w-full h-[8.5rem] rounded hover:animate-" />
                                             <div className="grid row-start-4 row-end-4 h-[7rem] rounded grid-rows-2 p-2 ">
                                                  <p className=" text-[0.9rem] font-semibold">  {recurso.titulo}   </p>
@@ -83,68 +84,78 @@ const Card = () =>{
 }
 
 
-
 const Filter = () => {
-  return(
-    <div className="flex justify-items-start items-start flex-col ">
-      <p className="font-semibold text-[18px]"> Es más fácil filtrar</p>        
-      <p className="font-semibold text-[15px]"> Filtra por gustos</p>
-        <label className="flex items-center space-x-2">
+  return (
+    <div className="grid grid-cols-1 items-start">
+      <div className="grid place-items-center text-center">
+        <p className="font-semibold text-[18px]">Es más fácil filtrar</p>
+
+        <div className="grid grid-cols-1">
+          <p className="font-semibold text-[15px]">Filtra por gustos</p>
+
+          <label className="flex items-center space-x-4 p-[1rem] lg:p-[0.5rem]">
           <input type="checkbox" />
           <span>Hola 1</span>
         </label>
-        <label className="flex items-center space-x-2">
+        <label className="flex items-center space-x-4 p-[1rem] lg:p-[0.5rem]">
           <input type="checkbox" />
           <span>Hola 2</span>
         </label>
-        <label className="flex items-center space-x-2">
+        <label className="flex items-center space-x-4 p-[1rem] lg:p-[0.5rem]">
           <input type="checkbox" />
           <span>Hola 3</span>
         </label>
 
-      <p className="font-semibold text-[15px] pt-[20px]"> Filtra por gustos</p>
-      <label className="flex items-center space-x-2">
+          <p className="font-semibold text-[15px] pt-[20px]">Filtra por gustos</p>
+
+          <label className="flex items-center space-x-4 p-[1rem] lg:p-[0.5rem]">
           <input type="checkbox" />
           <span>Hola 1</span>
         </label>
-        <label className="flex items-center space-x-2">
+        <label className="flex items-center space-x-4 p-[1rem] lg:p-[0.5rem]">
           <input type="checkbox" />
           <span>Hola 2</span>
         </label>
-        <label className="flex items-center space-x-2">
+        <label className="flex items-center space-x-4 p-[1rem] lg:p-[0.5rem]">
           <input type="checkbox" />
           <span>Hola 3</span>
         </label>
-      <p className="font-semibold text-[15px] pt-[20px]"> Filtra por gustos</p>
-      <label className="flex items-center space-x-2">
+
+          <p className="font-semibold text-[15px] pt-[20px]">Filtra por gustos</p>
+
+          <label className="flex items-center space-x-4 p-[1rem] lg:p-[0.5rem]">
           <input type="checkbox" />
           <span>Hola 1</span>
         </label>
-        <label className="flex items-center space-x-2">
+        <label className="flex items-center space-x-4 p-[1rem] lg:p-[0.5rem]">
           <input type="checkbox" />
           <span>Hola 2</span>
         </label>
-        <label className="flex items-center space-x-2">
+        <label className="flex items-center space-x-4 p-[1rem] lg:p-[0.5rem]">
           <input type="checkbox" />
           <span>Hola 3</span>
         </label>
-      <p className="font-semibold text-[15px] pt-[20px]"> Filtra por gustos</p>
-      <label className="flex items-center space-x-2">
+          <p className="font-semibold text-[15px] pt-[20px]">Filtra por gustos</p>
+
+          <label className="flex items-center space-x-4 p-[1rem] lg:p-[0.5rem]">
           <input type="checkbox" />
           <span>Hola 1</span>
         </label>
-        <label className="flex items-center space-x-2">
+        <label className="flex items-center space-x-4 p-[1rem] lg:p-[0.5rem]">
           <input type="checkbox" />
           <span>Hola 2</span>
         </label>
-        <label className="flex items-center space-x-2">
+        <label className="flex items-center space-x-4 p-[1rem] lg:p-[0.5rem]">
           <input type="checkbox" />
           <span>Hola 3</span>
         </label>
- 
+        </div>
+      </div>
     </div>
-  )
-}
+  );
+};
+
+
 
 
 
@@ -152,20 +163,34 @@ const Filter = () => {
 
 
 const SectGall = () =>{
+  const [isOpen, setIsOpen] = useState(false);
+
     return(
         <div >
             <Header />
-
-            <div className="flex items-center justify-center m-auto">
-                <input type="text" placeholder="Search..." className="w-[65%] p-2 border border-gray-300 rounded-lg" />
+            <div className="flex justify-center items-center">
+              <input type="text" className=" w-[25%] bg-[#3a3636] border-2 border-[#111111] rounded"/>
             </div>
+                            <div className="lg:hidden flex justify-center px-4 py-2">
+                            <button
+                              onClick={() => setIsOpen(!isOpen)}
+                              className="bg-amber-500 text-white px-[4rem] rounded py-2  shadow"
+                            >
+                              {isOpen ? "Cerrar filtros" : "Mostrar filtros"}
+                            </button>
+                          </div>
 
-            <div className="grid grid-cols-[15rem_1fr] min-h-[75vh]">
-                 <aside className="bg-amber-500 rounded-2xl p-4 m-2">
-
-                        <Filter />
-                 </aside>
-
+                    <div className="lg:grid lg:grid-cols-[15rem_1fr] min-h-[75vh]">
+              {/* Aside: visible en grande, desplegable en móvil */}
+              <aside
+                className={`
+                  bg-amber-400 rounded-2xl p-4 m-[5rem]
+                  ${isOpen ? 'block' : 'hidden'}
+                  lg:block lg:m-2
+                `}
+              >
+                <Filter />
+                  </aside>
 
 
             <main className="w-full p-5">
