@@ -1,19 +1,16 @@
 import { useCallback, useState } from "react";
 import Header from '../Headerr';
 import Footer from '../components/Footer';
-// import CardTwo from './CardTwo';
 import Card from './CardOne';
 import styles from "./principal.module.css";
 import {TemplatePicker} from './Forms';
 import MyComponent from "../Anim/FirstSrping";
-
+import {Forma} from './Forms';
 //importamos desde el store de zustand
 import { FormularioStore } from "../Store/TryZustand";
 import type { Formulario} from "../Store/IntZus.d.ts";
 
 import { Link } from "react-router-dom";
-
-
 
 
 
@@ -74,6 +71,8 @@ const handleInputChange = useCallback(
         )}
           </div>
           </Link> 
+
+          <Forma setFormData={handleInputChange} />
       
                   <MyComponent  formData={formData} />
 

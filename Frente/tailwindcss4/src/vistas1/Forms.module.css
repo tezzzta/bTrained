@@ -4,8 +4,8 @@
     font-weight: lighter; /* Para todo el contenido */
     font-size: 0.8em; /* Ajusta el tamaño del texto */
 
-      width: 120px;
-      height: 120px;
+      width: 85%;
+      height: 65%;
       /* background: #4169E1; */
       padding: 0.009rem;
       border-radius: 2rem;
@@ -34,7 +34,8 @@
       }
       
       .template {
-        width: 150px;
+        width: 85%;
+        height: 98%;
         padding: 10px;
         border-radius: 10px;
         text-align: center;

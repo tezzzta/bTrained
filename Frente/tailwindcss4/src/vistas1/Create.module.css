@@ -1,5 +1,5 @@
 .cardOne {
-  width: 700px;
+  width: 75%;
   height: 95px;
   margin: 0 auto;
   background-color: #0B192C;
@@ -9,7 +9,11 @@
   box-shadow: 0px 10px 15px rgba(89, 114, 226, 0.5);
 }
 
-
+@media screen and (min-width: 1024px) {
+  .cardOne {
+    width: 45%;
+  }
+}
 .cardtwo {
     width: 600px;
     height: 600px;
@@ -22,9 +26,10 @@
 
 .tools {
     display: flex;
+    justify-content: center;
     align-items: center;
     padding: 9px;
-    gap: 4px; 
+    gap: 2px; 
 }
 
 .circle {
@@ -58,14 +63,14 @@
 
 
 .inputwrapper input {
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   background-color: #555555;
   border: none;
   padding: 0.5rem;
   font-size: 1.5rem;
-  width: 20em;
+  width: 90%  ;
   border-radius: 1rem;
-  color: #5972e2;
+  color: #eceef5;
   box-shadow: 0 0.2rem #575656;
   cursor: pointer;
 
