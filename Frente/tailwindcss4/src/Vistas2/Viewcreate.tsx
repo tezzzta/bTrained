@@ -234,6 +234,25 @@ const updateTemplate = useStore(FormularioStore, (state) => state.updateTemplate
 //exportaciooonnnnn
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Componente ViewCreate
 const ViewCreate = () => {
   const deleteTemplate = useStore(FormularioStore, (state) => state.deleteTemplate);
@@ -243,6 +262,16 @@ const ViewCreate = () => {
   }
   const { template, templates, updateTemplate } = FormularioStore();
   const nombre = useStore(FormularioStore, (state) => state.formData.nombre);
+
+  const [message, setMessage] = useState('');
+  useEffect(() =>{
+    fetch('http://localhost:3000/api/req')
+    .then((res) => res.json())
+    .then((data)=> setMessage(data.message))
+  }
+)
+
+
   return (
     <div className="bg-[#1A2332] min-h-screen w-full overflow-visible mb-5">
       <Header />
@@ -326,7 +355,7 @@ const ViewCreate = () => {
 
 
       {/* de acá pa abajo si ya no*/}
-      <h1 className="text-white justify-center text-center"> vamos a ver </h1>
+      <h1 className="text-white justify-center text-center"> {message}</h1>
     </div>
   );
 };

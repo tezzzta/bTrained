@@ -1,8 +1,11 @@
 const connection = require('../DataBases/db'); 
 
 class UserModel {
+  
   static registerUser(userData) {
     const { username, email, password } = userData;
+    console.log('Password a insertar:', password);
+    console.log('Longitud:', password.length);
     const query = `INSERT INTO users (username, email, password) VALUES (?, ?, ?)`;
     return new Promise((resolve, reject) => {
       connection.query(query, [username, email, password], (err, results) => {

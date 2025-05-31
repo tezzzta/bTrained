@@ -5,7 +5,7 @@ const UserModel = require('../models/user-model');
 
 exports.loginUser = async (req, res) => {
   const { email, password } = req.body;
-
+ 
   try {
     const result = await UserModel.loginUser(email);
     if (result.length === 0) {
@@ -35,11 +35,21 @@ exports.loginUser = async (req, res) => {
 
 exports.registerUser = async (req, res) => {
   const { username, email, password } = req.body;
-  
+
+  if (!username || !email || !password) {
+    return res.status(400).json({ message: 'Faltan campos requeridos' });
+  }
+
+  console.log('Datos recibidos en registerUser:', req.body);
+
   try {
     const hashedPassword = await bcrypt.hash(password, 10); // Encriptar la contraseña
+    console.log(hashedPassword) 
     const result = await UserModel.registerUser({ username, email, password: hashedPassword });
+    console.log('Datos que se envían al modelo:', { username, email, password: hashedPassword });
+
     res.status(201).json({ message: 'Usuario registrado', user: result });
+
   } catch (err) {
     res.status(500).json({ message: 'Error al registrar usuario', error: err.message });
   }

@@ -78,7 +78,7 @@ export const Forma: React.FC<TemplatePickerProps> = ({ setFormData }) => {
 
             <button
               onClick={() => toggleVisible(index)}
-              className='text-sm text-blue-600 hover:underline'
+              className='text-sm text-white bg-gray-500 rounded p-1  hover:bg-gray-400'
             >
               {visibleIndex === index ? "Ocultar" : "Mostrar"}
             </button>
