@@ -5,8 +5,7 @@ import { FormularioStore } from "../Store/TryZustand";
 import type {Template,UpdateTemplate } from '../Store/IntZus.d.ts'; // Asegúrate de que la ruta sea correcta
 import { ArrowBigDown, ArrowDownLeft, ArrowLeft, ArrowRight,  X , Minus, Plus } from "lucide-react";
 import { useStore } from "zustand";
-import axios from "axios"
-
+import Footer from "../components/Footer.tsx";
 
 
  // Obtiene el id del template actual
@@ -275,14 +274,19 @@ const ViewCreate = () => {
   return (
     <div className="bg-[#1A2332] min-h-screen w-full overflow-visible mb-5">
       <Header />
-      <div className="grid grid-cols-1  gap-4 ">
+      <div className="grid grid-cols-1  gap-4  m-10">
+         <p className="flex text-white m-auto p-1 text-[4rem]  rounded  justify-center items-center text-center " style={{ fontFamily: 'Anton, sans-serif' }}> Acá verás el título de tu plantilla  </p>
+                  <p className="flex text-white m-auto  text-[1rem] font-semibold justify-center items-center text-center"> Tranqui, también lo puedes cambiar al final  </p>
 
-          <h1 className="grid text-white m-auto pb-1 "> {nombre} </h1>
+          <p className="flex text-white m-auto p-2   text-[4rem] justify-center items-center text-center border-3  border-[#111] rounded hover:bg-[#131212]"> {nombre} </p>
       </div>
 
       {/* será que hago este componente en uno y lo importo acá? ya tengo sueño, mañana veo */}
               {/*engloba todod el componente */}
+        <p className="flex text-white m-[7%] p-3 text-[2rem] bg-[#5659f7] rounded font-semibold justify-center items-center text-center lg:m-[35%]"> Empieza a crear </p>
+
               <div className="m-auto">
+
                 <TemplateComponent/>
               </div>
 
@@ -293,7 +297,7 @@ const ViewCreate = () => {
 
 
                           {template != null ? (
-                    <div className="bg-[#393E46] rounded-2xl w-1/2 min-h-screen justify-center items-center text-center mt-2 mb-9 pt-0 pb-5 overflow-visible">
+                    <div className="bg-[#393E46] rounded-2xl w-90% min-h-screen justify-center items-center text-center mt-2 mb-5 pt-0 pb-5 overflow-visible lg:w-1/2">
                       {/* <Tabs /> */}
                             <div>
 
@@ -302,7 +306,7 @@ const ViewCreate = () => {
 
                               </div>
           
-                      <div className="mt-6">
+                      <div className="m-4">
 
                         <PhotoUpload id={template.id} /> 
                        <p className="text-white font-bold text-lg"> Tu Pregunta </p>
@@ -342,7 +346,6 @@ const ViewCreate = () => {
                         <div className="flex justify-center items-center mt-1 p-auto   h-full">
                           <Button />
                         </div>
-                        <p className="text-white font-bold mt-5">Acá las respuestas, serían mínimo 2 máximo 5, AGREGA DIVISORES</p>
                       </div>
                     </div>
                   ) : null}
@@ -355,7 +358,7 @@ const ViewCreate = () => {
 
 
       {/* de acá pa abajo si ya no*/}
-      <h1 className="text-white justify-center text-center"> {message}</h1>
+      <Footer/>
     </div>
   );
 };

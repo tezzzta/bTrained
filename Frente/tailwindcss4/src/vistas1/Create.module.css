@@ -6,7 +6,6 @@
   border-radius: 8px;
   position: relative; 
   overflow: hidden;
-  box-shadow: 0px 10px 15px rgba(89, 114, 226, 0.5);
 }
 
 @media screen and (min-width: 1024px) {

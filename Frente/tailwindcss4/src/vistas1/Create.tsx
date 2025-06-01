@@ -3,7 +3,7 @@ import Header from '../Headerr';
 import Footer from '../components/Footer';
 import Card from './CardOne';
 import styles from "./principal.module.css";
-import {TemplatePicker} from './Forms';
+// import {TemplatePicker} from './Forms';
 import MyComponent from "../Anim/FirstSrping";
 import {Forma} from './Forms';
 //importamos desde el store de zustand
@@ -57,12 +57,21 @@ const handleInputChange = useCallback(
     <section className={styles.micolorsection}>
       <div className="w-full">
         <Header />
-        <div className={styles.cardContainer}>
-        <Card nombre={formData.nombre} setFormData={handleInputChange} />
+        <div className="grid grid-cols-1  gap-4 p-4"> 
+                  <p className="m-auto text-[3rem] " style={{ fontFamily: 'Anton, sans-serif' }} > Pongamosle un nombre a tu nueva creación</p>
 
         </div>
+          <div className={styles.cardContainer}>
+              <Card nombre={formData.nombre} setFormData={handleInputChange} />
 
-        <TemplatePicker setFormData={handleInputChange} />
+        </div>
+                   <div className="grid grid-cols-1  mt-3 gap-4 p-4"> 
+                              <p className="flex m-auto text-[2rem] justify-center items-center text-center"  style={{ fontFamily: 'Anton, sans-serif' }} > Elige una plantilla para iniciar </p>
+
+                    </div>
+          <Forma setFormData={handleInputChange} />
+
+        
 
         {/* pondremos una redireccion a otra vista con el ESTADO  */}
         <Link to="/c-forms">
@@ -72,9 +81,8 @@ const handleInputChange = useCallback(
           </div>
           </Link> 
 
-          <Forma setFormData={handleInputChange} />
       
-                  <MyComponent  formData={formData} />
+                  {/* <MyComponent  formData={formData} /> */}
 
 
         <div className="w-full">

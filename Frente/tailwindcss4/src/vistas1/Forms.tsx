@@ -71,23 +71,24 @@ export const Forma: React.FC<TemplatePickerProps> = ({ setFormData }) => {
 
   return (
     <div className='grid grid-cols-1 m-5'>
-      <div className='grid bg-amber-300 w-3/4 rounded p-4 m-auto grid-cols-1 lg:w-1/2'>
+      <div className='grid bg-[#393E46] w-[95%] rounded p-4 m-auto grid-cols-1 lg:w-1/2'>
         {templates.map((card: Template, index) => (
           <Container key={card.title} className='m-2 p-2 border-b border-gray-300'>
             <p className='font-semibold mb-2'>{card.title}</p>
 
             <button
               onClick={() => toggleVisible(index)}
-              className='text-sm text-white bg-gray-500 rounded p-1  hover:bg-gray-400'
+              className='text-sm text-white bg-gray-500 rounded p-1  hover:bg-gray-600 transition duration-200'
             >
               {visibleIndex === index ? "Ocultar" : "Mostrar"}
             </button>
 
             {visibleIndex === index && (
-              <div className="mt-2 p-3  rounded hover:bg-gray-200">
+              <div className="mt-2 p-3  rounded hover:bg-gray-600 transition duration-300">
                 <p className='flex justify-center'>{card.texto}</p>
                 <button
                   onClick={() => setFormData('template', card.title)}
+                  className='mt-2 bg-[#5659f7] text-white font-semibold rounded py-2 px-4 hover:bg-[#393E46] transition duration-200'
                 >
                   Seleccionar
                 </button>
