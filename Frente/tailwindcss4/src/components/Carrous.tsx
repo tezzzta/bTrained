@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Carousel, Container } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './harry.css';
-
+import { Link } from 'react-router-dom';
 const CarouselComponent: React.FC = () => {
   const slides = [
     { title: "Primer Slide", text: "Descripción del primer slide.", link: "https://picsum.photos/650/300?random=1" },
@@ -21,7 +21,12 @@ const CarouselComponent: React.FC = () => {
               <Carousel.Caption className="text-center">
                 <h5>{slide.title}</h5>
                 <p>{slide.text}</p>
-                <Button variant="primary" size="sm" href={slide.link} style={{ borderRadius: '20px' }}>Ver más</Button>
+                                <Link
+                  to={slide.link}
+                  className="bg-[#4F46E5] text-white py-2 px-4 inline-block rounded-full hover:bg-[#7C3AED]"
+                >
+                  Ver más
+                </Link>
               </Carousel.Caption>
             </Carousel.Item>
           ))}

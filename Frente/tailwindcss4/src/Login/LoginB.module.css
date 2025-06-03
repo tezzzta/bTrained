@@ -6,7 +6,7 @@
     --burger-line-width: 1.125em;
     --burger-line-height: 0.125em;
     --burger-offset: 0.625em;
-    --burger-bg: #5659f7;
+    --burger-bg: #4F46E5;
     --burger-color: #fff;
     --burger-line-border-radius: 0.1875em;
     --burger-diameter: 3.125em;
@@ -167,6 +167,7 @@
   
   .burger:hover {
     transform: scale(var(--burger-hover-scale));
+    background: #7C3AED;
   }
   
   .burger:active {

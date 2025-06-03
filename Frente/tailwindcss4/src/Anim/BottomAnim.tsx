@@ -11,8 +11,10 @@ const BottomAnim = () => {
         <div className={styles.dropdown}> 
                 <Nav className="nav-pills">
           <Nav.Item> 
-            <Nav.Link  className="active bg-custom" style={{ fontFamily: 'Poppins, sans-serif', fontWeight: 'bold', backgroundColor: "#5659f7"  }}>
-              Menú
+            <Nav.Link      className="active !bg-[#4F46E5] hover:!bg-[#7C3AED] text-[#CBD5E1] !font-bold !font-[Poppins,sans-serif]"
+
+>
+             <span className="text-[# ]">Menú</span>
             </Nav.Link>
           </Nav.Item>
           </Nav>

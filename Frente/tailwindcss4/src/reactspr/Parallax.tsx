@@ -90,7 +90,7 @@ const Componente= () => {
      <div className='justify-center items-center flex flex-col  mt-[30vh]'>
         
 
-     <div className="absolute inset-0 bg-gradient-to-r from-yellow-200 to-pink-500 bg-clip-text text-transparent animate-gradient">
+     <div className="absolute inset-0 bg-gradient-to-r bg-clip-text text-transparent animate-gradient">
           
         </div>
             

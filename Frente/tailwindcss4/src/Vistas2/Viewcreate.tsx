@@ -214,7 +214,7 @@ const updateTemplate = useStore(FormularioStore, (state) => state.updateTemplate
         key={index}
         type="text"
         value={template.answer[index +2] || ''}
-        className="border-2 border-gray-300 text-[#ffffff] text-center font-semibold rounded-md p-2 w-2/3 mt-2"
+        className="border-2 border-gray-300 bg-gray-500 text-[#ffffff] text-center font-semibold rounded-md p-2 w-2/3 mt-2"
         placeholder={`Respuesta ${index + 3}`}
         onChange={(e) => {
           const updated = [...template.answer];
@@ -279,7 +279,7 @@ const ViewCreate = () => {
 
 
   return (
-    <div className="bg-[#1A2332] min-h-screen w-full overflow-visible mb-5">
+    <div className="bg-[#0F172A] min-h-screen w-full overflow-visible mb-5">
       <Header />
       <div className="grid grid-cols-1  gap-4  m-10">
          <p className="flex text-white m-auto p-1 text-[4rem]  rounded  justify-center items-center text-center " style={{ fontFamily: 'Anton, sans-serif' }}> Acá verás el título de tu plantilla  </p>
@@ -290,7 +290,7 @@ const ViewCreate = () => {
 
       {/* será que hago este componente en uno y lo importo acá? ya tengo sueño, mañana veo */}
               {/*engloba todod el componente */}
-        <p className="flex text-white m-[7%] p-3 text-[2rem] bg-[#5659f7] rounded font-semibold justify-center items-center text-center lg:m-[35%]"> Empieza a crear </p>
+        <p className="flex text-white m-[7%] p-3 text-[2rem] bg-[#7C3AED] rounded font-semibold justify-center items-center text-center lg:m-[35%]"> Empieza a crear </p>
 
               <div className="m-auto">
 
@@ -304,7 +304,7 @@ const ViewCreate = () => {
 
 
                           {template != null ? (
-                    <div className="bg-[#393E46] rounded-2xl w-90% min-h-screen justify-center items-center text-center mt-2 mb-5 pt-0 pb-5 overflow-visible lg:w-1/2">
+                    <div className="bg-[#1E293B] rounded-2xl w-90% min-h-screen justify-center items-center text-center mt-2 mb-5 pt-0 pb-5 overflow-visible lg:w-1/2">
                       {/* <Tabs /> */}
                             <div>
 
@@ -322,7 +322,7 @@ const ViewCreate = () => {
                           type="text"
                           value={template.question}
                           onChange={(e) => updateTemplate(template.id, 'question', e.target.value)}
-                          className="text-[22px] text-[#ffffff] text-center font-semibold rounded-md p-2 w-2/3 mt-1 mb-3"
+                          className="text-[22px] text-[#ffffff]  bg-gray-500 text-center font-semibold rounded-md p-2 w-2/3 mt-1 mb-3"
                           placeholder="Agrega la pregunta"
                         />
                       </div>
@@ -336,7 +336,7 @@ const ViewCreate = () => {
                             updated[0] = e.target.value;
                             updateTemplate(template.id, 'answer', updated);
                           }}
-                          className="border-2 border-gray-300 text-[#ffffff] text-center font-semibold rounded-md p-2 w-2/3 mt-2"
+                          className="border-2 border-gray-300 bg-gray-500 text-[#ffffff] text-center font-semibold rounded-md p-2 w-2/3 mt-2"
                           placeholder="Respuesta 1"
                         />
                         <input
@@ -347,7 +347,7 @@ const ViewCreate = () => {
                             updated[1] = e.target.value;
                             updateTemplate(template.id, 'answer', updated);
                           }}
-                          className="border-2 border-gray-300 text-[#ffffff] text-center font-semibold rounded-md p-2 w-2/3 mt-2"
+                          className="border-2 border-gray-300 bg-gray-500 text-[#ffffff] text-center font-semibold rounded-md p-2 w-2/3 mt-2"
                           placeholder="Respuesta 2"
                         />
                         <div className="flex justify-center items-center mt-1 p-auto   h-full">

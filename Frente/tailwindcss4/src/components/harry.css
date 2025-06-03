@@ -2,32 +2,30 @@
 
 
 .gallery-section {
-  background-color: #141D2B;
+  background-color: #0F172A  ;
   padding: 3rem 0;
 }
 
   .welcome-container {
-      background-color: #4169E1       ;
       border-radius: 30px;
       color: white; 
       font-family: 'Poppins', sans-serif;
   }
   body {
-    background-color: #1A2332; /* Celeste */
+    background-color: #0F172A  ; /* Celeste */
     color: #ffffff; /* Opcional: Cambiar color del texto */
 
 .carousel-section {
-    background-color: #1A2332;
+    background-color: #0F172A  ;
   }
   }
   header {
-    background-color: #141D2B; 
-    color: white;
+    background-color: #0F172A  ; 
     padding: 15px; 
 }
 
 footer {
-    background-color: #1A2332; 
+    background-color: #0F172A  ; 
     color: white; 
     text-align: center;
     padding: 10px;

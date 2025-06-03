@@ -24,7 +24,16 @@ function App() {
 
   return (
     <BrowserRouter>
-    
+     <style>
+        {`
+        
+
+         html, body {
+          background-color: #0F172A;
+
+            }
+        `}
+      </style>
       <div className="App w-full">
         <Routes>
           <Route path="/" element={<First />} />
