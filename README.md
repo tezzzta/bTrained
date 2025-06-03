@@ -1,6 +1,6 @@
-# 🚆 B-Train
+# 🚆 B-Trained
 
-**B-Train** es una solución moderna e interactiva para realizar **encuestas y evaluaciones**, diseñada con una experiencia de usuario atractiva y optimizada gracias al uso de **React**, **TypeScript** y tecnologías de **modelos de lenguaje (LLM)**.
+**B-Trained** es una solución moderna e interactiva para realizar **encuestas y evaluaciones**, diseñada con una experiencia de usuario atractiva y optimizada gracias al uso de **React**, **TypeScript** y tecnologías de **modelos de lenguaje (LLM)**.
 
 Actualmente se encuentra en **fase de desarrollo**, ¡mantente atento a su despliegue! 😄
 
