@@ -5,6 +5,9 @@ import { motion } from "framer-motion";
 
 import BlurText from './TryFirts';
 
+import gsap from 'gsap';
+
+
 const handleAnimationComplete = () => {
   console.log('Animation completed!');  
 };
@@ -94,7 +97,7 @@ const Componente= () => {
           
         </div>
             
-            <div className={styles.ryan}>
+            {/* <div className={styles.ryan}>
               <BlurText
           text={texto}
           
@@ -112,8 +115,11 @@ const Componente= () => {
           direction="bottom"
           className="text-2xl mb-2 text-[40px]"
         />
+           */}
+
+
+
           </div>
-      {/* <Planetas/> */}
       <Info/>
 
 

@@ -285,7 +285,7 @@ const ViewCreate = () => {
          <p className="flex text-white m-auto p-1 text-[4rem]  rounded  justify-center items-center text-center " style={{ fontFamily: 'Anton, sans-serif' }}> Acá verás el título de tu plantilla  </p>
                   <p className="flex text-white m-auto  text-[1rem] font-semibold justify-center items-center text-center"> Tranqui, también lo puedes cambiar al final  </p>
 
-          <p className="flex text-white m-auto p-2   text-[4rem] justify-center items-center text-center border-3  border-[#111] rounded hover:bg-[#131212]"> {nombre} </p>
+          <p className="flex text-white m-auto p-2   text-[4rem] font-semibold justify-center items-center text-center border-3  border-[#111] rounded hover:bg-[#131212]"> {nombre} </p>
       </div>
 
       {/* será que hago este componente en uno y lo importo acá? ya tengo sueño, mañana veo */}
@@ -363,7 +363,14 @@ const ViewCreate = () => {
       </div>
 
 
-
+                            <div className="flex justify-center items-center m-10">
+                            <p className="text-[2rem]">  Guarda tu formulario </p>
+                              </div>
+                          <div className="flex justify-center items-center">
+                            <button className="bg-[#7C3AED] p-3  rounded text-white font-semibold hover:bg-[#A855F7] transition duration-300"> 
+                              <span className="text-[2rem]"> Guardar </span>
+                            </button>
+                          </div>
       {/* de acá pa abajo si ya no*/}
       <Footer/>
     </div>
