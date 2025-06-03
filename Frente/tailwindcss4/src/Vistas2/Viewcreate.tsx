@@ -6,9 +6,8 @@ import type {Template,UpdateTemplate } from '../Store/IntZus.d.ts'; // Asegúrat
 import { ArrowBigDown, ArrowDownLeft, ArrowLeft, ArrowRight,  X , Minus, Plus } from "lucide-react";
 import { useStore } from "zustand";
 import Footer from "../components/Footer.tsx";
+import axios from "axios";
 
-
- // Obtiene el id del template actual
 
 
 // haremos un componente para que el user pueda agregar templates
@@ -101,29 +100,32 @@ const PhotoUpload: React.FC<{ id: number }> = ({ id }) => {
   const templates = useStore(FormularioStore, (state) => state.templates);
   const updateTemplate = useStore(FormularioStore, (state) => state.updateTemplate);
 
-  const template = templates.find(t => t.id === id);
+const template = templates.find(t => t.id === id);
+const [imageBase64, setImageBase64] = useState<string | null>(null);
 
   // Declaro todos los hooks SIN CONDICIONES
-  const convertirABase64 = (archivo: File) =>
-    new Promise<string>((resolve, reject) => {
-      const lector = new FileReader();
-      lector.readAsDataURL(archivo);
-      lector.onload = () => {
-        if (lector.result) {
-          const base64 = lector.result.toString().split(',')[1];
-          resolve(base64);
-        } else {
-          reject('No se pudo leer el archivo');
-        }
-      };
-      lector.onerror = (error) => reject(error);
-    });
+const convertirABase64 = (archivo: File) =>
+  new Promise<string>((resolve, reject) => {
+    const lector = new FileReader();
+    lector.readAsDataURL(archivo);
+    lector.onload = () => {
+      if (lector.result) {
+        const base64 = lector.result.toString().split(',')[1];
+        resolve(base64); // solo resuelve, no hagas nada más
+      } else {
+        reject('No se pudo leer el archivo');
+      }
+    };
+    lector.onerror = (error) => reject(error);
+  });
+
 
   const { getRootProps, getInputProps } = useDropzone({
     accept: { 'image/*': ['.jpg', '.jpeg', '.png', '.gif'] },
     onDrop: async ([imagen]) => {
       const urlTemporal = URL.createObjectURL(imagen);
       const base64 = await convertirABase64(imagen);
+    setImageBase64(base64); 
       if (!template) {
           console.error("template no definido al intentar subir imagen");
           return;
@@ -132,7 +134,30 @@ const PhotoUpload: React.FC<{ id: number }> = ({ id }) => {
     },
   });
 
-  // Ahora sí condicionalmente renderizo:
+ 
+
+ useEffect(() => {
+  if (!imageBase64) return;
+
+  fetch('http://localhost:3000/imgur', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ image: imageBase64 }), 
+  })
+    .then(res => {
+      if (!res.ok) throw new Error(`HTTP error ${res.status}`);
+      return res.json();
+    })
+    .then(data => {
+      console.log('URL de la imagen:', data.url);
+      if (data.url) {
+        updateTemplate(template.id, 'imagePreview', data.url);
+      }
+    })
+    .catch(error => console.error('Error subiendo la imagen:', error));
+}, [imageBase64]);
+
+         // Ahora sí condicionalmente renderizo:
   if (!template || template.id === undefined){
     console.log("Renderizando ViewCreate", template);
 
@@ -142,6 +167,7 @@ const PhotoUpload: React.FC<{ id: number }> = ({ id }) => {
       </div>
     );
   }
+      
 
   return (
     <div className="w-full max-w-lg mx-auto mb-4">
@@ -231,25 +257,6 @@ const updateTemplate = useStore(FormularioStore, (state) => state.updateTemplate
 };
 
 //exportaciooonnnnn
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 // Componente ViewCreate

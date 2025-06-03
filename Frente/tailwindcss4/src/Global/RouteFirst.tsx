@@ -62,7 +62,8 @@ function First() {
         <Componente/>
           <div className="App  mt-[60%]">
           <HeaderSp/>
-        <div className='z-[-1]' >
+        <div className='grid grid-cols-1 z-[-1]' >
+          <p className="m-auto p-[4rem] text-[3rem]" style={{fontFamily:'Anton, sans-serif'}}> Echa un ojo a otros proyectos... </p>
         <GridMotion  items={items} />
         </div>          
           <CarouselComponent />

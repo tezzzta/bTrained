@@ -6,6 +6,7 @@ const { uploadImage } = require('../imgur'); // Importa la función uploadImage
 exports.createTransition = async (req, res) => {
     try {
         const { title, description } = req.body;
+        console.log("Datos recibidos:", req.body);
         if (!title || !description) {
             return res.status(400).json({ message: 'Faltan datos obligatorios (título y descripción)' });
         }
