@@ -38,7 +38,7 @@ const [actualData, setActualData] = useState({
           });
           const data = await res.json();
           if(res.ok){
-          localStorage.setItem('token', data.token); // Guarda el token para usar luego
+            localStorage.setItem('token', data.token); // Guarda el token para usar luego
         alert('Usuario logeado exitosamente');
         console.log(data.token)
 
