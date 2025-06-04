@@ -77,86 +77,69 @@ const Info = () => {
 
 
 
-
 const texto = "B-Trained";
 
+const frases = ["Creative", "Influential", " "];
 
 const Componente = () => {
+    const [index, setIndex] = useState(0);
+   const Refer = useRef(null);
+
   useEffect(() => {
-    const tl = gsap.timeline();
-
+     const mainTl = gsap.timeline(); // Para animación base (#hhh, #ddd, #eee)
+     const frasesTl = gsap.timeline(); // Para frases
+     const mainT2 = gsap.timeline(); // Para animación de #xxx
     
-    const hideConfig = { y: 0, opacity: 0, scale: 0.5 };
-    tl.to("#aaa", hideConfig)
-      .to("#bbb", hideConfig, "<")
-      .to("#eee", { y: -340, opacity: 0, x: "-125", scale: 1.2 }, "<")
-      .to("#ccc", hideConfig, "<")
-      .to("#ddd", { y: -245, opacity: 0, x: "-60", scale: 0.5 }, "<");
+    const hideConfig = { opacity: 0, scale: 0.5 };
+    //este es para ocultar los elementos al inicio mi bro
+                  mainTl.to("#hhh", { y: 100, opacity: 1, rotation: -360, duration: 1, z: 0, ease: "bounce.out" })
+                 .to("#xxx", { y: 100, opacity: 0, x: "20%", rotation: 0, scale: 0.1 }, "<") 
+                .to("#ddd", {y: 10, x: "-75", ...hideConfig}, "<")
+                .to("#eee", {y: -80, x: "-120", ...hideConfig}, "<")
+                .add(frasesTl) // 💡 Insertamos frases después de mainTl
 
-    
-    tl.to("#hhh", { y: 100, opacity: 1, rotation: -360, duration: 1, z: 0, ease: "bounce.out" })
-      .to("#hhh", { y: 100, opacity: 1, x: "-200%", rotation: 0, scale: 1.2, duration: 1, ease: "circ.out" })
-      .to("#ddd", { y: -245, opacity: 1, x: "-60", scale: 0.5, duration: 1 }, "<")
-      .to("#aaa", { y: 15, opacity: 1, x: "22%", scale: 1 }, "<")
-      .to("#aaa", {
-        y: -50,
-        opacity: 0,
-        x: "20%",
-        scale: 0.5,
-        duration: 0.5,
-        ease: "expoScale(0,6,9,none)",
-      })
-      .to("#bbb", { y: -73, opacity: 1, x: "26%", scale: 1, duration: 1 }, "<")
-      .to("#bbb", {
-        y: -120,
-        opacity: 0,
-        x: "26%",
-        scale: 1,
-        duration: 0.5,
-        ease: "expoScale(0,6,9,none)",
-      })
-      .to("#ccc", { y: -160, opacity: 1, x: "20%", scale: 1 }, "<")
-      .to("#hhh", {
-        y: 100,
-        opacity: 0,
-        x: "-150%",
-        rotation: 0,
-        scale: 1.2,
-        duration: 1.1,
-        ease: "sine.out",
-      })
-      .to("#eee", {
-        y: -340,
-        opacity: 1,
-        x: "-85",
-        rotation: 0,
-        scale: 1.2,
-        duration: 1,
-        ease: "sine.out",
-      }, "<")
-      .to("#ccc", { y: -160, opacity: 1, x: "30%", scale: 1.4, duration: 1 })
-      .to("#eee", { y: -340, opacity: 1, x: "-110", scale: 1.5, duration: 1 }, "<")
-      .to("#ddd", { y: -245, opacity: 1, x: "-75", scale: 0.5 }, "<");
-  }, []);
+                .to("#hhh", { y: 100, opacity: 1, x: "-200%", rotation: 0, scale: 1.2, duration: 1, ease: "circ.out" })
+
+                .to("#hhh", { y: 100, opacity: 1, x: "-200%", rotation: 0, scale: 1.2, duration: 2 , ease: "circ.out" })
+                .add(mainT2)
+  
+                .to("#ddd", { y: 10, opacity: 1, x: "-75", scale: 1, ease: "slow(0.7,0.7,false)"})
+                .to("#hhh", { y: 100, opacity: 0, x: "-150%", rotation: 0, scale: 1.2, duration: 0.5, ease: "sine.out" }, "<") 
+
+                .to("#eee", { y: -80, opacity: 1, x: "-110", rotation: 0, scale: 1.2, duration: 1, ease: "sine.out" }, "<")
+                .to("#eee", { y: -80, opacity: 1, x: "-110", scale: 1.5, duration: 1.5 }, "<")
+                
+              ;
+
+              frases.forEach((frase, i) => {
+              frasesTl.to(Refer.current, { opacity: 0, y: -100, x:35 , duration: 0.3, onComplete: () => setIndex(i) },"<")
+              frasesTl.fromTo(Refer.current, { opacity: 0, y: -300, x:35  }, { opacity: 1, x:42 , y: -162, scale: 1, duration: 0.8 })
+              frasesTl.to({}, { y:  -200,  duration: 1 })
+            }); 
+
+            mainT2.to("#xxx", { y: 100, opacity: 0, x: "20%", rotation: 0, scale: 1.2, duration: 1 })
+            .to("#xxx", { y: 100, opacity: 1, x: "20%", rotation: 0, scale: 1.3, duration: 0.2 })
+
+            }, []);
 
   return (
             <div transition-style="in:circle:top-right" className={styles.background}>
 
   <div className="relative h-screen w-full">
-      <Info />
 
     {/* Grupo animado centrado */}
     <div className="absolute top-[20%] left-1/2 transform -translate-x-1/2 z-20 flex flex-col items-center space-y-1">
       <p className="text-[3rem] text-white font-semibold" id="hhh">Be</p>
-      <p className="text-[3rem] text-white font-semibold" id="aaa">Creative</p>
-      <p className="text-[3rem] text-white font-semibold" id="bbb">Influential</p>
-      <p className="text-[3rem] text-white font-semibold" id="ccc">Trained</p>
       <p className="text-[3rem] text-white font-bold" id="ddd">-</p>
-      <p className="text-[3rem] text-white font-semibold" id="eee">B</p>
+      <p className="text-[3rem] text-white font-semibold" id="eee">B</p>        
+      <p ref={Refer}  className="text-[3rem] text-white font-semibold" >  {frases[index]}</p> 
+      <p className="absolute text-[3rem] text-white font-semibold z-[999]  pointer-events-none" id="xxx">Trained</p>
+
+
     </div>
 
     {/* BlurText superpuesto, debajo visualmente */}
-    <div className="absolute top-[80%] left-1/2 transform -translate-x-1/2 z-10">
+    <div className="absolute top-[45%] left-1/2 transform -translate-x-1/2 z-0 ">
       <BlurText
         text="Empieza a crear y sorprende"
         delay={100}
@@ -165,6 +148,8 @@ const Componente = () => {
         className="text-[40px] text-white"
       />
     </div>
+          <Info />
+
   </div>
 
 </div>
