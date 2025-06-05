@@ -6,7 +6,9 @@ import type {Template,UpdateTemplate } from '../Store/IntZus.d.ts'; // Asegúrat
 import { ArrowBigDown, ArrowDownLeft, ArrowLeft, ArrowRight,  X , Minus, Plus } from "lucide-react";
 import { useStore } from "zustand";
 import Footer from "../components/Footer.tsx";
-import axios from "axios";
+import {Link } from "react-router-dom";
+
+
 
 
 
@@ -367,9 +369,11 @@ const ViewCreate = () => {
                             <p className="text-[2rem] bg-[#1E293B] p-3 rounded shadow shadow-[#1E293B]">  ¿Listo? guarda y envía </p>
                               </div>
                           <div className="flex justify-center items-center mb-10">
+                            <Link to="/send" className="no-underline">
                             <button className="bg-[#7C3AED] py-2  px-4 rounded text-white font-semibold hover:bg-[#A855F7] transition duration-300"> 
                               <span className="text-[2rem]"> Guardar </span>
                             </button>
+                            </Link>
                           </div>
       {/* de acá pa abajo si ya no*/}
       <Footer/>

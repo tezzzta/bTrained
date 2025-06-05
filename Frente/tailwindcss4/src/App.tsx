@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import {Inicio} from './Global/RouteLogin';
 import ViewCreate from './Vistas2/Viewcreate'
 import SectGall from './Gallery/GaleriaInit';
+import FinishTheme from './vistas3/SendTem'
 
 
 function App() {
@@ -41,7 +42,7 @@ function App() {
           <Route path="/create" element={<Create />} />
           <Route path="/c-forms" element={< ViewCreate/>} />
           <Route path="/gallery" element={< SectGall/>} />
-          <Route path="/send" element={< SectGall/>} />
+          <Route path="/send" element={< FinishTheme/>} />
 
         </Routes>
       </div>
