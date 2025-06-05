@@ -68,6 +68,35 @@ const Info = () => {
   )
 }
 
+const words = "Empieza a crear y sorprende".split(" ");
+
+const Texxt = () => {
+  
+  return (
+    <div
+      style={{
+        color: "white",
+        textAlign: "center",
+        padding: "20px",
+      }}
+    >
+      
+         {words.map((word, i) => (
+            <motion.span
+              key={i}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 4 + i * 0.2, duration: 0.2 }}
+              className="inline-block mr-2 text-[32px]"
+            >
+              {word}
+            </motion.span>
+          ))}
+    </div>
+  )
+}
+
+
 
 
 
@@ -90,10 +119,10 @@ const Componente = () => {
      const frasesTl = gsap.timeline(); // Para frases
      const mainT2 = gsap.timeline(); // Para animación de #xxx
     
-    const hideConfig = { opacity: 0, scale: 0.5 };
+    const hideConfig = { opacity: 0, scale: 1 };
     //este es para ocultar los elementos al inicio mi bro
                   mainTl.to("#hhh", { y: 100, opacity: 1, rotation: -360, duration: 1, z: 0, ease: "bounce.out" })
-                 .to("#xxx", { y: 100, opacity: 0, x: "20%", rotation: 0, scale: 0.1 }, "<") 
+                .to("#xxx", { y: 100, opacity: 0, x: "20%", rotation: 0, scale: 0.1 }, "<") 
                 .to("#ddd", {y: 10, x: "-75", ...hideConfig}, "<")
                 .to("#eee", {y: -80, x: "-120", ...hideConfig}, "<")
                 .add(frasesTl) // 💡 Insertamos frases después de mainTl
@@ -104,10 +133,10 @@ const Componente = () => {
                 .add(mainT2)
   
                 .to("#ddd", { y: 10, opacity: 1, x: "-75", scale: 1, ease: "slow(0.7,0.7,false)"})
-                .to("#hhh", { y: 100, opacity: 0, x: "-150%", rotation: 0, scale: 1.2, duration: 0.5, ease: "sine.out" }, "<") 
+                .to("#hhh", { y: 100, opacity: 0, x: "-150%", rotation: 0, scale: 1.2, duration: 1, ease: "sexpoScale(0.5,7,none)" }, "<") 
 
                 .to("#eee", { y: -80, opacity: 1, x: "-110", rotation: 0, scale: 1.2, duration: 1, ease: "sine.out" }, "<")
-                .to("#eee", { y: -80, opacity: 1, x: "-110", scale: 1.5, duration: 1.5 }, "<")
+                .to("#eee", { y: -78, opacity: 1, x: "-110", scale: 1.3, duration: 1.5, ease: "sexpoScale(0.5,7,none)" }, "<")
                 
               ;
 
@@ -140,13 +169,7 @@ const Componente = () => {
 
     {/* BlurText superpuesto, debajo visualmente */}
     <div className="absolute top-[45%] left-1/2 transform -translate-x-1/2 z-0 ">
-      <BlurText
-        text="Empieza a crear y sorprende"
-        delay={100}
-        animateBy="letters"
-        direction="bottom"
-        className="text-[40px] text-white"
-      />
+      <Texxt/>
     </div>
           <Info />
 

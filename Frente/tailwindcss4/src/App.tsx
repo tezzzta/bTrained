@@ -41,6 +41,7 @@ function App() {
           <Route path="/create" element={<Create />} />
           <Route path="/c-forms" element={< ViewCreate/>} />
           <Route path="/gallery" element={< SectGall/>} />
+          <Route path="/send" element={< SectGall/>} />
 
         </Routes>
       </div>

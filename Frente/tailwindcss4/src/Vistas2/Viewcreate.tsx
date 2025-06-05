@@ -364,10 +364,10 @@ const ViewCreate = () => {
 
 
                             <div className="flex justify-center items-center m-10">
-                            <p className="text-[2rem]">  Guarda tu formulario </p>
+                            <p className="text-[2rem] bg-[#1E293B] p-3 rounded shadow shadow-[#1E293B]">  ¿Listo? guarda y envía </p>
                               </div>
-                          <div className="flex justify-center items-center">
-                            <button className="bg-[#7C3AED] p-3  rounded text-white font-semibold hover:bg-[#A855F7] transition duration-300"> 
+                          <div className="flex justify-center items-center mb-10">
+                            <button className="bg-[#7C3AED] py-2  px-4 rounded text-white font-semibold hover:bg-[#A855F7] transition duration-300"> 
                               <span className="text-[2rem]"> Guardar </span>
                             </button>
                           </div>

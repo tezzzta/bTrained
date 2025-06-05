@@ -5,7 +5,7 @@ import styles from './Forms.module.css'
 import { useState } from "react";
 
 export const templates = [
-  { title: "Formulario en blanco", image: "https://picsum.photos/400/200?random=1", texto: "El Formulario en blanco consiste en crear tu propio formulario desde cero y a tu preferencia" },
+  { title: "Formulario en blanco", image: "../public/img.jpeg", texto: "El Formulario en blanco consiste en crear tu propio formulario desde cero y a tu preferencia" },
   { title: "Registro para la obtención...", image: "https://picsum.photos/400/200?random=5", texto: "Un formulario en blanco "  },
   { title: "Información de contacto", image: "https://picsum.photos/400/200?random=6", texto: "Un formulario en blanco para empezar desde cero."  },
 
@@ -44,7 +44,7 @@ export const TemplatePicker: React.FC<TemplatePickerProps> = ({ setFormData }) =
               style={{ cursor: "pointer", border: "2px solid transparent", padding: "5px" }}
             >
               <div className={styles.card}>
-                <img src={card.image} alt={card.title} className={styles.miImagenEstilo} />
+                <img src={card.image} alt={card.title} className="  p-10"  />
               </div>
             </div>
             <div className="text-white">
@@ -78,20 +78,25 @@ export const Forma: React.FC<TemplatePickerProps> = ({ setFormData }) => {
 
             <button
               onClick={() => toggleVisible(index)}
-              className='text-sm text-white bg-[#493fff] rounded p-1  hover:bg-[#7C3AED] transition duration-200'
+              className='text-sm  text-white bg-[#493fff] rounded p-1  hover:bg-[#7C3AED] transition duration-200'
             >
               {visibleIndex === index ? "Ocultar" : "Mostrar"}
             </button>
 
             {visibleIndex === index && (
-              <div className="mt-2 p-3  rounded hover:bg-gray-600 transition duration-300">
+              <div className="mt-2 p-3  rounded transition duration-300">
+
                 <p className='flex justify-center'>{card.texto}</p>
-                <button
+                <img src={card.image} alt={card.title} className="m-auto w-1/2 h-1/2" />
+
+                <section className='flex justify-center items-center px-10 py-5'>
+                  <button
                   onClick={() => setFormData('template', card.title)}
-                  className='mt-2 bg-[#4F46E5] text-white font-semibold rounded py-2 px-4 hover:bg-[#7C3AED] transition duration-200'
+                  className=' mt-2 bg-[#4F46E5] text-white font-semibold rounded py-2 px-4 hover:bg-[#7C3AED] transition duration-200'
                 >
                   Seleccionar
                 </button>
+                </section>
               </div>
             )}
           </Container>
