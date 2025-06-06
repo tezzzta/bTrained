@@ -14,7 +14,7 @@ import {Link } from "react-router-dom";
 
 // haremos un componente para que el user pueda agregar templates
 
-const TemplateComponent = () => {
+export const TemplateComponent = () => {
   const templates = useStore(FormularioStore, (state) => state.templates); 
   const addTemplate = useStore(FormularioStore, (state) => state.addTemplate);
   const incrementTemplateId = useStore(FormularioStore, (state) => state.incrementTemplateId);

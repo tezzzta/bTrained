@@ -138,7 +138,6 @@
 
         if (next <= state.idCounter) {
           const nextTemplate = state.templates.find(t => t.id === next);
-          console.log(next)
           if (nextTemplate) {
             set({ template: {...nextTemplate} });
           return nextTemplate.id;
@@ -154,7 +153,6 @@
 
         if (next > 0) {
           const nextTemplate = state.templates.find(t => t.id === next);
-          console.log(next)
           if (nextTemplate) {
             set({ template: {...nextTemplate} });
           return nextTemplate.id;
