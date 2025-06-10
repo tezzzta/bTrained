@@ -10,8 +10,9 @@
     addTemplate: () => void; 
     idCounter: number;
     incrementTemplateId: () => void;
-     
+    updateTemplate: (id: number, key: keyof Template, value: any) => void;      
     goNext: () => void;
+    goPrev: () => void;
     deleteTemplate:() => void;
 
     
@@ -52,6 +53,7 @@
     },
 
     addTemplate: () => {
+        console.log('🛠️ Creando plantilla:');
       const id = get().idCounter +1;
       const newTemplate: Template = {
         id,
@@ -62,6 +64,7 @@
         href: ''
       };
       set((state) => ({ 
+        
         templates: [...state.templates, newTemplate],
         template: newTemplate, // también lo seleccionamos
         idCounter: id
@@ -113,12 +116,7 @@
 
 ,
     
-    incrementTemplateId: () => {
-      set((state) => ({
-        idCounter: state.idCounter + 1
-      }));
-    },
-    updateTemplate: (id: number, key: keyof Template, value: string) => {
+updateTemplate: (id: number, key: keyof Template, value: any) => {
       set((state) => ({
         templates: state.templates.map((t) =>
           t.id === id ? { ...t, [key]: value } : t
@@ -129,6 +127,18 @@
             : state.template
       }));
     },
+
+    incrementTemplateId: () => {
+      set((state) => ({
+        idCounter: state.idCounter + 1
+      }));
+    },
+
+
+    
+    
+
+    
   // necesito hacer dos funciones para la pregunta siguiente y la anterior 
       goNext: () => {
         const state = get();

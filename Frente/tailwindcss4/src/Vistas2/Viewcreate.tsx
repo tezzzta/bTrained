@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useDropzone } from "react-dropzone";
 import Header from "../Headerr";  // Asegúrate de que el nombre del archivo Header sea correcto (Headerr -> Header)
 import { FormularioStore } from "../Store/TryZustand"; 
 import type {Template,UpdateTemplate } from '../Store/IntZus.d.ts'; // Asegúrate de que la ruta sea correcta
-import { ArrowBigDown, ArrowDownLeft, ArrowLeft, ArrowRight,  X , Minus, Plus } from "lucide-react";
+import { ArrowBigDown, ArrowDownLeft, ArrowLeft, ArrowRight,  X , Minus, Plus, Target } from "lucide-react";
 import { useStore } from "zustand";
 import Footer from "../components/Footer.tsx";
 import {Link } from "react-router-dom";
+
 
 
 
@@ -23,11 +24,18 @@ export const TemplateComponent = () => {
   const idCounter = useStore(FormularioStore, (state) => state.idCounter);
   const goPrev = useStore(FormularioStore, (state) => state.goPrev);
   
+
+
+  //esto debe estar solo en desarrollo, ahora lo eliminamos 
+    const hasInitialized = useRef(false); // 🔐
+
   useEffect(() => {
-    if (templates.length === 0) {
-      addTemplate();
-    } 
+      if (!hasInitialized.current) {
+      hasInitialized.current = true;
+      addTemplate(); 
+    }
   }, []); 
+  //esto debe estar solo en desarrollo, ahora lo eliminamos (solo es camgiar el if y ya, solo la funcion)
 
   const addHandleClick = () => {
     addTemplate();
@@ -80,29 +88,24 @@ export const TemplateComponent = () => {
     )
 }
 
-// const CLIENT_ID = "67c7cb587dab280"; //cambiar client id y poner en el readmeeeeeeeeeeeeeee
-
-// async function uploadImage(imagePath) {
-//   try {
-//     const image = fs.readFileSync(imagePath, { encoding: "base64" });
-
-//     const response = await axios.post(
-//       "https://api.imgur.com/3/upload",
-//       { image },
-//       { headers: { Authorization: `Client-ID ${CLIENT_ID}` } }
-//     );
-//    return response.data.data.link; // Retorna la URL de la imagen
-
-
-  
-
-// Componente para subir fotos
 
 const PhotoUpload: React.FC<{ id: number }> = ({ id }) => {
-  const templates = useStore(FormularioStore, (state) => state.templates);
+  const templates = FormularioStore ((state) => state.templates);
   const updateTemplate = useStore(FormularioStore, (state) => state.updateTemplate);
 
-const template = templates.find(t => t.id === id);
+const template = templates.find(t => t.id === id) || {
+  id: -1,
+  question: '',
+  answer: [],
+  correctAnswer: '',
+  imageUrl: '',
+  href: '',
+  imagePreview: ''
+};
+
+
+  //debo pasar el if abajo, ahora lo hacemos
+  
 const [imageBase64, setImageBase64] = useState<string | null>(null);
 
   // Declaro todos los hooks SIN CONDICIONES
@@ -258,17 +261,26 @@ const updateTemplate = useStore(FormularioStore, (state) => state.updateTemplate
   );
 };
 
-//exportaciooonnnnn
-
-
 // Componente ViewCreate
 const ViewCreate = () => {
+  
+  //acá haremos todo para la input 
+  const setFormData = useStore(FormularioStore, (state)=> state.setFormData)
+
+  function handleChangeName( str: React.ChangeEvent<HTMLInputElement>) {
+      setFormData('nombre',str.target.value)
+  }
+
+
+
   const deleteTemplate = useStore(FormularioStore, (state) => state.deleteTemplate);
 
   const handleDelete = () => {
     deleteTemplate();
   }
-  const { template, templates, updateTemplate } = FormularioStore();
+
+  const updateTemplate = FormularioStore((state) => state.updateTemplate);
+  const { template, templates } = FormularioStore();
   const nombre = useStore(FormularioStore, (state) => state.formData.nombre);
 
   const [message, setMessage] = useState('');
@@ -284,10 +296,20 @@ const ViewCreate = () => {
     <div className="bg-[#0F172A] min-h-screen w-full overflow-visible mb-5">
       <Header />
       <div className="grid grid-cols-1  gap-4  m-10">
-         <p className="flex text-white m-auto p-1 text-[4rem]  rounded  justify-center items-center text-center " style={{ fontFamily: 'Anton, sans-serif' }}> Acá verás el título de tu plantilla  </p>
-                  <p className="flex text-white m-auto  text-[1rem] font-semibold justify-center items-center text-center"> Tranqui, también lo puedes cambiar al final  </p>
+         <p className="flex text-white m-auto p-1 text-[4rem]  rounded  justify-center items-center text-center " style={{ fontFamily: 'Anton, sans-serif' }}> Puedes cambiar el titulo acá tambien </p>
+                  <p className="flex text-white m-auto  text-[1rem] font-semibold justify-center items-center text-center"> Revisa y corrije  </p>
 
-          <p className="flex text-white m-auto p-2   text-[4rem] font-semibold justify-center items-center text-center border-3  border-[#111] rounded hover:bg-[#131212]"> {nombre} </p>
+
+{/* acaaaaaaaaaaaaaaaaaaaa */}
+          <input 
+          type="text"
+          value={nombre}
+          onChange={(e)=> handleChangeName(e)}
+          className="text-white w-1/2 m-auto p-2 border-2 border-[#1E293B] text-center rounded" 
+          style={{ fontSize: "24px" }}/>
+
+
+          <p className="text-white m-auto text-[30px]" style={{ fontFamily: 'Anton, sans-serif' }}>{nombre}</p>
       </div>
 
       {/* será que hago este componente en uno y lo importo acá? ya tengo sueño, mañana veo */}
@@ -328,8 +350,18 @@ const ViewCreate = () => {
                           placeholder="Agrega la pregunta"
                         />
                       </div>
+                      <div>
+                        <p className="text-white font-bold text-lg">  Respuesta correcta</p>
+                        <input
+                          type="text"
+                          value={template.correctAnswer}
+                          onChange={(e) => updateTemplate(template.id, 'correctAnswer', e.target.value)}
+                          className="text-[22px] text-[#ffffff]  bg-gray-500 text-center font-semibold rounded-md p-2 w-2/3 mt-1 mb-3"
+                          placeholder="Respuesta correcta"
+                        />
+                      </div>
                       <div className="mb-5">
-                        <p className="text-white font-bold text-lg">Respuestas</p>
+                        <p className="text-white font-bold text-lg">Opciones</p>
                         <input
                           type="text"
                           value={template.answer[0] || ''}
@@ -384,3 +416,5 @@ const ViewCreate = () => {
 
 //Nota, cambiar colores y agregar un footer
 export default ViewCreate;
+
+
