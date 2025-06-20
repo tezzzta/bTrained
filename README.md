@@ -21,7 +21,8 @@ Actualmente se encuentra en **fase de desarrollo**, ¡mantente atento a su despl
 Asegúrate de tener [Node.js](https://nodejs.org/) instalado.
 
 ```bash
-git clone https://github.com/tu-usuario/btrain.git
-cd Foro-Educativo
+git clone https://github.com/tomas223-gr/Foro-educativo
+npm install
+cd /Frente/tailwindcss4/
 npm install
 npm run dev
