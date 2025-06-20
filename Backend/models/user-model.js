@@ -1,28 +1,31 @@
 const connection = require('../DataBases/db'); 
+   
 
+//necesito en ttodos ya que uso una pool, debo  usar el metodo execute para hacer la solicitud a la DB
 class UserModel {
-  
-  static registerUser(userData) {
+    
+  static async registerUser(userData) {
     const { username, email, password } = userData;
     console.log('Password a insertar:', password);
     console.log('Longitud:', password.length);
     const query = `INSERT INTO users (username, email, password) VALUES (?, ?, ?)`;
-    return new Promise((resolve, reject) => {
-      connection.query(query, [username, email, password], (err, results) => {
-        if (err) return reject(err);
-        resolve(results);
-      });
-    });
+    
+    try{
+      const [results] = await connection.execute(query, [username, email, password]);
+      return results;
+    }catch(err){
+        throw err
+    }
   }
 
-  static loginUser(email) {
+  static async loginUser(email) {
     const query = `SELECT * FROM users WHERE email = ?`;
-    return new Promise((resolve, reject) => {
-      connection.query(query, [email], (err, results) => {
-        if (err) return reject(err);
-        resolve(results);
-      });
-    });
+    try{
+      const [result] = await connection.execute(query, [email]); 
+      return result
+    }catch(err){
+      throw err
+    } 
   }
 
   static getAllUsers() {

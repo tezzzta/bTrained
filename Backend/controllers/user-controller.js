@@ -5,6 +5,7 @@ const UserModel = require('../models/user-model');
 
 exports.loginUser = async (req, res) => {
   const { email, password } = req.body;
+  console.log("errree")
   console.log('Datos recibidos en loginUser:', req.body);
   try {
     const result = await UserModel.loginUser(email);

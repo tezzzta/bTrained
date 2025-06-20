@@ -5,7 +5,7 @@ import SignUP from "./SignUp";
 import Login from "./Login";
 
 
-const LoginButtom = () => {
+const LoginButtom = ({ setIsLoggedIn })  => {
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isSignUpOpen, setIsSignUpOpen] = useState(false);
   
@@ -71,8 +71,11 @@ const LoginButtom = () => {
   </nav>
 </label>
 <SignUP isOpen={isSignUpOpen} onClose={() => setIsSignUpOpen(false)} />
-<Login isOpen={isLoginOpen} onClose={() => setIsLoginOpen(false)} />
-
+<Login
+  isOpen={isLoginOpen}
+  onClose={() => setIsLoginOpen(false)}
+  setIsLoggedIn={setIsLoggedIn}
+/>
 </div>
     )
 };

@@ -5,8 +5,8 @@ const TransitionController = require('../controllers/transition-controller');
 const multer = require('multer');
 const upload = multer({ dest: 'uploads/' }); // Configura multer para guardar archivos en la carpeta 'uploads'
 
-// crear una nueva transición con imagen
-router.post('/create', authenticate, upload.single('image'), TransitionController.createTransition);
+// crear una nueva transición con imagen DEBO AGREGAR AUTENTICACIONNN
+router.post('/createTra', authenticate, upload.single('image'), TransitionController.createTransition);
 
 //  obtener todas las transiciones
 router.get('/', authenticate, TransitionController.getAllTransitions);

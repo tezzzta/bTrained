@@ -6,7 +6,6 @@ const { uploadImage } = require('../imgur'); // Importa la función uploadImage
 exports.createTransition = async (req, res) => {
     try {
         const { title, description } = req.body;
-        console.log("Datos recibidos:", req.body);
         if (!title || !description) {
             return res.status(400).json({ message: 'Faltan datos obligatorios (título y descripción)' });
         }
@@ -17,6 +16,7 @@ exports.createTransition = async (req, res) => {
         };
 
         const transitionId = await TransitionRepository.create(transitionData);
+        console.log("bien meloss")
 
         if (req.files && req.files.image) {
             try {
@@ -28,12 +28,19 @@ exports.createTransition = async (req, res) => {
                 return res.status(500).json({ message: "Error al subir la imagen. La transición no se ha guardado." });
             }
         }
+        console.log("bien melos")
+    
         res.status(201).json({ message: 'Transición creada', transitionId });
     } catch (error) {
         console.error("Error en createTransition:", error);
         res.status(500).json({ message: 'Error al crear la transición' });
     }
 };
+
+//hasta aca todo biennn
+
+
+
 exports.getAllTransitions = async (req, res) => {
     try {
         const transitions = await TransitionRepository.getAll();

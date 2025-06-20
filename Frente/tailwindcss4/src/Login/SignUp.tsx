@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-
+import { X, User, AtSign } from 'lucide-react';
 interface LoginModalProps {
   isOpen: boolean;
   onClose: () => void;
@@ -46,13 +46,19 @@ const SingUp = ({ isOpen, onClose }: LoginModalProps) => {
     }
   };
 
+
+  
+
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
       <StyledWrapper>
         <form className="form" onSubmit={handleSubmit}>
-          <p id="heading">Sign Up</p>
+ 
+        <button onClick={onClose} className='flex font-semibold pt-3 justify-end'>  <X/></button>
+           <p id="heading" className='font-semibold'>Sign Up</p>
 
           <div className="field">
+            <span><User/></span>
             <input
               autoComplete="off"
               placeholder="Username"
@@ -64,6 +70,7 @@ const SingUp = ({ isOpen, onClose }: LoginModalProps) => {
           </div>
 
           <div className="field">
+            <span><AtSign/></span>
             <input
               autoComplete="off"
               placeholder="Email"
@@ -75,6 +82,9 @@ const SingUp = ({ isOpen, onClose }: LoginModalProps) => {
           </div>
 
           <div className="field">
+          <svg className="input-icon" xmlns="http://www.w3.org/2000/svg" width={16} height={16} fill="currentColor" viewBox="0 0 16 16">
+            <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z" />
+          </svg>         
             <input
               placeholder="Password"
               className="input-field"

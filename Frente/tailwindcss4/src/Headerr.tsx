@@ -4,8 +4,22 @@ import Container from 'react-bootstrap/Container';
 import {LoginButtom} from './Login/LoginRoutes';
 import 'bootstrap/dist/css/bootstrap.min.css'; // Importando ando 
 import BottomAnim from './Anim/BottomAnim';
+import { useEffect, useState } from 'react';
+
+
 
 function Header() {
+
+   const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const token = localStorage.getItem('token'); // o el nombre de tu token
+    if (token) {
+      setIsLoggedIn(true);
+    }
+  }, []);
+
+
   return (
     <header className="py-3 mb-4 border-bottom ">
       <Container className=" d-flex flex-wrap justify-content-center gap-2">
@@ -18,8 +32,27 @@ function Header() {
 
           
          
-      <LoginButtom/>
-        </Nav>
+               
+                          
+           {!isLoggedIn && (
+           <LoginButtom setIsLoggedIn={setIsLoggedIn} />
+           )}
+
+         {isLoggedIn && (
+          <button
+            className="btn btn-outline-light"
+            onClick={() => {
+              localStorage.removeItem('token');
+              setIsLoggedIn(false);
+            }}
+          >
+            Cerrar sesión
+          </button>
+        )}
+          
+          
+                            
+             </Nav>
       </Container>
       
       

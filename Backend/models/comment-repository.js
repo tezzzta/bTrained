@@ -1,4 +1,3 @@
-
 const connection = require('../DataBases/db');  
 
 const createCommentTable = `CREATE TABLE IF NOT EXISTS comments (
@@ -11,10 +10,13 @@ const createCommentTable = `CREATE TABLE IF NOT EXISTS comments (
   FOREIGN KEY (transition_id) REFERENCES trancisiones(id)
 )`;
 
-connection.query(createCommentTable, (err, results) => {
-  if (err) {
-    console.error('Error al crear la tabla de comentarios:', err);
-  } else {
+async function createTable() {
+  try {
+    await connection.query(createCommentTable);
     console.log('Tabla de comentarios creada o ya existe.');
+  } catch (err) {
+    console.error('Error al crear la tabla de comentarios:', err);
   }
-});
+}
+
+createTable();
