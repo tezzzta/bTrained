@@ -133,8 +133,9 @@ useEffect(() =>{
         <div className="grid grid-cols-1 mx-[5%] lg:mx-0">
 
             <TemplateComponent/>
-            <div className="grid m-auto bg-[#1E293B] w-full lg:w-1/2   lg:mx-0 rounded  lg:px-[5%] gap-3 mb-5">
-                        <p className="text-[38px] font-bold text-center uppercase text-[#8d4bff] pt-6">  {FormData.nombre}  </p>
+            <div className="grid m-auto bg-[#1E293B] w-full lg:w-1/2   lg:mx-0 rounded  lg:px-[5%] gap-2 mb-5">
+                      <p className='text-[22px] font-bold text-center text-[#CBD5E1]'>  Título</p>
+                        <p className="text-[38px] font-bold text-center uppercase text-[#8d4bff] pt-1">  {FormData.nombre}  </p>
 
         
 
@@ -145,7 +146,7 @@ useEffect(() =>{
                       </div>
 
 
-                <p className="flex justify-center text-center text-[26px]" > Selecciona la respuesta correcta  </p>
+                <p className="flex justify-center text-center text-[26px] font-semibold text-[#CBD5E1]" > Selecciona la respuesta correcta  </p>
 
                 
                           {[...template.answer, template.correctAnswer]

@@ -16,7 +16,6 @@ exports.createTransition = async (req, res) => {
         };
 
         const transitionId = await TransitionRepository.create(transitionData);
-        console.log("bien meloss")
 
         if (req.files && req.files.image) {
             try {
@@ -28,7 +27,8 @@ exports.createTransition = async (req, res) => {
                 return res.status(500).json({ message: "Error al subir la imagen. La transición no se ha guardado." });
             }
         }
-        console.log("bien melos")
+        //quitar este console.log
+        console.log(req.body)
     
         res.status(201).json({ message: 'Transición creada', transitionId });
     } catch (error) {

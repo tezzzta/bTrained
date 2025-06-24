@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useState, useEffect } from "react";
 import Header from '../Headerr';
 import Footer from '../components/Footer';
 import Card from './CardOne';
@@ -9,7 +9,7 @@ import {Forma} from './Forms';
 //importamos desde el store de zustand
 import { FormularioStore } from "../Store/TryZustand";
 import type { Formulario} from "../Store/IntZus.d.ts";
-
+import {SessionGlobal} from '../Store/Session.ts'
 import { Link } from "react-router-dom";
 
 
@@ -50,12 +50,16 @@ const handleInputChange = useCallback(
 );
 
 
-  
+   const { sesion, setSession } = SessionGlobal();
+
+  useEffect(() => {
+    setSession(); // Esto carga el token desde localStorage
+  }, []);
 
 
   return (
     <section className={styles.micolorsection}>
-      <div className="w-full">
+      {sesion ? <div className="w-full">
         <Header />
         <div className="grid grid-cols-1  gap-4 p-4"> 
                   <p className="m-auto text-[3rem] " style={{ fontFamily: 'Anton, sans-serif' }} > Pongamosle un nombre a tu nueva creación</p>
@@ -87,7 +91,9 @@ const handleInputChange = useCallback(
         <div className="w-full">
           <Footer />
         </div>
-      </div>
+      </div>: 
+      //acá necesito mostrar el login si no tiene token, lo hago mañana que debo irme a armenia
+      <p>ney mi papa</p>}
     </section>
   );
 }
