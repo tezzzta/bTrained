@@ -26,3 +26,10 @@ npm install
 cd /Frente/tailwindcss4/
 npm install
 npm run dev
+```
+Después corre en la linea de comandos el servidor en una terminal diferente con:
+```
+cd Backend
+npx nodemon app.js
+```
+
