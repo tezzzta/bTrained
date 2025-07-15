@@ -7,7 +7,7 @@ import { ArrowBigDown, ArrowDownLeft, ArrowLeft, ArrowRight,  X , Minus, Plus, T
 import { useStore } from "zustand";
 import Footer from "../components/Footer.tsx";
 import {Link } from "react-router-dom";
-
+import { SessionGlobal } from "../Store/Session.ts";
 
 
 
@@ -292,10 +292,14 @@ const ViewCreate = () => {
 )
 
 
+const { sesion ,setSession} = SessionGlobal()
   return (
     <div className="bg-[#0F172A] min-h-screen w-full overflow-visible mb-5">
-      <Header />
-      <div className="grid grid-cols-1  gap-4  m-10">
+      { sesion ?(
+        <>
+              <Header />
+
+        <div className="grid grid-cols-1  gap-4  m-10">
          <p className="flex text-white m-auto p-1 text-[4rem]  rounded  justify-center items-center text-center " style={{ fontFamily: 'Anton, sans-serif' }}> Puedes cambiar el titulo acá tambien </p>
                   <p className="flex text-white m-auto  text-[1rem] font-semibold justify-center items-center text-center"> Revisa y corrije  </p>
 
@@ -312,7 +316,7 @@ const ViewCreate = () => {
           <p className="text-white m-auto text-[30px]" style={{ fontFamily: 'Anton, sans-serif' }}>{nombre}</p>
       </div>
 
-      {/* será que hago este componente en uno y lo importo acá? ya tengo sueño, mañana veo */}
+    
               {/*engloba todod el componente */}
         <p className="flex text-white m-[7%] p-3 text-[2rem] bg-[#7C3AED] rounded font-semibold justify-center items-center text-center lg:m-[35%]"> Empieza a crear </p>
 
@@ -407,8 +411,12 @@ const ViewCreate = () => {
                             </button>
                             </Link>
                           </div>
+                          <Footer/> </>):
+                         ( <div>
+                          <p> holaaaa</p>
+                         </div>)}
       {/* de acá pa abajo si ya no*/}
-      <Footer/>
+      
     </div>
   );
 };

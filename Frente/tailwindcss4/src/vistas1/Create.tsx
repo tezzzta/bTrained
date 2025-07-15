@@ -12,7 +12,9 @@ import type { Formulario} from "../Store/IntZus.d.ts";
 import {SessionGlobal} from '../Store/Session.ts'
 import { Link } from "react-router-dom";
 
+//aremo
 
+import { CardLogin} from '../Login/LoginRoutes'
 
 
 
@@ -93,7 +95,7 @@ const handleInputChange = useCallback(
         </div>
       </div>: 
       //acá necesito mostrar el login si no tiene token, lo hago mañana que debo irme a armenia
-      <p>ney mi papa</p>}
+      <CardLogin/>}
     </section>
   );
 }

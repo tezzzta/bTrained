@@ -73,7 +73,7 @@ const BlurText: React.FC<BlurTextProps> = ({
     return () => observer.disconnect();
   }, [threshold, rootMargin]);
 
-  
+    
   const springs = useSprings(
     elements.length,
     elements.map((_, i) => ({

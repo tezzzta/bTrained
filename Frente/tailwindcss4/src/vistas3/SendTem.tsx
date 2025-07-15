@@ -5,7 +5,7 @@ import { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import {FormularioStore} from '../Store/TryZustand';
 import { useStore } from "zustand";
-
+import { SessionGlobal } from "../Store/Session";
 
 
 
@@ -52,8 +52,13 @@ const FinishTheme = () => {
     .then(result => console.log("ready papa", result))
     .catch(error => console.error("Error al hacer fetch:", error));
 }
+ const {sesion, setSession} = SessionGlobal()
+
+
   return (
-    <div>
+      <div>
+        {sesion?(
+      <div>
       <Header />
 
 
@@ -125,6 +130,14 @@ const FinishTheme = () => {
       <Componente />
       <Footer />
     </div>
+     ):(
+      <div>  
+      <p className="text-white"> nada mi so </p>
+      </div>
+     )
+
+     }
+      </div>
   );
 };
 
