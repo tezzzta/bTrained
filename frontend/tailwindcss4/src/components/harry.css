@@ -1,0 +1,6 @@
+.welcome-container {
+    background-color: #8AB4F8;
+    border-radius: 30px;
+    color: white; /* Asegura que el texto se vea bien */
+    font-family: 'Poppins', sans-serif;
+  }
