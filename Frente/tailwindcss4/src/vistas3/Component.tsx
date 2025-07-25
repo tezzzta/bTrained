@@ -1,15 +1,13 @@
-import { useEffect, useRef, useMemo } from 'react';
+import { useEffect, useRef } from 'react';
 import {FormularioStore} from '../Store/TryZustand';
-import {ArrowLeft, ArrowRight, Plus} from 'lucide-react' 
+import {ArrowLeft, ArrowRight} from 'lucide-react' 
 import { useStore } from "zustand";
-import { random } from 'gsap';
 
 
 
  const TemplateComponent = () => {
   const templates = useStore(FormularioStore, (state: any) => state.templates); 
   const addTemplate = useStore(FormularioStore, (state: any) => state.addTemplate);
-  const incrementTemplateId = useStore(FormularioStore, (state: any) => state.incrementTemplateId);
   const goNext = useStore(FormularioStore, (state: any) => state.goNext);
   const plantilla = useStore(FormularioStore, (state: any) => state.template);
   const idCounter = useStore(FormularioStore, (state: any) => state.idCounter);
@@ -25,7 +23,6 @@ import { random } from 'gsap';
     }}
   }, []);
 
-  const addHandleClick = () => addTemplate();
   const handleTemp = () => goNext();
   const handlePrev = () => goPrev();
 
@@ -59,10 +56,7 @@ import { random } from 'gsap';
 const ButtonToPass = () => {
   const templates = useStore(FormularioStore, (state: any) => state.templates); 
   const addTemplate = useStore(FormularioStore, (state: any) => state.addTemplate);
-  const incrementTemplateId = useStore(FormularioStore, (state: any) => state.incrementTemplateId);
   const goNext = useStore(FormularioStore, (state: any) => state.goNext);
-  const plantilla = useStore(FormularioStore, (state: any) => state.template);
-  const idCounter = useStore(FormularioStore, (state: any) => state.idCounter);
   const goPrev = useStore(FormularioStore, (state: any) => state.goPrev);
     const handleF = useRef(false)
 
@@ -75,7 +69,7 @@ const ButtonToPass = () => {
     }}
   }, []);
 
-  const addHandleClick = () => addTemplate();
+  // const addHandleClick = () => addTemplate();
   const handleTemp = () => goNext();
   const handlePrev = () => goPrev();
 
@@ -123,7 +117,7 @@ const FormData = FormularioStore((state:any) => state.formData);
 
 
 const template = FormularioStore().template;
-const selectTemplate = FormularioStore()
+// const selectTemplate = FormularioStore()
 useEffect(() =>{
    console.log(template.question);
 

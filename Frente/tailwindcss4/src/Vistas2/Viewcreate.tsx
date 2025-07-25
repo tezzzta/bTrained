@@ -2,8 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useDropzone } from "react-dropzone";
 import Header from "../Headerr";  // Asegúrate de que el nombre del archivo Header sea correcto (Headerr -> Header)
 import { FormularioStore } from "../Store/TryZustand"; 
-import type {Template,UpdateTemplate } from '../Store/IntZus.d.ts'; // Asegúrate de que la ruta sea correcta
-import { ArrowBigDown, ArrowDownLeft, ArrowLeft, ArrowRight,  X , Minus, Plus, Target } from "lucide-react";
+import {  ArrowLeft, ArrowRight,  X , Plus } from "lucide-react";
 import { useStore } from "zustand";
 import Footer from "../components/Footer.tsx";
 import {Link } from "react-router-dom";
@@ -16,9 +15,7 @@ import { SessionGlobal } from "../Store/Session.ts";
 // haremos un componente para que el user pueda agregar templates
 
 export const TemplateComponent = () => {
-  const templates = useStore(FormularioStore, (state) => state.templates); 
   const addTemplate = useStore(FormularioStore, (state) => state.addTemplate);
-  const incrementTemplateId = useStore(FormularioStore, (state) => state.incrementTemplateId);
   const goNext = useStore(FormularioStore, (state) => state.goNext);
   const plantilla = useStore(FormularioStore, (state) => state.template);
   const idCounter = useStore(FormularioStore, (state) => state.idCounter);
@@ -280,7 +277,7 @@ const ViewCreate = () => {
   }
 
   const updateTemplate = FormularioStore((state) => state.updateTemplate);
-  const { template, templates } = FormularioStore();
+  const { template } = FormularioStore();
   const nombre = useStore(FormularioStore, (state) => state.formData.nombre);
 
   const [message, setMessage] = useState('');
@@ -288,11 +285,12 @@ const ViewCreate = () => {
     fetch('http://localhost:3000/api/req')
     .then((res) => res.json())
     .then((data)=> setMessage(data.message))
+    console.log(message)
   }
 )
 
 
-const { sesion ,setSession} = SessionGlobal()
+const { sesion } = SessionGlobal()
   return (
     <div className="bg-[#0F172A] min-h-screen w-full overflow-visible mb-5">
       { sesion ?(

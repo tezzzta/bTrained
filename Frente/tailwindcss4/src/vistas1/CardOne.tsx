@@ -1,4 +1,4 @@
-import { useState } from "react";
+// import { useState } from "react";
 import GradientButton from "./GradientButton";
 import styles from "./Create.module.css";
 
@@ -11,6 +11,8 @@ import type { Formulario } from "../Store/IntZus.d.ts";
 interface TemplatePickerProps {
   nombre: string;
   setFormData: (nombre: keyof Formulario, value: string) => void;
+  onSelect: (id: number | null) => void;
+
 }
 
 

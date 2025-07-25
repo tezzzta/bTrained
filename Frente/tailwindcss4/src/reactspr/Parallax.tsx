@@ -1,16 +1,16 @@
-import React, { useState, useEffect,useRef } from 'react';
+import  { useState, useEffect,useRef } from 'react';
 import styles from './ParallaxIntro.module.css';
 import { motion } from "framer-motion";
 // import {PlanetA  , PlanetC, PlanetD, PlanetE, PlanetF, PlanetG} from '../Anim/Planet';
 
-import BlurText from './TryFirts';
+// import BlurText from './TryFirts';
 
 import {gsap} from 'gsap';
 
 
-const handleAnimationComplete = () => {
-  console.log('Animation completed!');  
-};
+// const handleAnimationComplete = () => {
+//   console.log('Animation completed!');  
+// };
 
 
 //esto es para la constante useIsVisible 
@@ -106,7 +106,7 @@ const Texxt = () => {
 
 
 
-const texto = "B-Trained";
+// const texto = "B-Trained";
 
 const frases = ["Creative", "Influential", " "];
 
@@ -140,7 +140,7 @@ const Componente = () => {
                 
               ;
 
-              frases.forEach((frase, i) => {
+              frases.forEach((__, i) => {
               frasesTl.to(Refer.current, { opacity: 0, y: -100, x:35 , duration: 0.3, onComplete: () => setIndex(i) },"<")
               frasesTl.fromTo(Refer.current, { opacity: 0, y: -300, x:35  }, { opacity: 1, x:42 , y: -162, scale: 1, duration: 0.8 })
               frasesTl.to({}, { y:  -200,  duration: 1 })

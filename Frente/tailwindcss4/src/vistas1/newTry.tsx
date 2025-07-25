@@ -73,7 +73,7 @@ const GridMotion: FC<GridMotionProps> = ({
         }}
       >
         {/* Noise overlay */}
-        <div className="absolute inset-0 pointer-events-none z-[-99] bg-[url('../../../assets/noise.png')] bg-[length:250px]"></div>
+        <div className="absolute inset-0 pointer-events-none z-[-99] bg-[length:250px]"></div>
 
 
         <Link to ="gallery">
@@ -87,7 +87,9 @@ const GridMotion: FC<GridMotionProps> = ({
               key={rowIndex}
               className="grid gap-4 grid-cols-7"
               style={{ willChange: "transform, filter" }}
-              ref={(el) => (rowRefs.current[rowIndex] = el)}
+                ref={(el) => {
+                  rowRefs.current[rowIndex] = el;
+                }}
             >
               {Array.from({ length: 7 }, (_, itemIndex) => {
                 const content = combinedItems[rowIndex * 7 + itemIndex];

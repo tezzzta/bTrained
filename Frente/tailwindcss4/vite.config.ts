@@ -10,7 +10,7 @@ export default defineConfig({
     react()
   ],
   server: {
-    historyApiFallback: 'html', // Asegura que todas las rutas sean manejadas por index.html
-  },
+    middlewareMode: true
+},
   
 })

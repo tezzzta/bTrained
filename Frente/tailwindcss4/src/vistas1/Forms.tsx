@@ -5,13 +5,14 @@ import styles from './Forms.module.css'
 import { useState } from "react";
 
 export const templates = [
-  { title: "Formulario en blanco", image: "../public/img.jpeg", texto: "El Formulario en blanco consiste en crear tu propio formulario desde cero y a tu preferencia" },
-  { title: "Registro para la obtención...", image: "https://picsum.photos/400/200?random=5", texto: "Un formulario en blanco "  },
-  { title: "Información de contacto", image: "https://picsum.photos/400/200?random=6", texto: "Un formulario en blanco para empezar desde cero."  },
+  { id: 1, title: "Formulario en blanco", image: "../public/img.jpeg", texto: "El Formulario en blanco consiste en crear tu propio formulario desde cero y a tu preferencia" },
+  { id: 2, title: "Registro para la obtención...", image: "https://picsum.photos/400/200?random=5", texto: "Un formulario en blanco "  },
+  { id: 3, title: "Información de contacto", image: "https://picsum.photos/400/200?random=6", texto: "Un formulario en blanco para empezar desde cero."  },
 
 ];
 
 type Template = {
+    id: number;
   title: string;
   image: string;
   texto: string;
@@ -24,27 +25,25 @@ type Template = {
 
 interface TemplatePickerProps {
   setFormData: (key: "nombre" | "template", value: string) => void;
+  onSelect: (id: number) => void;
 }
 
-
-
-export const TemplatePicker: React.FC<TemplatePickerProps> = ({ setFormData }) => {
-  
-
+export const TemplatePicker: React.FC<TemplatePickerProps> = ({ setFormData, onSelect }) => {
   return (
-    <div>
-
-     <Container className={styles.container}>
+    <Container className={styles.container}>
       <Row className="g-6 justify-content-center">
-        {templates.map((card: Template) => (
-          <Col sm={3} md={3} key={card.title} className="justify-center">
-            <div 
-              className={styles.template} 
-              onClick={() => setFormData( 'template', card.title)}
+        {templates.map((card) => (
+          <Col sm={3} md={3} key={card.id} className="justify-center">
+            <div
+              className={styles.template}
+              onClick={() => {
+                setFormData("template", card.title);
+                onSelect(card.id);
+              }}
               style={{ cursor: "pointer", border: "2px solid transparent", padding: "5px" }}
             >
               <div className={styles.card}>
-                <img src={card.image} alt={card.title} className="  p-10"  />
+                <img src={card.image} alt={card.title} className="p-10" />
               </div>
             </div>
             <div className="text-white">
@@ -54,12 +53,9 @@ export const TemplatePicker: React.FC<TemplatePickerProps> = ({ setFormData }) =
         ))}
       </Row>
     </Container>
-   
-
-    </div>
-  
   );
 };
+
 
 
 export const Forma: React.FC<TemplatePickerProps> = ({ setFormData }) => {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Carousel, Container } from 'react-bootstrap';
+import { Carousel, Container } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './harry.css';
 import { Link } from 'react-router-dom';

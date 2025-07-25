@@ -1,10 +1,10 @@
-import { useCallback, useState, useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import Header from '../Headerr';
 import Footer from '../components/Footer';
 import Card from './CardOne';
 import styles from "./principal.module.css";
 // import {TemplatePicker} from './Forms';
-import MyComponent from "../Anim/FirstSrping";
+// import MyComponent from "../Anim/FirstSrping";
 import {Forma} from './Forms';
 //importamos desde el store de zustand
 import { FormularioStore } from "../Store/TryZustand";
@@ -12,7 +12,7 @@ import type { Formulario} from "../Store/IntZus.d.ts";
 import {SessionGlobal} from '../Store/Session.ts'
 import { Link } from "react-router-dom";
 
-//aremo
+
 
 import { CardLogin} from '../Login/LoginRoutes'
 
@@ -68,14 +68,19 @@ const handleInputChange = useCallback(
 
         </div>
           <div className={styles.cardContainer}>
-              <Card nombre={formData.nombre} setFormData={handleInputChange} />
+              <Card 
+                nombre={formData.nombre}
+                setFormData={handleInputChange}
+                onSelect={() => {}}
+              />
+
 
         </div>
                    <div className="grid grid-cols-1  mt-3 gap-4 p-4"> 
                               <p className="flex m-auto text-[2rem] justify-center items-center text-center"  style={{ fontFamily: 'Anton, sans-serif' }} > Elige una plantilla para iniciar </p>
 
                     </div>
-          <Forma setFormData={handleInputChange} />
+          <Forma setFormData={handleInputChange}  onSelect={() =>{}}/>
 
         
 

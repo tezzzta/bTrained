@@ -1,6 +1,6 @@
-import {  useSpringRef,useSpring, animated } from '@react-spring/web'
+import { useSpring, animated } from '@react-spring/web'
 import {motion} from 'framer-motion'
-import type { Formulario} from '../Store/IntZus'
+// import type { Formulario} from '../Store/IntZus'
 
 
 

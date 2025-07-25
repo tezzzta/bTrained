@@ -7,7 +7,7 @@ interface SessionGlobal {
 
 }
 
-export const SessionGlobal = create<SessionGlobal>((set, get) => ({
+export const SessionGlobal = create<SessionGlobal>((set) => ({
     sesion: '',
     setSession: () =>{
          const token = localStorage.getItem('token') || '';

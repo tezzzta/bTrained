@@ -1,7 +1,7 @@
 import Header from "../Headerr";
 import Componente from "./Component";
 import Footer from "../components/Footer"
-import { useEffect, useState, useRef } from "react";
+import {  useRef } from "react";
 import { Link } from "react-router-dom";
 import {FormularioStore} from '../Store/TryZustand';
 import { useStore } from "zustand";
@@ -12,11 +12,11 @@ import { SessionGlobal } from "../Store/Session";
 
 
 const FinishTheme = () => {
-  const dialogRef = useRef(null); // 1. Referencia al dialog
+  const dialogRef = useRef<HTMLDialogElement | null>(null);
  const token = localStorage.getItem("token");
   const openDialog = () => {
     if (dialogRef.current) {
-      dialogRef.current.showModal(); // 2. Abre el dialog correctamente
+      dialogRef.current.showModal(); 
     }
   };
 
@@ -52,7 +52,7 @@ const FinishTheme = () => {
     .then(result => console.log("ready papa", result))
     .catch(error => console.error("Error al hacer fetch:", error));
 }
- const {sesion, setSession} = SessionGlobal()
+ const {sesion} = SessionGlobal()
 
 
   return (

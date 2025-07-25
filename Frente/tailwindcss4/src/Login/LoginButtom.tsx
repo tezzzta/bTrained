@@ -5,7 +5,7 @@ import SignUP from "./SignUp";
 import Login from "./Login";
 
 
-const LoginButtom = ({ setIsLoggedIn })  => {
+const LoginButtom = ({ setIsLoggedIn }: { setIsLoggedIn: (value: boolean) => void }) => {
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isSignUpOpen, setIsSignUpOpen] = useState(false);
   

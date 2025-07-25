@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import {  useState } from 'react';
 import styled from 'styled-components';
 import { X } from 'lucide-react';
 import { AtSign } from 'lucide-react';

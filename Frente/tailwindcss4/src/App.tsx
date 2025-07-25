@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import First from './Global/RouteFirst';
 import { Create } from './Global/RouteCreate';
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import {Inicio} from './Global/RouteLogin';
 import ViewCreate from './Vistas2/Viewcreate'
 import SectGall from './Gallery/GaleriaInit';
